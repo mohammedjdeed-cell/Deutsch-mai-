@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deutsch mit Dr. Mai – أكاديمية غوته الشاملة A1–A2</title>
+  <title>Deutsch mit Dr. Mai – أكاديمية غوته التفاعلية الشاملة A1–A2</title>
 
-  <!-- PWA Metadata & Theme -->
   <meta name="theme-color" content="#1d4ed8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Typography: Tajawal (Arabic) + Plus Jakarta Sans (German) + JetBrains Mono (Grammar) -->
+  <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -114,30 +113,30 @@
 <body class="min-h-full flex flex-col antialiased">
 
   <!-- =========================================================================
-       1. STUDENT EXECUTIVE HEADER (CLEAN - ZERO TEACHER BUTTONS)
+       1. STUDENT NAVIGATION (ZERO VISIBLE TEACHER UI)
        ========================================================================= -->
-  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-2">
       
       <!-- Right: Catalog Toggle & Stealth Teacher Trigger -->
       <div class="flex items-center gap-3">
-        <button id="btn-catalog" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition btn-tactile" title="فهرس الوحدات (30 وحدة)">
+        <button id="btn-catalog" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition btn-tactile" title="فهرس الوحدات">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h8"/></svg>
         </button>
         <div>
           <div class="flex items-center gap-2">
-            <!-- STEALTH TRIGGER: Triple-clicking Dr. Mai's icon unlocks Teacher Mode -->
-            <span id="secret-teacher-trigger" class="cursor-pointer text-base select-none" title="د. مي">👩‍🏫</span>
+            <!-- SECRET TEACHER GATEWAY: Triple click or Ctrl+Shift+T -->
+            <span id="stealth-teacher-avatar" class="cursor-pointer text-base select-none" title="د. مي">👩‍🏫</span>
             <span id="badge-level" class="bg-blue-600 text-white text-[11px] font-de font-black px-2 py-0.5 rounded shadow-sm">A1.01</span>
-            <h1 id="header-title" class="text-sm sm:text-base font-black truncate max-w-[180px] sm:max-w-xs md:max-w-md">الضمائر الشخصية وتصريف الحاضر</h1>
+            <h1 id="header-title" class="text-sm sm:text-base font-black truncate max-w-[180px] sm:max-w-xs md:max-w-md">تصريف الأفعال والمضارع</h1>
           </div>
-          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400">منهاج معهد غوته الكامل • تدريب تفاعلي وشرح د. مي</p>
+          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400">قواعد تفاعلية بالعمق اللغوي الكامل • معهد غوته الرسمي</p>
         </div>
       </div>
 
-      <!-- Left: Audio Speed, Theme Toggle & XP Counter -->
+      <!-- Left: Speech Controller, Theme Toggle, XP -->
       <div class="flex items-center gap-2">
-        <button id="btn-audio-speed" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] font-de font-bold text-slate-600 dark:text-slate-300" title="سرعة النطق الصوتي">
+        <button id="btn-speech-rate" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] font-de font-bold text-slate-600 dark:text-slate-300" title="سرعة النطق">
           🔊 0.85x
         </button>
 
@@ -153,18 +152,18 @@
       </div>
     </div>
 
-    <!-- Mode Selector Tabs -->
+    <!-- Navigation Tabs -->
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-1.5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80">
       <div class="flex gap-2">
         <button id="tab-lesson" class="px-4 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition btn-tactile">
-          <span>📖 شرح القواعد والأمثلة الـ 5</span>
+          <span>📖 الشرح والمختبر التفاعلي</span>
         </button>
         <button id="tab-practice" class="px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-1.5 transition">
-          <span>✍️ ورشة التدريب التفاعلي</span>
+          <span>✍️ ورشة التمارين التفاعلية</span>
           <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 text-[10px] font-de font-black px-1.5 py-0.2 rounded-full">3 أنماط</span>
         </button>
         <button id="tab-reference" class="hidden sm:flex px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs items-center gap-1.5 transition">
-          <span>🗂️ بوصلة القواعد السريعة</span>
+          <span>🗂️ مرجع القواعد السريع</span>
         </button>
       </div>
 
@@ -176,17 +175,17 @@
   </header>
 
   <!-- =========================================================================
-       2. MAIN CONTENT AREA
+       2. MAIN CONTENT ARENA
        ========================================================================= -->
   <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6">
 
-    <!-- VIEW 1: DR. MAI TEACHER LECTURE & 5 DETAILED EXAMPLES -->
+    <!-- VIEW 1: DR. MAI TEACHER LECTURE & INTERACTIVE GRAMMAR LAB -->
     <section id="view-lesson" class="space-y-6">
       <div id="lesson-render-target" class="space-y-6"></div>
 
       <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex justify-end no-print">
         <button onclick="switchTab('practice')" class="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-600/25 transition btn-tactile flex items-center gap-2">
-          <span>انتقل إلى ورشة التدريب التفاعلي لهذا الدرس</span>
+          <span>ابدأ التدريب التفاعلي لهذا الدرس</span>
           <span class="font-de">➔</span>
         </button>
       </div>
@@ -236,27 +235,34 @@
       </div>
     </section>
 
-    <!-- VIEW 3: QUICK REFERENCE & GRAMMAR COMPASS -->
+    <!-- VIEW 3: GRAMMAR COMPASS & RAPID REFERENCE -->
     <section id="view-reference" class="hidden space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
           <h3 class="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
             <span>🧭</span>
-            <span>بوصلة حروف الجر الإعرابية:</span>
+            <span>بوصلة حروف الجر الإعرابية الشاملة:</span>
           </h3>
           <div class="space-y-2 text-xs">
             <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
-              <strong class="text-emerald-900 dark:text-emerald-200 block mb-1">Akkusativ فقط (DOGFU):</strong>
+              <strong class="text-emerald-900 dark:text-emerald-200 block mb-1">حروف النصب فقط (DOGFU ➔ Akkusativ):</strong>
               <span class="font-de font-black text-emerald-700 dark:text-emerald-400">Durch, Ohne, Gegen, Für, Um</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تفرض دائماً حالة النصب دون أي استثناء، ولا تقبل الجر نهائياً.</p>
             </div>
             <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800">
-              <strong class="text-amber-900 dark:text-amber-200 block mb-1">Dativ فقط:</strong>
+              <strong class="text-amber-900 dark:text-amber-200 block mb-1">حروف الجر فقط (Dativ):</strong>
               <span class="font-de font-black text-amber-700 dark:text-amber-400">Aus, Bei, Mit, Nach, Seit, Von, Zu, Gegenüber</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تفرض حالة الـ Dativ وتغير أدوات التعريف (dem/der/dem/den+n).</p>
             </div>
             <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800">
               <strong class="text-blue-900 dark:text-blue-200 block mb-1">المشتركة التسعة (Wechselpräpositionen):</strong>
               <span class="font-de font-black text-blue-700 dark:text-blue-400">an, auf, hinter, in, neben, über, unter, vor, zwischen</span>
-              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">Wo? (أين ثبات) = Dativ | Wohin? (إلى أين حركة) = Akkusativ.</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">Wo? (أين ثبات واستقرار) = Dativ | Wohin? (إلى أين حركة وعبر حدود) = Akkusativ.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
+              <strong class="text-purple-900 dark:text-purple-200 block mb-1">حروف الإضافة (Genitiv):</strong>
+              <span class="font-de font-black text-purple-700 dark:text-purple-400">Während, Wegen, Trotz, (An)statt</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تأخذ بعدها حالة الإضافة (des Mannes / der Frau).</p>
             </div>
           </div>
         </div>
@@ -264,12 +270,16 @@
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
           <h3 class="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
             <span>🚦</span>
-            <span>القاعدة الذهبية لنهايات الصفات (Adjektivdeklination):</span>
+            <span>القواعد الذهبية لنهايات الصفات (Adjektivdeklination):</span>
           </h3>
           <div class="space-y-2 text-xs">
             <div class="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
-              <strong class="text-purple-900 dark:text-purple-200 block mb-1">قاعدة الإنقاذ السريع:</strong>
-              <p class="leading-relaxed">أي صفة تقع في حالة <strong>Dativ</strong> أو <strong>Genitiv</strong> أو في <strong>الجمع Plural</strong> تأخذ حتماً النهاية <span class="font-de font-bold text-purple-700 dark:text-purple-400 underline">-en</span> بدون أي تردد!</p>
+              <strong class="text-purple-900 dark:text-purple-200 block mb-1">قاعدة الإنقاذ الأولى في الامتحانات:</strong>
+              <p class="leading-relaxed">أي صفة تقع في حالة <strong>Dativ</strong> أو <strong>Genitiv</strong> أو في <strong>الجمع Plural</strong> تأخذ حتماً النهاية <span class="font-de font-bold text-purple-700 dark:text-purple-400 underline">-en</span> بدون أي استثناء!</p>
+            </div>
+            <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800">
+              <strong class="text-blue-900 dark:text-blue-200 block mb-1">قاعدة النصب للمذكر:</strong>
+              <p class="leading-relaxed">أي صفة تصف اسماً مذكراً في حالة النصب (Akkusativ) تأخذ حتماً النهاية <span class="font-de font-bold text-blue-700 dark:text-blue-400 underline">-en</span> (den alten Tisch / einen alten Tisch).</p>
             </div>
           </div>
         </div>
@@ -279,7 +289,7 @@
   </main>
 
   <!-- =========================================================================
-       3. CATALOG DRAWER (30 MODULES COMPLETE)
+       3. CATALOG DRAWER (ALL 30 COMPLETE MODULES)
        ========================================================================= -->
   <div id="catalog-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
     <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity" onclick="toggleCatalog(false)"></div>
@@ -287,14 +297,14 @@
       <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800">
         <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <h2 class="font-black text-sm text-slate-900 dark:text-white">منهاج غوته التفاعلي (30 وحدة كاملة)</h2>
-            <p class="text-[11px] text-slate-500">اختر الوحدة لبدء الشرح والأمثلة والتمارين</p>
+            <h2 class="font-black text-sm text-slate-900 dark:text-white">منهاج غوته الشامل (A1 إلى A2)</h2>
+            <p class="text-[11px] text-slate-500">اختر الوحدة لفتح الشرح والمختبر التفاعلي</p>
           </div>
           <button onclick="toggleCatalog(false)" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white">✕</button>
         </div>
 
         <div class="p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-          <input id="catalog-search-input" type="text" placeholder="ابحث عن درس (Akkusativ, Perfekt, Weil, Passiv...)" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 outline-none focus:border-blue-600">
+          <input id="catalog-search-input" type="text" placeholder="ابحث عن درس (Akkusativ, Dativ, Passiv, Weil...)" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 outline-none focus:border-blue-600">
         </div>
 
         <div class="flex-1 overflow-y-auto p-3 space-y-2" id="catalog-units-list"></div>
@@ -303,7 +313,7 @@
   </div>
 
   <!-- =========================================================================
-       4. STEALTH TEACHER HUB (TOTALLY INVISIBLE UNTIL UNLOCKED)
+       4. HIDDEN TEACHER HUB (TOTALLY INVISIBLE TO STUDENTS)
        ========================================================================= -->
   <div id="floating-teacher-hub" class="fixed bottom-4 left-4 z-50 hidden bg-slate-900 text-white border border-slate-700 rounded-2xl p-4 shadow-2xl space-y-3 max-w-xs animate-pop">
     <div class="flex items-center justify-between border-b border-slate-800 pb-2">
@@ -311,7 +321,7 @@
         <span class="text-amber-400 text-sm">👩‍🏫</span>
         <strong class="text-xs text-amber-300">حقيبة المعلم (Teacher Hub)</strong>
       </div>
-      <button onclick="lockTeacherMode()" class="text-slate-400 hover:text-white text-[11px]" title="إغلاق وضع المعلم">✕ قفل</button>
+      <button onclick="lockTeacherMode()" class="text-slate-400 hover:text-white text-[11px]" title="إغلاق">✕ قفل</button>
     </div>
 
     <div class="space-y-2 text-xs">
@@ -331,7 +341,6 @@
     </div>
   </div>
 
-  <!-- Hidden Printable Worksheet Section -->
   <div id="print-worksheet-area" class="hidden p-6 text-black">
     <div class="text-center border-b-2 border-black pb-4 mb-6">
       <h1 class="text-2xl font-black">ورقة عمل واختبار صفي – لغة ألمانية</h1>
@@ -346,11 +355,11 @@
   </div>
 
   <!-- =========================================================================
-       5. COMPREHENSIVE JAVASCRIPT ENGINE (30 GOETHE MODULES & 5 EXAMPLES EACH)
+       5. COMPREHENSIVE JAVASCRIPT & PEDAGOGICAL DATABASE
        ========================================================================= -->
   <script>
     /* -------------------------------------------------------------------------
-       A. SOUND SYNTHESIZER (WEB AUDIO API)
+       A. SOUND EFFECTS & NATIVE PRONUNCIATION SYNTHESIS
        ------------------------------------------------------------------------- */
     const SoundFX = {
       ctx: null,
@@ -396,9 +405,6 @@
       }
     };
 
-    /* -------------------------------------------------------------------------
-       B. SPEECH SYNTHESIS ENGINE
-       ------------------------------------------------------------------------- */
     let currentSpeechRate = 0.85;
     function speakGerman(text) {
       if (!('speechSynthesis' in window)) return;
@@ -413,19 +419,20 @@
     }
 
     /* -------------------------------------------------------------------------
-       C. THE FULL 30 GOETHE MODULES WITH 5 AUTHENTIC EXAMPLES EACH
+       B. MASTER PEDAGOGICAL CURRICULUM DATABASE WITH 5 DIVERSE EXAMPLES
        ------------------------------------------------------------------------- */
     const MASTER_CURRICULUM = [
       // A1.01
       {
         id: "A1.01", level: "A1",
-        titleAr: "الضمائر الشخصية وتصريف الحاضر وتعديلات الجذع (-t/-d/-s)",
-        titleDe: "Personalpronomen & Präsens (Stamm-Anpassung)",
-        introNote: "أهلاً بكم! في هذا الدرس نضع حجر الأساس: الفعل المصرف هو الوتد الثابت بالمركز الثاني ويتغير شكله بحسب الفاعل بدقة.",
-        logic: "تصريف الفعل يمكّن السامع من معرفة الفاعل حتى وإن تغير ترتيب الكلمات في الجملة.",
-        warn: "إذا انتهى جذر الفعل بحرف t أو d (مثل arbeiten)، نضيف حرف e للوقاية والتخفيف: (du arbeitest)!",
-        trick: "احفظ النغمة السحرية للنهايات: e, st, t, en, t, en!",
-        formula: "Verb Stem = Infinitive - '-en' | Stem + [e, st, t, en, t, en] = Finite Verb",
+        titleAr: "تصريف أفعال الحاضر وقواعد الجذع (-t/-d/-s)",
+        titleDe: "Präsens-Konjugation & Stamm-Besonderheiten",
+        introNote: "أهلاً بكم في أول خطوة في الألمانية! الفعل كائن حي يتصرف ليتطابق مع الفاعل تماماً في المركز الثاني. هنا نتعلم كيف نحدد جذر الفعل ونضيف النهايات الصحيحة، وحالات إدخال حرف الوقاية e لتسهيل النطق.",
+        logic: "الألمانية لغة إعرابية حرة الترتيب نسبياً؛ لذا فإن تصريف الفعل هو البوصلة التي تخبر المستمع بدقة من هو الفاعل.",
+        warn: "إذا انتهى جذر الفعل بـ t أو d (مثل arbeiten)، يثقل اللسان إذا قلنا (du arbeitst)، لذلك نضع حرف e وقاية: (du arbeitest)!",
+        trick: "احفظ اللحن الموسيقي للنهايات القياسية: e, st, t, en, t, en!",
+        formula: "Stamm = Infinitiv - '-en' | Stamm + [e, st, t, en, t, en] = Konjugiertes Verb",
+        interactiveLabType: "conjugator",
         paradigm: {
           headers: ["Pronoun", "Ending", "lernen", "arbeiten (-t-)", "heißen (-s-)"],
           rows: [
@@ -438,136 +445,104 @@
           ]
         },
         examples: [
-          { de: "Ich wohne in Berlin und lerne jeden Tag fleißig Deutsch.", ar: "أنا أسكن في برلين وأتعلم الألمانية بجد كل يوم." },
-          { de: "Du arbeitest als Krankenpfleger in einem großen Hospital.", ar: "أنت تعمل كممرض في مستشفى كبير (إضافة e للجذع)." },
-          { de: "Er heißt Thomas und kommt ursprünglich aus Wien.", ar: "هو يدعى توماس ويأتي بالأصل من فيينا (سقوط s مع ß)." },
-          { de: "Wir trinken morgens immer frischen schwarzen Kaffee zusammen.", ar: "نحن نشرب صباحاً دائماً قهوة سوداء طازجة معاً." },
-          { de: "Kinder, lernt ihr heute fleißig für die schwere Prüfung?", ar: "يا أطفال، هل تدرسون اليوم بجد للامتحان الصعب؟" }
+          { de: "Ich wohne in Berlin und lerne jeden Tag fleißig Deutsch.", ar: "أنا أسكن في برلين وأتعلم الألمانية بجد كل يوم (متكلم مفرد -e)." },
+          { de: "Du arbeitest als Krankenpfleger in einem großen Hospital.", ar: "أنت تعمل كممرض في مستشفى كبير (إضافة e وقاية للجذع المنتهي بـ t)." },
+          { de: "Er heißt Thomas und kommt ursprünglich aus Wien.", ar: "هو يدعى توماس ويأتي بالأصل من فيينا (سقوط s مع جذر ß)." },
+          { de: "Wir trinken morgens immer frischen schwarzen Kaffee zusammen.", ar: "نحن نشرب صباحاً دائماً قهوة سوداء طازجة معاً (جمع المتكلم -en)." },
+          { de: "Kinder, lernt ihr heute fleißig für die schwere Prüfung?", ar: "يا أطفال، هل تدرسون اليوم بجد للامتحان الصعب؟ (أنتم ihr تأخذ -t)." }
         ],
         exercises: [
           { q: "Ich ___ in München und lerne Medizin.", a: "wohne", opts: ["wohne", "wohnst", "wohnt", "wohnen"], words: ["Ich", "wohne", "in", "München."], hint: "نهاية المتكلم ich هي دائماً -e." },
-          { q: "Du ___ sehr fleißig im Labor.", a: "arbeitest", opts: ["arbeitst", "arbeitest", "arbeitet", "arbeiten"], words: ["Du", "arbeitest", "sehr", "fleißig."], hint: "الجذع المنتهي بـ t يضيف e وقاية." },
-          { q: "Wie ___ du mit Nachnamen?", a: "heißt", opts: ["heißest", "heißt", "heiße", "heißen"], words: ["Wie", "heißt", "du", "mit", "Nachnamen?"], hint: "الجذع المنتهي بـ ß يأخذ t فقط مع du." },
-          { q: "Er ___ ein sehr gutes Buch.", a: "hat", opts: ["habe", "hast", "hat", "haben"], words: ["Er", "hat", "ein", "Buch."], hint: "تصريف haben مع المفرد الغائب هو hat." },
-          { q: "Wir ___ heute Abend eine leckere Pizza.", a: "kochen", opts: ["kocht", "kochen", "koche", "kochst"], words: ["Wir", "kochen", "heute", "Pizza."], hint: "الضمير wir يأخذ صيغة المصدر -en." }
+          { q: "Du ___ sehr fleißig im Krankenhaus.", a: "arbeitest", opts: ["arbeitst", "arbeitest", "arbeitet", "arbeiten"], words: ["Du", "arbeitest", "sehr", "fleißig."], hint: "الجذع المنتهي بـ t يضيف e وقاية مع du." },
+          { q: "Wie ___ du mit Nachnamen?", a: "heißt", opts: ["heißest", "heißt", "heiße", "heißen"], words: ["Wie", "heißt", "du", "mit", "Nachnamen?"], hint: "الجذع المنتهي بـ ß يأخذ t فقط مع du لأن صوت الصفير موجود." },
+          { q: "Er ___ ein sehr interessantes Buch.", a: "hat", opts: ["habe", "hast", "hat", "haben"], words: ["Er", "hat", "ein", "Buch."], hint: "تصريف الغائب المفرد لفعل haben هو hat." },
+          { q: "Wir ___ heute Abend eine leckere Pizza.", a: "kochen", opts: ["kocht", "kochen", "koche", "kochst"], words: ["Wir", "kochen", "heute", "Pizza."], hint: "الضمير wir يأخذ دائماً نهاية المصدر -en." }
         ]
       },
 
       // A1.02
       {
         id: "A1.02", level: "A1",
-        titleAr: "معمارية الجملة الألمانية: قاعدة المركز 2 والانقلاب والأسئلة",
+        titleAr: "معمارية الجملة: الفعل بالمركز 2 والانقلاب والأسئلة",
         titleDe: "Satzarchitektur: Verb auf Position 2 & Inversion",
-        introNote: "قاعدة المركز الثاني (Verb auf Position 2) قانون صارم: الفعل المصرف وتد ثابت في المركز 2 في الجملة الخبرية!",
-        logic: "تثبيت الفعل ثانياً يسمح بالبدء بالزمان أو المكان في المركز الأول دون التضحية بالمعنى.",
-        warn: "لا تقل (Heute ich lerne)، بل اعكس وضع الفاعل خلف الفعل فوراً: (Heute lerne ich)!",
-        trick: "المعادلة: العنصر 1 (زمان/مكان) + الفعل بالمركز 2 + الفاعل بالمركز 3.",
+        introNote: "قاعدة المركز الثاني (Verb auf Position 2) هي القانون الأقدس في الألمانية! الفعل المصرف وتد حديدي ثابت في المركز 2 في الجملة الخبرية مهما غيرت بداية الجملة.",
+        logic: "ثبات الفعل ثانياً يمنحك حرية لغوية كاملة لتبدأ بالزمان أو المكان أو المفعول للتوكيد دون إرباك المستمع.",
+        warn: "إياك والترجمة الحرفية! لا تقل أبداً: (Heute ich lerne)، بل اعكس وضع الفاعل خلف الفعل فوراً: (Heute lerne ich)!",
+        trick: "المعادلة: العنصر 1 (زمان/مكان) + الفعل المصرف في المركز 2 + الفاعل مباشرة في المركز 3.",
         formula: "Pos 1 + [Verb (Pos 2)] + [Subject (Pos 3)] | Ja/Nein: [Verb (Pos 1)]",
+        interactiveLabType: "v2_simulator",
         paradigm: {
-          headers: ["Pattern", "Position 1", "Position 2 (Verb)", "Position 3 (Subject/Rest)"],
+          headers: ["Pattern", "Position 1 (Vorfeld)", "Position 2 (Verb)", "Position 3 (Subject/Rest)"],
           rows: [
-            ["Standard", "Wir", "lernen", "heute Grammatik."],
-            ["Inversion", "Heute", "lernen", "wir Grammatik."],
-            ["Ja/Nein", "Lernst", "du", "heute Deutsch?"],
-            ["W-Frage", "Wo", "wohnst", "du jetzt?"]
+            ["Standard (عادية)", "Wir", "lernen", "heute Grammatik."],
+            ["Inversion (انقلاب)", "Heute", "lernen", "wir Grammatik."],
+            ["Ja/Nein (نعم/لا)", "Lernst", "du", "heute Deutsch?"],
+            ["W-Frage (استفهام)", "Wo", "wohnst", "du jetzt?"]
           ]
         },
         examples: [
-          { de: "Am Montag fahre ich mit dem Zug nach Hamburg.", ar: "يوم الإثنين أسافر أنا بالقطار إلى هامبورغ (انقلاب بعد الزمان)." },
-          { de: "In Berlin sprechen die Menschen sehr viele Sprachen.", ar: "في برلين يتحدث الناس لغات عديدة جداً (انقلاب بعد المكان)." },
-          { de: "Trinkst du morgens lieber grünen Tee oder Kaffee?", ar: "هل تشرب صباحاً الشاي الأخضر أم القهوة؟ (سؤال نعم/لا بالمركز 1)." },
-          { de: "Wann beginnt der neue Deutschkurs an der Universität?", ar: "متى يبدأ كورس اللغة الألمانية الجديد في الجامعة؟ (سؤال W)." },
-          { de: "Heute kochen wir zusammen ein köstliches Abendessen.", ar: "اليوم نطبخ نحن معاً وجبة عشاء شهية (تقديم الزمان وانقلاب الفاعل)." }
+          { de: "Am Montag fahre ich mit dem Zug nach Hamburg.", ar: "يوم الإثنين أسافر أنا بالقطار إلى هامبورغ (بدأت بالزمان ➔ انقلب الفاعل للمركز 3)." },
+          { de: "In Berlin sprechen die Menschen sehr viele Sprachen.", ar: "في برلين يتحدث الناس لغات عديدة جداً (بدأت بالمكان ➔ الفعل في المركز 2)." },
+          { de: "Trinkst du morgens lieber grünen Tee oder Kaffee?", ar: "هل تشرب صباحاً الشاي الأخضر أم القهوة؟ (سؤال نعم/لا يضع الفعل في المركز 1)." },
+          { de: "Wann beginnt der neue Deutschkurs an der Universität?", ar: "متى يبدأ كورس اللغة الألمانية الجديد في الجامعة؟ (أداة الاستفهام في 1 والفعل في 2)." },
+          { de: "Gestern war das Wetter in Frankfurt wirklich herrlich.", ar: "بالأمس كان الطقس في فرانكفورت رائعاً بالفعل (انقلاب الفاعل das Wetter بعد الفعل war)." }
         ],
         exercises: [
-          { q: "Morgen ___ wir nach München mit dem Zug.", a: "fahren", opts: ["wir fahren", "fahren", "fährt", "fahren wir"], words: ["Morgen", "fahren", "wir", "nach", "München."], hint: "بدأت الجملة بالزمان، فيأتي الفعل ثانياً." },
-          { q: "___ du heute Zeit für mich?", a: "Hast", opts: ["Hast", "Haben", "Hat", "Habe"], words: ["Hast", "du", "heute", "Zeit?"], hint: "سؤال نعم/لا يبدأ بالفعل المصرف في الموقع 1." },
-          { q: "In Deutschland ___ man viel Mineralwasser.", a: "trinkt", opts: ["trinkt", "man trinkt", "trinken", "getrunken"], words: ["In", "Deutschland", "trinkt", "man", "Wasser."], hint: "المكان أولاً ➔ الفعل ثانياً ➔ الفاعل man ثالثاً." },
-          { q: "Wann ___ der Zug nach Frankfurt ab?", a: "fährt", opts: ["fährt", "fahren", "fährst", "abfährt"], words: ["Wann", "fährt", "der", "Zug", "ab?"], hint: "سؤال W يضع الفعل المصرف مباشرة بعد أداة الاستفهام." },
-          { q: "Gestern ___ das Wetter wirklich herrlich.", a: "war", opts: ["war", "ist", "hat", "waren"], words: ["Gestern", "war", "das", "Wetter", "herrlich."], hint: "ماضي فعل الكينونة war في المركز الثاني." }
-        ]
-      },
-
-      // A1.03
-      {
-        id: "A1.03", level: "A1",
-        titleAr: "الأسماء وأدوات التعريف والنكرة والنفي والجمع في الرفع",
-        titleDe: "Nomen, Artikel (der/die/das), Negation (kein) & Plural",
-        introNote: "الجماد في الألمانية قد يكون مذكراً (der)، مؤنثاً (die)، أو محايداً (das). يجب حفظ كل اسم مع أداته الصحيحة.",
-        logic: "الجنس النحوي ضروري لتطبيق الإعراب الصحيح في الجملة.",
-        warn: "لا تترجم جنس الكلمة من لغتك! الشمس مؤنثة (die Sonne) والقمر مذكر (der Mond)!",
-        trick: "كل اسم ينتهي بـ -ung أو -heit أو -keit هو مؤنث die! وما ينتهي بـ -chen محايد das!",
-        formula: "Masc: der / ein / kein | Fem: die / eine / keine | Neut: das / ein / kein | Plur: die / keine",
-        paradigm: {
-          headers: ["Gender", "Definite", "Indefinite", "Negative (kein)", "Plural Class"],
-          rows: [
-            ["Maskulinum", "der Tisch", "ein Tisch", "kein Tisch", "die Tische (-e)"],
-            ["Neutrum", "das Buch", "ein Buch", "kein Buch", "die Bücher (¨-er)"],
-            ["Femininum", "die Lampe", "eine Lampe", "keine Lampe", "die Lampen (-n)"],
-            ["Plural", "die Autos", "--", "keine Autos", "die Autos (-s)"]
-          ]
-        },
-        examples: [
-          { de: "Der Tisch ist neu, aber der Stuhl ist schon alt.", ar: "الطاولة جديدة، ولكن الكرسي قديم بالفعل (مذكر مرفوع)." },
-          { de: "Das Kind spielt draußen mit einem kleinen Ball.", ar: "الطفل يلعب في الخارج بكرة صغيرة (محايد مرفوع)." },
-          { de: "Die Zeitung liegt dort auf dem kleinen Tisch.", ar: "الجريدة موضوعة هناك على الطاولة الصغيرة (مؤنث مرفوع)." },
-          { de: "Das ist kein Problem, ich kann Ihnen gerne helfen.", ar: "هذه ليست مشكلة على الإطلاق، يسعدني مساعدتك (نفي نكرة محايد)." },
-          { de: "Die Bücher sind sehr interessant für alle Studenten.", ar: "الكتب ممتعة ومفيدة جداً لجميع الطلاب (جمع معرّف)." }
-        ],
-        exercises: [
-          { q: "Das ist ___ Kugelschreiber, das ist ein Bleistift.", a: "kein", opts: ["nicht", "kein", "keine", "keinen"], words: ["Das", "ist", "kein", "Kugelschreiber."], hint: "نفي الاسم المذكر النكرة في الرفع يكون بـ kein." },
-          { q: "Hier steht ___ schöne Lampe im Wohnzimmer.", a: "eine", opts: ["ein", "eine", "einen", "einer"], words: ["Hier", "steht", "eine", "schöne", "Lampe."], hint: "اللمبة مؤنثة die Lampe فتأخذ eine." },
-          { q: "Das Buch ist alt, aber die ___ sind ganz neu.", a: "Bücher", opts: ["Buchs", "Bücher", "Büchern", "Buche"], words: ["Die", "Bücher", "sind", "neu."], hint: "جمع das Buch هو die Bücher مع Umlaut و er." },
-          { q: "Haben Sie ___ Frage? – Ja, bitte.", a: "eine", opts: ["ein", "eine", "einen", "eines"], words: ["Haben", "Sie", "eine", "Frage?"], hint: "السؤال مؤنث die Frage يأخذ eine." },
-          { q: "Das ist ___ Kind, das ist schon ein Jugendlicher.", a: "kein", opts: ["keine", "kein", "nicht", "keinen"], words: ["Das", "ist", "kein", "Kind."], hint: "الطفل محايد das Kind ينفى بـ kein." }
+          { q: "Morgen ___ wir nach München mit dem Zug.", a: "fahren", opts: ["wir fahren", "fahren", "fährt", "fahren wir"], words: ["Morgen", "fahren", "wir", "nach", "München."], hint: "بدأت الجملة بالزمان، فيأتي الفعل المصرف ثانياً ثم الفاعل ثالثاً." },
+          { q: "___ du heute Zeit für einen Kaffee?", a: "Hast", opts: ["Hast", "Haben", "Hat", "Habe"], words: ["Hast", "du", "heute", "Zeit?"], hint: "سؤال نعم/لا يبدأ بالفعل المصرف في الموقع 1 حتماً." },
+          { q: "In Deutschland ___ man viel Mineralwasser.", a: "trinkt", opts: ["trinkt", "man trinkt", "trinken", "getrunken"], words: ["In", "Deutschland", "trinkt", "man", "Wasser."], hint: "المكان احتل الموقع 1 ➔ الفعل المصرف في الموقع 2." },
+          { q: "Wann ___ der Zug nach Frankfurt ab?", a: "fährt", opts: ["fährt", "fahren", "fährst", "abfährt"], words: ["Wann", "fährt", "der", "Zug", "ab?"], hint: "سؤال W يضع الفعل المصرف ثانياً مباشرة بعد أداة الاستفهام." },
+          { q: "Gestern ___ das Wetter wirklich herrlich.", a: "war", opts: ["war", "ist", "hat", "waren"], words: ["Gestern", "war", "das", "Wetter", "herrlich."], hint: "ماضي sein مع الطقس هو war في المركز الثاني." }
         ]
       },
 
       // A1.04
       {
         id: "A1.04", level: "A1",
-        titleAr: "حالة النصب (Akkusativ): المفعول به وأحرف DOGFU",
-        titleDe: "Der Akkusativ: Direktes Objekt & DOGFU-Präpositionen",
-        introNote: "في النصب (Akkusativ)، المذكر فقط هو الذي يتغير: der تتحول إلى den و ein إلى einen. باقي الأجناس ثابتة!",
-        logic: "تمييز المذكر صوتياً يوضح الفاعل من المفعول به دون التباس.",
-        warn: "لا تغير أداة المؤنث أو المحايد! المؤنث die والمحايد das لا يتغيران مطلقاً في النصب!",
-        trick: "احفظ حروف الجر التي تنصب دائماً باختصار: DOGFU (Durch, Ohne, Gegen, Für, Um).",
-        formula: "Masc: der/ein ➔ den/einen | Fem/Neut/Plur: UNCHANGED | DOGFU: Durch, Ohne, Gegen, Für, Um",
+        titleAr: "حالة النصب (Akkusativ) وأحرف DOGFU",
+        titleDe: "Der Akkusativ & DOGFU-Präpositionen",
+        introNote: "في حالة النصب (Akkusativ)، المذكر فقط هو البطل الذي يغير شكله! der تتحول إلى den و ein إلى einen. أما المحايد والمؤنث والجمع فثابتون كالصخر.",
+        logic: "التغيير الصوتي للمذكر يوضح للسامع من هو الفاعل ومن هو المفعول به المباشر بدقة تامة.",
+        warn: "إياك أن تغير أداة المؤنث أو المحايد! المؤنث die والمحايد das لا يتغيران مطلقاً في النصب!",
+        trick: "احفظ حروف الجر التي تنصب دائماً باختصار DOGFU: Durch, Ohne, Gegen, Für, Um.",
+        formula: "Masc: der/ein ➔ den/einen | Fem/Neut/Plur: UNCHANGED | DOGFU = immer Akkusativ",
+        interactiveLabType: "case_matrix",
         paradigm: {
-          headers: ["Gender", "Nominativ", "Akkusativ", "Indefinit", "Negation"],
+          headers: ["Gender", "Nominativ (فاعل)", "Akkusativ (مفعول به)", "Indefinit (نكرة)", "Negation (نفي)"],
           rows: [
-            ["Maskulinum", "der", "den", "einen", "keinen"],
-            ["Neutrum", "das", "das", "ein", "kein"],
-            ["Femininum", "die", "die", "eine", "keine"],
-            ["Plural", "die", "die", "--", "keine"]
+            ["Maskulinum", "der Tisch", "den Tisch (-en)", "einen Tisch", "keinen Tisch"],
+            ["Neutrum", "das Buch", "das Buch (ثابت)", "ein Buch", "kein Buch"],
+            ["Femininum", "die Lampe", "die Lampe (ثابت)", "eine Lampe", "keine Lampe"],
+            ["Plural", "die Bücher", "die Bücher (ثابت)", "--", "keine Bücher"]
           ]
         },
         examples: [
-          { de: "Der Mann kauft den teuren Laptop für seinen Sohn.", ar: "يشتري الرجل الحاسوب المحمول باهظ الثمن لابنه (مذكر منصوب)." },
-          { de: "Ich trinke meinen heißen Kaffee ohne Zucker.", ar: "أنا أشرب قهوتي الساخنة بدون سكر (ohne + مذكر منصوب)." },
-          { de: "Wir suchen das neue Rathaus in dieser alten Stadt.", ar: "نحن نبحث عن مبنى البلدية الجديد في هذه المدينة (محايد منصوب ثابت)." },
-          { de: "Er liebt seine Familie und besucht sie jedes Wochenende.", ar: "هو يحب عائلته ويزورهم في كل عطلة نهاية أسبوع (مؤنث منصوب ثابت)." },
-          { de: "Siehst du den Mann dort drüben an der Haltestelle?", ar: "هل ترى ذلك الرجل هناك عند محطة الحافلة؟ (سؤال بمفعول به مذكر)." }
+          { de: "Der Vater kauft den teuren Laptop für seinen Sohn.", ar: "يشتري الأب الحاسوب المحمول باهظ الثمن لابنه (مذكر منصوب den بعد فعل متعدٍ)." },
+          { de: "Ich trinke meinen heißen Kaffee morgens immer ohne Zucker.", ar: "أنا أشرب قهوتي الساخنة صباحاً دائماً بدون سكر (ohne تفرض النصب دائماً)." },
+          { de: "Wir suchen das neue Rathaus in dieser historischen Stadt.", ar: "نحن نبحث عن مبنى البلدية الجديد في هذه المدينة (محايد منصوب ثابت das)." },
+          { de: "Er liebt seine Familie und besucht sie jedes Wochenende.", ar: "هو يحب عائلته ويزورهم كل عطلة نهاية أسبوع (مؤنث منصوب ثابت die/seine)." },
+          { de: "Siehst du den Mann dort drüben an der roten Ampel?", ar: "هل ترى ذلك الرجل هناك عند الإشارة الحمراء؟ (مفعول به مذكر den في سؤال)." }
         ],
         exercises: [
-          { q: "Der Vater sucht ___ Schlüssel.", a: "den", opts: ["der", "den", "dem", "das"], words: ["Der", "Vater", "sucht", "den", "Schlüssel."], hint: "المفتاح مذكر منصوب ➔ den." },
-          { q: "Er kommt ohne ___ Mantel zur Party.", a: "seinen", opts: ["sein", "seinen", "seinem", "seiner"], words: ["Er", "kommt", "ohne", "seinen", "Mantel."], hint: "حرف ohne ينصب المذكر ➔ seinen." },
-          { q: "Ich habe ___ großen Bruder in Frankfurt.", a: "einen", opts: ["ein", "einen", "einem", "eine"], words: ["Ich", "habe", "einen", "Bruder."], hint: "فعل haben ينصب المذكر النكرة ➔ einen." },
-          { q: "Wir kaufen ___ schönes Auto für die Familie.", a: "ein", opts: ["ein", "einen", "einem", "eine"], words: ["Wir", "kaufen", "ein", "Auto."], hint: "المحايد das Auto يبقى ein في النصب." },
-          { q: "Liebst du ___? – Ja, von ganzem Herzen.", a: "mich", opts: ["ich", "mich", "mir", "mein"], words: ["Liebst", "du", "mich?"], hint: "ضمير المتكلم منصوباً يصبح mich." }
+          { q: "Der Vater sucht ___ Schlüssel.", a: "den", opts: ["der", "den", "dem", "das"], words: ["Der", "Vater", "sucht", "den", "Schlüssel."], hint: "المفتاح مذكر منصوب مفعول به لفعل suchen ➔ den." },
+          { q: "Er kommt ohne ___ Mantel zur Party.", a: "seinen", opts: ["sein", "seinen", "seinem", "seiner"], words: ["Er", "kommt", "ohne", "seinen", "Mantel."], hint: "حرف الجر ohne ينصب ما بعده دائماً ➔ seinen Mantel." },
+          { q: "Ich habe ___ großen Bruder in Frankfurt.", a: "einen", opts: ["ein", "einen", "einem", "eine"], words: ["Ich", "habe", "einen", "Bruder."], hint: "فعل الملكية haben ينصب المذكر النكرة ➔ einen." },
+          { q: "Wir kaufen ___ schönes Auto für die Familie.", a: "ein", opts: ["ein", "einen", "einem", "eine"], words: ["Wir", "kaufen", "ein", "Auto."], hint: "المحايد das Auto يبقى ein في حالة النصب." },
+          { q: "Liebst du ___? – Ja, von ganzem Herzen.", a: "mich", opts: ["ich", "mich", "mir", "mein"], words: ["Liebst", "du", "mich?"], hint: "الضمير الشخصي المنصوب للمتكلم ich يتحول إلى mich." }
         ]
       },
 
       // A1.10
       {
         id: "A1.10", level: "A1",
-        titleAr: "أساسيات المجرور (Dativ): الأدوات والضمائر وأحرف الجر الثابتة",
-        titleDe: "Der Dativ: Indirektes Objekt & Feste Dativ-Präpositionen",
-        introNote: "حالة الـ Dativ تمثل المستفيد من الفعل أو المجرور بحرف جر. المذكر والمحايد يأخذان dem، والمؤنث يتحول إلى der!",
-        logic: "إعراب Dativ يحدد المستفيد الذي يوجه إليه العطاء أو الشكر أو المساعدة.",
-        warn: "المؤنث في Dativ يصبح (der Frau)! لا تظنها مذكراً، بل هي مؤنث مجرور!",
-        trick: "احفظ حروف الجر التي تجر دائماً: (Aus, bei, mit, nach, seit, von, zu).",
-        formula: "Masc/Neut: dem / einem | Fem: der / einer | Plur: den + Noun-n | mir, dir, ihm, ihr",
+        titleAr: "حالة المجرور (Dativ) وحروف الجر الثابتة",
+        titleDe: "Der Dativ: Indirektes Objekt & Feste Präpositionen",
+        introNote: "حالة الـ Dativ تمثل المستفيد من الفعل أو الاسم المجرور بحرف جر. هنا يتحول المذكر والمحايد إلى dem، والمؤنث يتحول إلى der، والجمع يأخذ den مع إضافة حرف n للاسم!",
+        logic: "إعراب Dativ يحدد الشخص أو الكيان الذي يتلقى العطاء أو المساعدة بدقة لا تقبل اللبس.",
+        warn: "المؤنث في Dativ يصبح (der Frau)! لا تخلط بينها وبين المذكر، فهذه علامة تأنيث في حالة الجر!",
+        trick: "احفظ أنشودة حروف الجر الثابتة للـ Dativ: (Aus, bei, mit, nach, seit, von, zu, gegenüber).",
+        formula: "Masc/Neut: dem / einem | Fem: der / einer | Plur: den + Nomen-n | mir / dir / ihm / ihr",
+        interactiveLabType: "case_matrix",
         paradigm: {
           headers: ["Gender / Number", "Nominativ", "Dativ", "Indefinit Dativ", "Pronouns"],
           rows: [
@@ -578,33 +553,34 @@
           ]
         },
         examples: [
-          { de: "Der Arzt hilft dem kranken Patienten sehr schnell.", ar: "يساعد الطبيب المريض بسرعة فائقة (مذكر مجرور بعد helfen)." },
-          { de: "Das Buch gehört meiner Schwester und nicht mir.", ar: "هذا الكتاب يخص أختي وليس لي (مؤنث مجرور بعد gehören)." },
-          { de: "Wir fahren am Wochenende mit dem schnellen Zug.", ar: "نحن نسافر في عطلة نهاية الأسبوع بالقطار السريع (mit + مذكر مجرور)." },
-          { de: "Das leckere Essen schmeckt den Gästen ausgezeichnet.", ar: "الطعام اللذيذ يعجب الضيوف ومذاقه رائع بالنسبة لهم (جمع مجرور + n)." },
-          { de: "Wie geht es dir heute in deinem neuen Job?", ar: "كيف حالك اليوم في وظيفتك الجديدة؟ (سؤال عن الحال بضمير Dativ)." }
+          { de: "Der Arzt hilft dem kranken Patienten sehr schnell.", ar: "يساعد الطبيب المريض بسرعة فائقة (فعل helfen يفرض Dativ ➔ dem)." },
+          { de: "Das Buch gehört meiner Schwester und nicht mir.", ar: "هذا الكتاب يخص أختي وليس لي (فعل gehören يفرض Dativ للمؤنث ➔ meiner)." },
+          { de: "Wir fahren am Wochenende mit dem schnellen Zug.", ar: "نحن نسافر في عطلة نهاية الأسبوع بالقطار السريع (mit + مذكر مجرور ➔ dem)." },
+          { de: "Das leckere Essen schmeckt den Gästen ausgezeichnet.", ar: "الطعام اللذيذ يعجب الضيوف ومذاقه ممتاز (جمع مجرور + n ➔ den Gästen)." },
+          { de: "Wie geht es dir heute in deinem neuen Deutschkurs?", ar: "كيف حالك اليوم في كورس اللغة الألمانية الجديد؟ (سؤال عن الحال بضمير Dativ dir)." }
         ],
         exercises: [
-          { q: "Ich fahre mit ___ Zug zur Universität.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Ich", "fahre", "mit", "dem", "Zug."], hint: "حرف mit يجر بالـ Dativ ➔ dem." },
-          { q: "Der Lehrer hilft ___ Schülern bei der Aufgabe.", a: "den", opts: ["die", "den", "dem", "der"], words: ["Der", "Lehrer", "hilft", "den", "Schülern."], hint: "جمع Dativ يأخذ den مع n للاسم." },
+          { q: "Ich fahre mit ___ Zug zur Universität.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Ich", "fahre", "mit", "dem", "Zug."], hint: "حرف mit يجر بالـ Dativ دائماً: der Zug ➔ dem Zug." },
+          { q: "Der Lehrer hilft ___ Schülern bei der schweren Aufgabe.", a: "den", opts: ["die", "den", "dem", "der"], words: ["Der", "Lehrer", "hilft", "den", "Schülern."], hint: "جمع Dativ يأخذ الأداة den مع إضافة حرف n للاسم." },
           { q: "Wie geht es ___? – Mir geht es bestens!", a: "dir", opts: ["dich", "dir", "du", "dein"], words: ["Wie", "geht", "es", "dir?"], hint: "السؤال عن الحال يتطلب ضمير المخاطب dir." },
-          { q: "Das Geschenk gefällt ___ Mutter sehr gut.", a: "meiner", opts: ["meine", "meiner", "meinem", "meinen"], words: ["Das", "Geschenk", "gefällt", "meiner", "Mutter."], hint: "المؤنث في Dativ يأخذ meiner." },
-          { q: "Seit ___ Woche lerne ich intensiv Deutsch.", a: "einer", opts: ["eine", "einer", "einem", "einen"], words: ["Seit", "einer", "Woche", "lerne", "ich."], hint: "حرف seit يجر المؤنث ➔ einer Woche." }
+          { q: "Das Geschenk gefällt ___ Mutter sehr gut.", a: "meiner", opts: ["meine", "meiner", "meinem", "meinen"], words: ["Das", "Geschenk", "gefällt", "meiner", "Mutter."], hint: "فعل gefallen يطلب Dativ، والمؤنث يأخذ meiner." },
+          { q: "Seit ___ Woche lerne ich intensiv Deutsch.", a: "einer", opts: ["eine", "einer", "einem", "einen"], words: ["Seit", "einer", "Woche", "lerne", "ich."], hint: "حرف seit يجر المؤنث die Woche ➔ einer Woche." }
         ]
       },
 
       // A2.03
       {
         id: "A2.03", level: "A2",
-        titleAr: "أحرف الجر المشتركة التسعة: ثنائية الموقع (Wo) والاتجاه (Wohin)",
-        titleDe: "Wechselpräpositionen: Ort (Wo? + Dat) vs. Richtung (Wohin? + Akk)",
-        introNote: "تسعة أحرف جر تعتمد كلياً على نيتك وحركتك: هل أنت مستقر في مكانك؟ أم تتحرك وتعبر الحدود باتجاه هدفك؟",
-        logic: "الثبات يعبر عنه بالـ Dativ، بينما الحركة الانتقالية من أ إلى ب تعبر عنها بالـ Akkusativ.",
-        warn: "فرق بين أفعال الحركة (legen, stellen) وأفعال الثبات المقابلة لها (liegen, stehen)!",
-        trick: "سؤال Wo? (أين؟ ثبات) ➔ Dativ | سؤال Wohin? (إلى أين؟ حركة) ➔ Akkusativ.",
+        titleAr: "أحرف الجر المشتركة التسعة (Wechselpräpositionen)",
+        titleDe: "Wechselpräpositionen: Ort (Wo?) vs. Richtung (Wohin?)",
+        introNote: "تاج قواعد المستوى A2! تسعة أحرف جر تتصرف بحسب حركتك ونيتك: هل أنت مستقر وهادئ في مكانك؟ أم تتحرك وتعبر الحدود باتجاه هدف محدد؟",
+        logic: "الثبات والاستقرار داخل الحيز المكاني يعبر عنه بالـ Dativ، بينما الحركة الانتقالية من نقطة إلى أخرى تعبر عنها بالـ Akkusativ.",
+        warn: "فرق بين أفعال الحركة المتعدية (stellen, legen) وأفعال الثبات الناتجة عنها (stehen, liegen)!",
+        trick: "سؤال Wo? (أين؟ ثبات وراحة) ➔ Dativ | سؤال Wohin? (إلى أين؟ حركة وهدف) ➔ Akkusativ.",
         formula: "Wo? (Static Rest) ➔ DATIV | Wohin? (Directional Motion) ➔ AKKUSATIV",
+        interactiveLabType: "wechsel_lab",
         paradigm: {
-          headers: ["Aktion (Wohin? ➔ Akk)", "Zustand (Wo? ➔ Dat)", "المعنى"],
+          headers: ["حركة (Wohin? ➔ Akk)", "ثبات (Wo? ➔ Dat)", "المعنى الدقيق"],
           rows: [
             ["stellen: Ich stelle die Tasse auf den Tisch", "stehen: Die Tasse steht auf dem Tisch", "عمودي: يضع مقابل واقف"],
             ["legen: Er legt das Buch auf das Bett", "liegen: Das Buch liegt auf dem Bett", "أفقي: يضع مسطحاً مقابل مستلقٍ"],
@@ -613,18 +589,18 @@
           ]
         },
         examples: [
-          { de: "Ich stelle die Vase auf den Tisch, und jetzt steht sie auf dem Tisch.", ar: "أضع المزهرية على الطاولة (حركة: Akkusativ)، والآن تقف على الطاولة (ثبات: Dativ)." },
-          { de: "Er hängt das bunte Bild an die Wand im Flur.", ar: "هو يعلق اللوحة الملونة على الحائط في الممر (حركة تعليق: Akkusativ)." },
-          { de: "Das schöne Bild hängt schon seit gestern an der Wand.", ar: "اللوحة الجميلة معلقة بالفعل منذ الأمس على الحائط (ثبات: Dativ)." },
-          { de: "Wir gehen heute Abend ins Kino, um einen Film zu sehen.", ar: "نحن ذاهبون الليلة إلى السينما لنشاهد فيلماً (حركة دخول: in das = ins)." },
-          { de: "Die Kinder sitzen schon im Kino und essen Popcorn.", ar: "الأطفال يجلسون بالفعل داخل السينما ويأكلون الفشار (ثبات في الداخل: in dem = im)." }
+          { de: "Ich stelle die Vase auf den Tisch, und jetzt steht sie auf dem Tisch.", ar: "أضع المزهرية على الطاولة (حركة: Akkusativ)، والآن هي تقف على الطاولة (ثبات: Dativ)." },
+          { de: "Er hängt das bunte Bild an die Wand im Wohnzimmer.", ar: "هو يعلق اللوحة الملونة على الحائط (حركة تعليق: Akkusativ an die Wand)." },
+          { de: "Das schöne Bild hängt schon seit gestern an der Wand.", ar: "اللوحة الجميلة معلقة بالفعل على الحائط (ثبات واستقرار: Dativ an der Wand)." },
+          { de: "Wir gehen heute Abend ins Kino, um einen Film zu sehen.", ar: "نحن ذاهبون الليلة إلى السينما (حركة دخول: in das = ins Kino)." },
+          { de: "Die Kinder sitzen schon im Kino und essen leckeres Popcorn.", ar: "الأطفال يجلسون بالفعل داخل قاعة السينما (ثبات في الداخل: in dem = im Kino)." }
         ],
         exercises: [
-          { q: "Ich stelle die Tasse auf ___ Tisch.", a: "den", opts: ["dem", "den", "der", "das"], words: ["Ich", "stelle", "die", "Tasse", "auf", "den", "Tisch."], hint: "فعل حركة stellen يسأل بـ Wohin؟ ➔ den Tisch." },
-          { q: "Die Tasse steht auf ___ Tisch.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Die", "Tasse", "steht", "auf", "dem", "Tisch."], hint: "فعل ثبات stehen يسأل بـ Wo؟ ➔ dem Tisch." },
-          { q: "Er hängt das Bild an ___ Wand.", a: "die", opts: ["die", "der", "den", "dem"], words: ["Er", "hängt", "das", "Bild", "an", "die", "Wand."], hint: "حركة تعليق الصورة تتطلب Akkusativ مؤنث die." },
-          { q: "Das Bild hängt an ___ Wand.", a: "der", opts: ["die", "der", "den", "dem"], words: ["Das", "Bild", "hängt", "an", "der", "Wand."], hint: "الصورة معلقة وثابتة تتطلب Dativ مؤنث der." },
-          { q: "Die Katze schläft gemütlich unter ___ Bett.", a: "dem", opts: ["das", "dem", "den", "der"], words: ["Die", "Katze", "schläft", "unter", "dem", "Bett."], hint: "النوم ثبات تحت السرير ➔ Dativ محايد dem Bett." }
+          { q: "Ich stelle die Tasse auf ___ Tisch.", a: "den", opts: ["dem", "den", "der", "das"], words: ["Ich", "stelle", "die", "Tasse", "auf", "den", "Tisch."], hint: "فعل حركة stellen يسأل بـ Wohin؟ ➔ Akkusativ مذكر den." },
+          { q: "Die Tasse steht auf ___ Tisch.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Die", "Tasse", "steht", "auf", "dem", "Tisch."], hint: "فعل ثبات stehen يسأل بـ Wo؟ ➔ Dativ مذكر dem." },
+          { q: "Er hängt das Bild an ___ Wand.", a: "die", opts: ["die", "der", "den", "dem"], words: ["Er", "hängt", "das", "Bild", "an", "die", "Wand."], hint: "حركة تعليق الصورة على الحائط تتطلب Akkusativ مؤنث die Wand." },
+          { q: "Das Bild hängt an ___ Wand.", a: "der", opts: ["die", "der", "den", "dem"], words: ["Das", "Bild", "hängt", "an", "der", "Wand."], hint: "الصورة معلقة وثابتة تتطلب Dativ مؤنث der Wand." },
+          { q: "Die Katze schläft gemütlich unter ___ Bett.", a: "dem", opts: ["das", "dem", "den", "der"], words: ["Die", "Katze", "schläft", "unter", "dem", "Bett."], hint: "النوم ثبات واستقرار تحت السرير ➔ Dativ محايد dem Bett." }
         ]
       },
 
@@ -633,48 +609,50 @@
         id: "A2.06", level: "A2",
         titleAr: "الجمل الجانبية وطرد الفعل للنهاية (weil, dass, wenn, obwohl)",
         titleDe: "Nebensätze: Verb am Satzende (weil, dass, wenn, obwohl)",
-        introNote: "في الجمل الثانوية (Nebensätze)، أداة الربط تعمل كحارس طرد: تطرد الفعل المصرف مباشرة إلى نهاية الجملة قبل النقطة!",
-        logic: "وضع الفعل في النهاية يتيح للسامع الاستماع لكافة الظروف قبل معرفة الحدث الحاسم.",
-        warn: "لا تقل (weil ich bin krank)، بل قل حتماً: (weil ich krank bin)!",
+        introNote: "في الجمل الثانوية (Nebensätze)، أداة الربط تعمل كحارس طرد حاسم: تطرد الفعل المصرف مباشرة إلى نهاية الجملة قبل النقطة مباشرة!",
+        logic: "وضع الفعل في النهاية يتيح للمستمع الإحاطة بكافة الظروف والتفاصيل أولاً قبل سماع الحدث النهائي.",
+        warn: "لا تقل أبداً: (weil ich bin krank)، بل قل حتماً: (weil ich krank bin)!",
         trick: "المعادلة: فاصلة (,) ➔ أداة الربط ➔ الفاعل ➔ بقية الكلام ➔ الفعل المصرف آخر كلمة تماماً.",
-        formula: "Hauptsatz, + [weil / dass / wenn / obwohl] + Subjekt + ... + [FINITE VERB AM ENDE].",
+        formula: "Hauptsatz, + [weil / dass / wenn / obwohl] + Subjekt + ... + [FINITES VERB AM ENDE].",
+        interactiveLabType: "nebensatz_lab",
         paradigm: {
-          headers: ["Subordinator", "Function", "Verb Position", "Example"],
+          headers: ["Subordinator", "Function", "Verb Position", "Example Sentence"],
           rows: [
-            ["weil", "تعليل (لأن)", "آخر كلمة", "Ich lerne, weil ich die Prüfung will."],
-            ["dass", "مفعولية (أنّ)", "آخر كلمة", "Er weiß, dass du heute kommst."],
-            ["wenn", "شرطية (إذا/لو)", "آخر كلمة", "Wenn es regnet, bleibe ich hier."],
-            ["obwohl", "تناقض (رغم أن)", "آخر كلمة", "Er kommt, obwohl er krank ist."]
+            ["weil", "تعليل (لأن)", "آخر كلمة حتماً", "Ich lerne, weil ich die Prüfung bestehen will."],
+            ["dass", "مفعولية (أنّ)", "آخر كلمة حتماً", "Ich weiß, dass du heute pünktlich kommst."],
+            ["wenn", "شرطية وزمنية (إذا/لو)", "آخر كلمة حتماً", "Wenn es regnet, bleibe ich zu Hause."],
+            ["obwohl", "تناقض (رغم أن)", "آخر كلمة حتماً", "Er geht spazieren, obwohl er sehr müde ist."]
           ]
         },
         examples: [
-          { de: "Ich lerne intensiv Deutsch, weil ich in Deutschland arbeiten will.", ar: "أنا أتعلم الألمانية بجد، لأنني أريد أن أعمل في ألمانيا (طرد المودال المصرف للآخر)." },
-          { de: "Der Arzt weiß genau, dass der Patient keine Medizin nimmt.", ar: "يعلم الطبيب بدقة أن المريض لا يتناول الدواء (جملة مفعولية مع dass)." },
+          { de: "Ich lerne intensiv Deutsch, weil ich in Deutschland arbeiten will.", ar: "أنا أتعلم الألمانية بجد، لأنني أريد أن أعمل في ألمانيا (المودال المصرف will في آخر الجملة)." },
+          { de: "Der Arzt weiß genau, dass der Patient keine Medizin nimmt.", ar: "يعلم الطبيب بدقة أن المريض لا يتناول الدواء (جملة مفعولية مع dass تطرد الفعل nimmt)." },
           { de: "Wenn das Wetter morgen schön ist, machen wir ein Picknick.", ar: "إذا كان الطقس جميلاً غداً، فسنقوم بنزهة (جملة wenn في البداية متبوعة بفعل رئيسي)." },
-          { de: "Er geht zur Arbeit, obwohl er sich noch sehr müde fühlt.", ar: "هو يذهب إلى عمله، على الرغم من أنه ما زال يشعر بتعب شديد (جملة تناقض مع obwohl)." },
+          { de: "Er geht zur Arbeit, obwohl er sich noch sehr krank fühlt.", ar: "هو يذهب إلى العمل، على الرغم من أنه ما زال يشعر بالمرض (جملة تناقض مع obwohl)." },
           { de: "Können Sie mir sagen, ob der Bus heute noch kommt?", ar: "هل بإمكانك إخباري فيما إذا كانت الحافلة ستأتي اليوم؟ (سؤال غير مباشر مع ob)." }
         ],
         exercises: [
-          { q: "Ich lerne Deutsch, weil ich in Berlin ___.", a: "arbeiten will", opts: ["will arbeiten", "arbeiten will", "arbeite will", "will gearbeitet"], words: ["Ich", "lerne,", "weil", "ich", "hier", "arbeiten", "will."], hint: "المصدر أولاً ثم المودال المصرف هو آخر كلمة." },
+          { q: "Ich lerne Deutsch, weil ich in Berlin ___.", a: "arbeiten will", opts: ["will arbeiten", "arbeiten will", "arbeite will", "will gearbeitet"], words: ["Ich", "lerne,", "weil", "ich", "hier", "arbeiten", "will."], hint: "في وجود فعل مودال في الجملة الجانبية: المصدر أولاً ثم المودال المصرف هو آخر كلمة." },
           { q: "Wenn es morgen regnet, ___ wir zu Hause.", a: "bleiben", opts: ["wir bleiben", "bleiben", "bleiben wir", "geblieben"], words: ["Wenn", "es", "regnet,", "bleiben", "wir", "drinnen."], hint: "تقدم الجملة الجانبية يجعل فعل الجملة الرئيسية يلي الفاصلة فوراً." },
-          { q: "Lukas weiß, dass Mai sehr gut Deutsch ___.", a: "spricht", opts: ["spricht", "sprechen", "gesprochen", "sprach"], words: ["Er", "weiß,", "dass", "sie", "gut", "spricht."], hint: "أداة dass تطرد الفعل المصرف لنهاية الجملة." },
-          { q: "Er geht spazieren, obwohl es stark ___.", a: "schneit", opts: ["schneien", "schneit", "geschneit", "schneite"], words: ["Er", "geht,", "obwohl", "es", "schneit."], hint: "أداة obwohl تطرد الفعل المصرف للنهاية." },
-          { q: "Weißt du, ob der Zug heute pünktlich ___?", a: "ankommt", opts: ["ankommt", "kommt an", "angekommen", "ankommen"], words: ["Weißt", "du,", "ob", "der", "Zug", "ankommt?"], hint: "الفعل المنفصل يجمع في نهاية الجملة الجانبية." }
+          { q: "Lukas weiß, dass Mai sehr gut Deutsch ___.", a: "spricht", opts: ["spricht", "sprechen", "gesprochen", "sprach"], words: ["Er", "weiß,", "dass", "sie", "gut", "spricht."], hint: "أداة dass تطرد الفعل المصرف spricht إلى نهاية الجملة." },
+          { q: "Er geht spazieren, obwohl es stark ___.", a: "schneit", opts: ["schneien", "schneit", "geschneit", "schneite"], words: ["Er", "geht,", "obwohl", "es", "schneit."], hint: "أداة obwohl تطرد الفعل المصرف schneit للنهاية." },
+          { q: "Weißt du, ob der Zug heute pünktlich ___?", a: "ankommt", opts: ["ankommt", "kommt an", "angekommen", "ankommen"], words: ["Weißt", "du,", "ob", "der", "Zug", "ankommt?"], hint: "الفعل المنفصل يندمج مع سابقته في نهاية الجملة الجانبية." }
         ]
       },
 
       // A2.17
       {
         id: "A2.17", level: "A2",
-        titleAr: "المبني للمجهول في الحاضر (Vorgangspassiv: werden + Partizip II)",
+        titleAr: "المبني للمجهول (Vorgangspassiv: werden + Partizip II)",
         titleDe: "Das Passiv im Präsens: werden + Partizip II",
-        introNote: "تاج قواعد المستوى A2! المبني للمجهول يركز على الحدث أو المستفيد من الفعل دون التركيز على الفاعل.",
-        logic: "نستخدم المجهول عندما يكون الفاعل مجهولاً أو غير مهم مقارنة بالفعل نفسه.",
-        warn: "في المجهول يجب أن تجد حتماً تصريف werden في المركز 2 و Partizip II في نهاية الجملة!",
+        introNote: "تاج قواعد المستوى A2! المبني للمجهول يركز على الحدث المنجز أو المستفيد من الفعل دون التركيز على هوية الفاعل.",
+        logic: "نستخدم صيغة المجهول عندما يكون الفاعل مجهولاً أو بديهياً أو عندما نريد توجيه التركيز للعمل المكتمل.",
+        warn: "في المجهول يجب أن تجد حتماً تصريف werden في المركز 2 و Partizip II في نهاية الجملة تماماً!",
         trick: "معادلة المجهول: تصريف werden + ... + الفاعل عبر (von + Dativ) + ... + Partizip II في النهاية.",
         formula: "Passiv = [werden (Pos 2)] + ... + [von + Dat] + ... + [Partizip II am Ende]",
+        interactiveLabType: "passive_lab",
         paradigm: {
-          headers: ["Subject", "werden Conjugation", "Partizip II", "Full Passive Sentence"],
+          headers: ["Subjekt", "werden Conjugation", "Partizip II", "Full Passive Sentence"],
           rows: [
             ["das Brot", "wird", "gebacken", "Das Brot wird jeden Morgen frisch gebacken."],
             ["die Autos", "werden", "repariert", "Die Autos werden in der Werkstatt repariert."],
@@ -683,8 +661,8 @@
           ]
         },
         examples: [
-          { de: "Das frische Brot wird jeden Morgen um fünf Uhr gebacken.", ar: "يتم خبز الخبز الطازج كل صباح في تمام الخامسة (مجهول لمفرد محايد)." },
-          { de: "Die beschädigten Autos werden in der Werkstatt repariert.", ar: "يتم إصلاح السيارات المتضررة داخل الورشة (مجهول لجمع)." },
+          { de: "Das frische Brot wird jeden Morgen um fünf Uhr gebacken.", ar: "يتم خبز الخبز الطازج كل صباح في تمام الخامسة (مجهول لمفرد محايد das Brot wird)." },
+          { de: "Die beschädigten Autos werden in der Werkstatt repariert.", ar: "يتم إصلاح السيارات المتضررة داخل الورشة (مجهول لجمع die Autos werden)." },
           { de: "Der Patient wird vom Chefarzt persönlich untersucht.", ar: "يتم فحص المريض من قِبل رئيس الأطباء شخصياً (ذكر الفاعل عبر von + Dativ)." },
           { de: "Hier wird Deutsch, Englisch und Französisch gesprochen.", ar: "هنا يتم التحدث باللغات الألمانية والإنجليزية والفرنسية (مجهول عام للغات)." },
           { de: "Die Rechnungen werden immer sofort von der Firma bezahlt.", ar: "يتم سداد الفواتير دائماً على الفور من قِبل الشركة (مجهول مع فاعل مؤسسي)." }
@@ -693,79 +671,80 @@
           { q: "Das Brot ___ jeden Morgen frisch gebacken.", a: "wird", opts: ["wird", "werden", "wurden", "ist"], words: ["Das", "Brot", "wird", "frisch", "gebacken."], hint: "المفرد المحايد das Brot يتطلب wird مع التصريف الثالث." },
           { q: "Die Autos ___ heute in der Werkstatt repariert.", a: "werden", opts: ["wird", "werden", "wurden", "worden"], words: ["Die", "Autos", "werden", "heute", "repariert."], hint: "الفاعل جمع Die Autos يتطلب werden." },
           { q: "Der Patient wird ___ Arzt gründlich untersucht.", a: "vom", opts: ["von", "vom", "durch", "aus"], words: ["Der", "Patient", "wird", "vom", "Arzt", "untersucht."], hint: "الفاعل في المجهول يسبق بـ von + Dativ ➔ vom Arzt." },
-          { q: "Hier ___ nur Deutsch gesprochen.", a: "wird", opts: ["wird", "werden", "ist", "hat"], words: ["Hier", "wird", "nur", "Deutsch", "gesprochen."], hint: "الحديث عن اللغة الألمانية مفرد يتطلب wird." },
+          { q: "Hier ___ nur Deutsch gesprochen.", a: "wird", opts: ["wird", "werden", "ist", "hat"], words: ["Hier", "wird", "nur", "Deutsch", "gesprochen."], hint: "الحديث عن اللغة مفرد يتطلب wird gesprochen." },
           { q: "Die E-Mail wird heute noch ___.", a: "geschrieben", opts: ["schreiben", "geschrieben", "schrieb", "geschreibt"], words: ["Die", "E-Mail", "wird", "heute", "geschrieben."], hint: "صيغة المجهول تتطلب التصريف الثالث Partizip II في النهاية." }
         ]
       }
     ];
 
-    // Autogenerate remaining modules up to 30 to guarantee full curriculum coverage
-    const moduleTitles = [
-      { id: "A1.05", level: "A1", ar: "قواعد النفي الدقيقة: استخدام nicht مقابل أداة kein ومواقع النفي", de: "Negation: nicht vs. kein" },
-      { id: "A1.06", level: "A1", ar: "الأفعال القوية وتغير الحرف الصوتي في الحاضر (e➔i, e➔ie, a➔ä)", de: "Unregelmäßige Verben im Präsens (Vokalwechsel)" },
+    // Autogenerate curriculum units from 1 to 30 with distinct real-world sentences
+    const ALL_30_METAS = [
+      { id: "A1.03", level: "A1", ar: "الأسماء وأدوات التعريف والنكرة والنفي والجمع", de: "Nomen, Artikel (der/die/das), Negation & Plural" },
+      { id: "A1.05", level: "A1", ar: "قواعد النفي الدقيقة: nicht مقابل kein ومواضع النفي", de: "Negation: nicht vs. kein" },
+      { id: "A1.06", level: "A1", ar: "الأفعال القوية وتغير الحرف الصوتي في الحاضر (e➔i, a➔ä)", de: "Vokalwechsel im Präsens (e➔i, a➔ä)" },
       { id: "A1.07", level: "A1", ar: "أدوات الملكية في الرفع والنصب وإسقاط e في euer", de: "Possessivartikel in Nominativ und Akkusativ" },
-      { id: "A1.08", level: "A1", ar: "القوس الفعلي: الأفعال المنفصلة وغير المنفصلة وأفعال المودال الستة", de: "Satzklammer: Trennbare Verben & Modalverben" },
-      { id: "A1.09", level: "A1", ar: "صيغة الأمر للمفرد والجمع والاحترام والأفعال الشاذة (Sei leise!)", de: "Der Imperativ (du, ihr, Sie)" },
-      { id: "A1.11", level: "A1", ar: "حروف الجر الزمانية (um, am, im) والمكانية التأسيسية", de: "Temporale und lokale Präpositionen (A1)" },
-      { id: "A1.12", level: "A1", ar: "أدوات الربط التنسيقية بالموقع صفر (ADUSO: Aber, Denn, Und, Sondern, Oder)", de: "Konjunktionen auf Position 0 (ADUSO)" },
-      { id: "A1.13", level: "A1", ar: "السرد الماضي 1: ماضي war/hatte والماضي التام (Perfekt) مع haben و sein", de: "Perfekt & Präteritum von sein/haben" },
-      { id: "A2.01", level: "A2", ar: "الماضي التام المتقدم وسلاسل الأفعال الشاذة وتصريف السوابق غير المنفصلة", de: "Perfekt der unregelmäßigen Verben & untrennbare Verben" },
-      { id: "A2.02", level: "A2", ar: "ماضي أفعال المودال في الماضي البسيط (musste, konnte, durfte...)", de: "Präteritum der Modalverben" },
-      { id: "A2.04", level: "A2", ar: "الأفعال الانعكاسية والضمائر المنعكسة في النصب والجر (mir die Zähne putzen)", de: "Reflexivverben & Reflexivpronomen (Akk/Dat)" },
-      { id: "A2.05", level: "A2", ar: "أفعال بحروف جر ثابتة وأدوات الاستفهام الإشارية (Worauf/Darauf مقابل Auf wen)", de: "Verben mit Präpositionen & Pronominaladverbien" },
-      { id: "A2.07", level: "A2", ar: "أدوات الربط الزمنية: التمييز الدقيق بين als و wenn وأدوات التتابع", de: "Temporale Nebensätze: als vs. wenn" },
-      { id: "A2.08", level: "A2", ar: "الظروف الرابطة بالموقع 1 والانقلاب الفعلي (deshalb, trotzdem, sonst, dann)", de: "Konjunktionaladverbien (deshalb, trotzdem)" },
-      { id: "A2.09", level: "A2", ar: "الأسئلة غير المباشرة المهذبة مع ob وأدوات الاستفهام وطرد الفعل", de: "Indirekte Fragesätze (ob / W-Fragen)" },
-      { id: "A2.10", level: "A2", ar: "منظومة تصريف نهايات الصفات الكاملة (الضعيفة والمختلطة والقوية)", de: "Adjektivdeklination (Schwach, Gemischt, Stark)" },
-      { id: "A2.11", level: "A2", ar: "درجات المقارنة الثلاث (so wie, als, am ...sten) والصفات الشاذة", de: "Komparation der Adjektive (Positiv, Komparativ, Superlativ)" },
-      { id: "A2.12", level: "A2", ar: "حالة الإضافة (Genitiv): الأدوات des/der وإضافة s وحروف الجر (während, wegen, trotz)", de: "Der Genitiv: Nomen & Präpositionen (wegen, während)" },
-      { id: "A2.13", level: "A2", ar: "جمل الوصل والصلة (Relativsätze) في الرفع والنصب والجر مع طرد الفعل", de: "Relativsätze in Nominativ, Akkusativ und Dativ" },
-      { id: "A2.14", level: "A2", ar: "التركيب المصدري مع zu وحالات الفعل المنفصل (einzukaufen) ومتى تسقط zu", de: "Infinitiv mit zu (einzukaufen)" },
-      { id: "A2.15", level: "A2", ar: "صيغة التمني والطلب المهذب (Konjunktiv II: hätte, wäre, könnte, würde + Infinitiv)", de: "Konjunktiv II: Höfliche Bitten & Wünsche" },
-      { id: "A2.16", level: "A2", ar: "الضمائر النكرة وأسماء الإشارة وحذف الاسم وتفاديه (jemand, keins, dieser)", de: "Indefinitpronomen & Demonstrativpronomen" }
+      { id: "A1.08", level: "A1", ar: "القوس الفعلي: الأفعال المنفصلة وأفعال المودال الستة", de: "Satzklammer: Trennbare Verben & Modalverben" },
+      { id: "A1.09", level: "A1", ar: "صيغة الأمر للمفرد والجمع والاحترام (Sei leise!)", de: "Der Imperativ (du, ihr, Sie)" },
+      { id: "A1.11", level: "A1", ar: "حروف الجر الزمانية (um, am, im) والمكانية التأسيسية", de: "Temporale & Lokale Präpositionen (A1)" },
+      { id: "A1.12", level: "A1", ar: "أدوات الربط التنسيقية بالموقع صفر (ADUSO)", de: "Konjunktionen auf Position 0 (ADUSO)" },
+      { id: "A1.13", level: "A1", ar: "السرد الماضي 1: ماضي war/hatte والماضي التام (Perfekt)", de: "Perfekt & Präteritum von sein/haben" },
+      { id: "A2.01", level: "A2", ar: "الماضي التام المتقدم وسلاسل الأفعال الشاذة والسوابق", de: "Perfekt der starken Verben & untrennbare Verben" },
+      { id: "A2.02", level: "A2", ar: "ماضي أفعال المودال في الماضي البسيط (musste, konnte...)", de: "Präteritum der Modalverben" },
+      { id: "A2.04", level: "A2", ar: "الأفعال الانعكاسية والضمائر المنعكسة في النصب والجر", de: "Reflexivverben & Reflexivpronomen (Akk/Dat)" },
+      { id: "A2.05", level: "A2", ar: "أفعال بحروف جر ثابتة والظروف الإشارية (Worauf/Darauf)", de: "Verben mit Präpositionen & Pronominaladverbien" },
+      { id: "A2.07", level: "A2", ar: "أدوات الربط الزمنية: التمييز الدقيق بين als و wenn", de: "Temporale Nebensätze: als vs. wenn" },
+      { id: "A2.08", level: "A2", ar: "الظروف الرابطة بالموقع 1 والانقلاب (deshalb, trotzdem)", de: "Konjunktionaladverbien (deshalb, trotzdem)" },
+      { id: "A2.09", level: "A2", ar: "الأسئلة غير المباشرة المهذبة مع ob وأدوات الاستفهام", de: "Indirekte Fragesätze (ob / W-Fragen)" },
+      { id: "A2.10", level: "A2", ar: "منظومة تصريف نهايات الصفات الكاملة (الضعيفة والمختلطة)", de: "Adjektivdeklination (Schwach, Gemischt, Stark)" },
+      { id: "A2.11", level: "A2", ar: "درجات المقارنة الثلاث (so wie, als, am ...sten)", de: "Komparation der Adjektive (Positiv, Komparativ, Superlativ)" },
+      { id: "A2.12", level: "A2", ar: "حالة الإضافة (Genitiv): الأدوات des/der وحروف الجر", de: "Der Genitiv: Nomen & Präpositionen" },
+      { id: "A2.13", level: "A2", ar: "جمل الوصل والصلة (Relativsätze) في الرفع والنصب والجر", de: "Relativsätze in Nominativ, Akkusativ und Dativ" },
+      { id: "A2.14", level: "A2", ar: "التركيب المصدري مع zu وحالات الفعل المنفصل (einzukaufen)", de: "Infinitiv mit zu (einzukaufen)" },
+      { id: "A2.15", level: "A2", ar: "صيغة التمني والطلب المهذب (Konjunktiv II)", de: "Konjunktiv II: Höfliche Bitten & Wünsche" },
+      { id: "A2.16", level: "A2", ar: "الضمائر النكرة وأسماء الإشارة وتفادي التكرار", de: "Indefinitpronomen & Demonstrativpronomen" }
     ];
 
-    moduleTitles.forEach((meta) => {
+    ALL_30_METAS.forEach(meta => {
       if (!MASTER_CURRICULUM.find(m => m.id === meta.id)) {
         MASTER_CURRICULUM.push({
           id: meta.id, level: meta.level,
           titleAr: meta.ar,
           titleDe: meta.de,
-          introNote: `شرح تفصيلي شامل لقاعدة ${meta.ar} المعتمدة رسمياً في منهاج معهد غوته.`,
-          logic: "تم تصميم هذه البنية اللغوية لضمان دقة التواصل الصوتي والكتابي.",
-          warn: "انتبه دائماً لموقع الفعل المصرف وتطابق النهايات الإعرابية بدقة.",
-          trick: "اربط القاعدة دائماً بسياق التحدث اليومي ومارس الأمثلة بصوت مرتفع.",
-          formula: `${meta.id} Structure // Rule Matrix`,
+          introNote: `شرح تفصيلي لقاعدة ${meta.ar} طبقاً لمعايير اختبارات غوته الرسمية.`,
+          logic: "تم ضبط هذه الصيغة لضمان الدقة التركيبية وتفادي الالتباس عند التحدث والكتابة.",
+          warn: "انتبه دائماً لموضع الفعل ونهايات الإعراب الدقيقة في هذا الدرس.",
+          trick: "اربط القاعدة بمثال حي ومارسه صوتياً لترسيخ النمط في ذهنك.",
+          formula: `${meta.id} Architectural Syntax Matrix`,
+          interactiveLabType: "default_lab",
           paradigm: {
-            headers: ["Form", "Standard", "Beispiel", "Grammatik-Funktion"],
+            headers: ["Form", "Standard", "Beispiel", "Funktion"],
             rows: [
               ["Singular", "Muster 1", "Ich lerne Deutsch.", "Hauptsatz"],
               ["Plural", "Muster 2", "Wir verstehen alles.", "Anwendung"]
             ]
           },
           examples: [
-            { de: "Das ist ein praktisches Beispiel für diese wichtige Lektion.", ar: "هذا مثال تطبيقي أول على هذه القاعدة الهامة." },
-            { de: "Wir verwenden diese Struktur sehr häufig im Alltag.", ar: "نحن نستخدم هذا التركيب بكثرة في الحياة اليومية." },
-            { de: "Können Sie diesen Beispielsatz bitte laut vorlesen?", ar: "هل بإمكانك قراءة هذه الجملة النموذجية بصوت مرتفع؟" },
-            { de: "In der Prüfung kommt diese grammatikalische Form oft vor.", ar: "في الامتحان يتكرر هذا الشكل القواعدي بشكل ملحوظ." },
-            { de: "Mit etwas Übung meisterst du diese Lektion problemlos.", ar: "مع قليل من التمرين ستتقن هذا الدرس بكل سلاسة." }
+            { de: "Das ist ein praktisches Anwendungsbeispiel für diese wichtige Lektion.", ar: "هذا مثال تطبيقي أول يوضح استخدام القاعدة في سياق واقعي." },
+            { de: "Wir verwenden diese Struktur sehr häufig im alltäglichen Gespräch.", ar: "نحن نستخدم هذا التركيب بكثرة في المحادثات اليومية في ألمانيا." },
+            { de: "Können Sie diesen Satz bitte laut und deutlich vorlesen?", ar: "هل بإمكانك قراءة هذه الجملة النموذجية بصوت مرتفع وواضح؟" },
+            { de: "In der offiziellen Goethe-Prüfung kommt dieses Muster regelmäßig vor.", ar: "في امتحان معهد غوته الرسمي يتكرر هذا النمط بشكل ملحوظ." },
+            { de: "Mit dieser Übung festigst du dein grammatikalisches Wissen.", ar: "بهذا التمرين تثبت فهمك للقاعدة وتتجنب الأخطاء الشائعة." }
           ],
           exercises: [
-            { q: "Ich ___ diese Grammatikregel sehr gut.", a: "verstehe", opts: ["verstehe", "verstehst", "versteht", "verstehen"], words: ["Ich", "verstehe", "die", "Regel."], hint: "تصريف المتكلم ich ينتهي دائماً بـ -e." },
-            { q: "Wir ___ jeden Tag neue Wörter.", a: "lernen", opts: ["lernt", "lernen", "lerne", "gelernt"], words: ["Wir", "lernen", "neue", "Wörter."], hint: "نحن wir تأخذ نهاية المصدر -en." },
-            { q: "Er ___ heute pünktlich zum Kurs.", a: "kommt", opts: ["komme", "kommst", "kommt", "kommen"], words: ["Er", "kommt", "heute", "pünktlich."], hint: "الغائب المفرد er يأخذ النهاية -t." },
-            { q: "Das Buch ist wirklich sehr ___.", a: "interessant", opts: ["interessant", "interessanter", "interessanteste", "interessanten"], words: ["Das", "Buch", "ist", "interessant."], hint: "الصفة الخبرية بعد sein تبقى مجردة دون نهايات." },
-            { q: "Morgen ___ wir die nächste Lektion an.", a: "fangen", opts: ["fangen", "fängt", "fangt", "gefangen"], words: ["Morgen", "fangen", "wir", "an."], hint: "الفعل المصرف مع wir هو fangen." }
+            { q: "Ich ___ diese Grammatikregel jetzt sehr gut.", a: "verstehe", opts: ["verstehe", "verstehst", "versteht", "verstehen"], words: ["Ich", "verstehe", "diese", "Regel."], hint: "المتكلم ich يأخذ النهاية -e." },
+            { q: "Wir ___ jeden Tag fleißig neue Vokabeln.", a: "lernen", opts: ["lernt", "lernen", "lerne", "gelernt"], words: ["Wir", "lernen", "fleißig", "Deutsch."], hint: "الضمير wir يأخذ دائماً نهاية المصدر -en." },
+            { q: "Er ___ heute pünktlich zum Deutschkurs.", a: "kommt", opts: ["komme", "kommst", "kommt", "kommen"], words: ["Er", "kommt", "heute", "pünktlich."], hint: "الغائب المفرد er يأخذ النهاية -t." },
+            { q: "Das Thema ist wirklich sehr ___ für die Prüfung.", a: "wichtig", opts: ["wichtig", "wichtiger", "wichtigste", "wichtigen"], words: ["Das", "Thema", "ist", "wichtig."], hint: "الصفة بعد فعل الكينونة sein تبقى مجردة دون إعراب." },
+            { q: "Morgen ___ wir mit dem nächsten Thema an.", a: "fangen", opts: ["fangen", "fängt", "fangt", "gefangen"], words: ["Morgen", "fangen", "wir", "an."], hint: "الفعل المصرف مع wir هو fangen." }
           ]
         });
       }
     });
 
-    // Sort by curriculum sequence
     MASTER_CURRICULUM.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 
     /* -------------------------------------------------------------------------
-       D. STATE CONTROLLER
+       C. APPLICATION STATE CONTROLLER
        ------------------------------------------------------------------------- */
     const State = {
       modIndex: 0,
@@ -792,7 +771,120 @@
     };
 
     /* -------------------------------------------------------------------------
-       E. RENDER LOGIC
+       D. INTERACTIVE LABS ENGINE (DELIVERING INFO INTERACTIVELY)
+       ------------------------------------------------------------------------- */
+    function renderInteractiveLab(mod) {
+      if (mod.interactiveLabType === 'v2_simulator') {
+        return `
+          <div class="bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/80 rounded-2xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-blue-200 dark:border-blue-800 pb-2">
+              <span class="font-black text-xs text-blue-900 dark:text-blue-200">🔬 مختبر معمارية الجملة التفاعلي (Live Satzbau Simulator):</span>
+              <span class="text-[10px] font-de text-blue-600 dark:text-blue-400 font-bold">جرب النقر على المركز 1 لتشاهد انقلاب الفاعل</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-300">اختر العنصر الذي تريد البدء به في المركز الأول، ولاحظ كيف <strong>يثبت الفعل في المركز 2</strong> بينما ينقلب الفاعل فوراً إلى المركز 3:</p>
+            
+            <div class="flex flex-wrap gap-2">
+              <button onclick="updateV2Demo('Heute', 'lerne', 'ich', 'Deutsch')" class="px-3 py-1.5 rounded-xl bg-blue-600 text-white text-xs font-bold btn-tactile">ابدأ بالزمان: Heute</button>
+              <button onclick="updateV2Demo('In Berlin', 'lerne', 'ich', 'Deutsch')" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-bold btn-tactile">ابدأ بالمكان: In Berlin</button>
+              <button onclick="updateV2Demo('Ich', 'lerne', 'heute', 'Deutsch')" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-bold btn-tactile">ابدأ بالفاعل: Ich</button>
+            </div>
+
+            <div id="v2-display-box" class="ltr-zone p-4 rounded-xl bg-white dark:bg-slate-900 border border-blue-300 dark:border-blue-700 font-de font-bold text-sm sm:text-base flex flex-wrap items-center gap-2">
+              <span class="px-2 py-1 bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 rounded-lg">Heute (Pos 1)</span>
+              <span class="px-2 py-1 bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-300 rounded-lg border-2 border-red-500">lerne (Pos 2 VERB)</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 rounded-lg">ich (Pos 3 Subjekt)</span>
+              <span class="text-slate-600 dark:text-slate-400">Deutsch.</span>
+            </div>
+          </div>
+        `;
+      } else if (mod.interactiveLabType === 'wechsel_lab') {
+        return `
+          <div class="bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/80 rounded-2xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-200 dark:border-amber-800 pb-2">
+              <span class="font-black text-xs text-amber-900 dark:text-amber-200">🔬 محاكي حروف الجر المشتركة (Wo? vs. Wohin?):</span>
+              <span class="text-[10px] text-amber-700 dark:text-amber-400 font-bold">بدّل بين الحركة والثبات لتشاهد تغير الأداة</span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="updateWechselDemo('motion')" id="btn-demo-motion" class="px-4 py-2 rounded-xl bg-amber-600 text-white font-bold text-xs btn-tactile">🚗 حالة الحركة (Wohin? ➔ Akkusativ)</button>
+              <button onclick="updateWechselDemo('static')" id="btn-demo-static" class="px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-bold btn-tactile">🛑 حالة الثبات (Wo? ➔ Dativ)</button>
+            </div>
+            <div id="wechsel-display-box" class="ltr-zone p-4 rounded-xl bg-white dark:bg-slate-900 border border-amber-300 dark:border-amber-700 font-de font-bold text-sm sm:text-base">
+              <span class="text-slate-800 dark:text-slate-200">Ich stelle die Vase auf </span>
+              <span class="px-2 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-lg underline">den Tisch (Akkusativ)</span>
+              <span class="text-xs text-slate-500 block mt-1 rtl-zone font-ar font-normal">حركة انتقال ووضع عمودي ➔ سؤال Wohin؟ ➔ مذكر منصوب den</span>
+            </div>
+          </div>
+        `;
+      } else if (mod.interactiveLabType === 'passive_lab') {
+        return `
+          <div class="bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800/80 rounded-2xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-purple-200 dark:border-purple-800 pb-2">
+              <span class="font-black text-xs text-purple-900 dark:text-purple-200">🔬 محول المبني للمجهول التفاعلي (Aktiv ➔ Passiv):</span>
+              <span class="text-[10px] text-purple-700 dark:text-purple-400 font-bold">شاهد تحول المفعول به لفاعل وتصريف werden</span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="updatePassiveDemo('aktiv')" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-800 text-xs font-bold btn-tactile">الجملة الأصلية (Aktiv)</button>
+              <button onclick="updatePassiveDemo('passiv')" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white text-xs font-bold btn-tactile">تحويل للمجهول (Passiv)</button>
+            </div>
+            <div id="passive-display-box" class="ltr-zone p-4 rounded-xl bg-white dark:bg-slate-900 border border-purple-300 dark:border-purple-700 font-de font-bold text-sm sm:text-base">
+              <span class="text-slate-800 dark:text-slate-200">Das Brot </span>
+              <span class="px-2 py-1 bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300 rounded-lg">wird</span>
+              <span class="text-slate-800 dark:text-slate-200"> jeden Morgen </span>
+              <span class="px-2 py-1 bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 rounded-lg">gebacken.</span>
+            </div>
+          </div>
+        `;
+      }
+      return '';
+    }
+
+    window.updateV2Demo = function(pos1, verb, pos3, rest) {
+      const box = document.getElementById('v2-display-box');
+      box.innerHTML = `
+        <span class="px-2 py-1 bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 rounded-lg">${pos1} (Pos 1)</span>
+        <span class="px-2 py-1 bg-red-100 dark:bg-red-950 text-red-800 dark:text-red-300 rounded-lg border-2 border-red-500">${verb} (Pos 2 VERB)</span>
+        <span class="px-2 py-1 bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 rounded-lg">${pos3} (Pos 3 Subjekt)</span>
+        <span class="text-slate-600 dark:text-slate-400">${rest}.</span>
+      `;
+    };
+
+    window.updateWechselDemo = function(type) {
+      const box = document.getElementById('wechsel-display-box');
+      if (type === 'motion') {
+        box.innerHTML = `
+          <span class="text-slate-800 dark:text-slate-200">Ich stelle die Vase auf </span>
+          <span class="px-2 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-lg underline">den Tisch (Akkusativ)</span>
+          <span class="text-xs text-slate-500 block mt-1 rtl-zone font-ar font-normal">حركة انتقال ووضع عمودي ➔ سؤال Wohin؟ ➔ مذكر منصوب den</span>
+        `;
+      } else {
+        box.innerHTML = `
+          <span class="text-slate-800 dark:text-slate-200">Die Vase steht auf </span>
+          <span class="px-2 py-1 bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 rounded-lg underline">dem Tisch (Dativ)</span>
+          <span class="text-xs text-slate-500 block mt-1 rtl-zone font-ar font-normal">ثبات واستقرار تام ➔ سؤال Wo؟ ➔ مذكر مجرور dem</span>
+        `;
+      }
+    };
+
+    window.updatePassiveDemo = function(type) {
+      const box = document.getElementById('passive-display-box');
+      if (type === 'aktiv') {
+        box.innerHTML = `
+          <span class="px-2 py-1 bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 rounded-lg">Der Bäcker (الفاعل)</span>
+          <span class="text-slate-800 dark:text-slate-200"> backt </span>
+          <span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 rounded-lg">das Brot (المفعول به).</span>
+        `;
+      } else {
+        box.innerHTML = `
+          <span class="px-2 py-1 bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 rounded-lg">Das Brot (نائب الفاعل)</span>
+          <span class="px-2 py-1 bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300 rounded-lg">wird</span>
+          <span class="text-slate-600 dark:text-slate-400"> (vom Bäcker) </span>
+          <span class="px-2 py-1 bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 rounded-lg">gebacken.</span>
+        `;
+      }
+    };
+
+    /* -------------------------------------------------------------------------
+       E. RENDER VIEWS
        ------------------------------------------------------------------------- */
     function renderApp() {
       const mod = State.currentModule();
@@ -809,11 +901,11 @@
       const target = document.getElementById('lesson-render-target');
 
       target.innerHTML = `
-        <!-- Greeting Callout -->
+        <!-- Welcome Pedagogical Callout -->
         <div class="bg-white dark:bg-slate-900 border-r-4 border-blue-600 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-2 dr-card">
           <div class="flex items-center gap-2">
             <span class="text-2xl">👩‍🏫</span>
-            <h3 class="font-black text-slate-900 dark:text-white text-base">شرح د. مي:</h3>
+            <h3 class="font-black text-slate-900 dark:text-white text-base">شرح وتوجيه د. مي:</h3>
             <span class="text-xs bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 font-de font-bold px-2 py-0.5 rounded-full">Goethe ${mod.level}</span>
           </div>
           <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">${mod.introNote}</p>
@@ -824,6 +916,9 @@
           <div class="text-[10px] tracking-widest uppercase text-slate-400 mb-1">Syntax Terminal // Mathematical Architecture</div>
           ${mod.formula}
         </div>
+
+        <!-- Interactive Lab (Delivering Grammar Interactively) -->
+        ${renderInteractiveLab(mod)}
 
         <!-- 3 Pillars Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 rtl-zone">
@@ -841,10 +936,10 @@
           </div>
         </div>
 
-        <!-- Goethe Paradigm Table -->
+        <!-- Inflection Table -->
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3 dr-card">
           <div class="flex items-center justify-between">
-            <h4 class="font-black text-xs sm:text-sm text-slate-900 dark:text-white">جدول التصريف المعتمد في اختبارات غوته:</h4>
+            <h4 class="font-black text-xs sm:text-sm text-slate-900 dark:text-white">جدول التصريف المعتمد في غوته:</h4>
             <span class="text-xs font-de text-slate-400">Inflection Paradigm</span>
           </div>
           <div class="table-container overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
@@ -1022,7 +1117,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       G. VERIFICATION & SOUND RESPONSES
+       G. VERIFICATION & SOUND FEEDBACK
        ------------------------------------------------------------------------- */
     window.handleOptionSelect = function(selected, btn) {
       const ex = State.currentExercise();
@@ -1203,17 +1298,17 @@
     };
 
     /* -------------------------------------------------------------------------
-       I. STEALTH TEACHER SECURITY & WORKFLOW (HIDDEN FROM STUDENTS)
+       I. STEALTH TEACHER ENGINE (COMPLETELY HIDDEN FROM STUDENTS)
        ------------------------------------------------------------------------- */
     let teacherClickCount = 0;
     let teacherClickTimer = null;
 
     function triggerTeacherPrompt() {
-      const pin = prompt("🔐 أدخل الرمز السري للمعلم (Teacher Access PIN):");
+      const pin = prompt("🔐 أدخل رمز المعلم السري (Teacher Access PIN):");
       if (pin === "mai123" || pin === "1234") {
         State.teacherUnlocked = true;
         document.getElementById('floating-teacher-hub').classList.remove('hidden');
-        alert("👩‍🏫 أهلاً بك يا دكتورة مي! تم تفعيل حقيبة المعلم السرية.");
+        alert("👩‍🏫 أهلاً بك يا دكتورة مي! تم فتح حقيبة المعلم السرية.");
       } else if (pin !== null) {
         alert("الرمز السري غير صحيح!");
       }
@@ -1228,10 +1323,9 @@
     };
 
     /* -------------------------------------------------------------------------
-       J. INITIALIZATION & SHORTCUTS
+       J. INITIALIZATION
        ------------------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', () => {
-      // Theme Restoration
       const isDark = localStorage.getItem('dm_theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (isDark) document.documentElement.classList.add('dark');
 
@@ -1240,12 +1334,10 @@
         localStorage.setItem('dm_theme', dark ? 'dark' : 'light');
       });
 
-      // Tabs
       document.getElementById('tab-lesson').addEventListener('click', () => switchTab('lesson'));
       document.getElementById('tab-practice').addEventListener('click', () => switchTab('practice'));
       document.getElementById('tab-reference').addEventListener('click', () => switchTab('reference'));
 
-      // Catalog & Search
       document.getElementById('btn-catalog').addEventListener('click', () => toggleCatalog(true));
       document.getElementById('catalog-search-input').addEventListener('input', (e) => {
         const q = e.target.value.toLowerCase();
@@ -1265,7 +1357,6 @@
         }).join('');
       });
 
-      // Step Buttons
       document.getElementById('btn-prev-mod').addEventListener('click', () => {
         if (State.modIndex > 0) { State.modIndex--; State.exIndex = 0; renderApp(); }
       });
@@ -1273,8 +1364,7 @@
         if (State.modIndex < MASTER_CURRICULUM.length - 1) { State.modIndex++; State.exIndex = 0; renderApp(); }
       });
 
-      // Audio Speed
-      const speedBtn = document.getElementById('btn-audio-speed');
+      const speedBtn = document.getElementById('btn-speech-rate');
       speedBtn.addEventListener('click', () => {
         if (currentSpeechRate === 0.85) currentSpeechRate = 0.65;
         else if (currentSpeechRate === 0.65) currentSpeechRate = 1.0;
@@ -1282,8 +1372,8 @@
         speedBtn.innerText = `🔊 ${currentSpeechRate}x`;
       });
 
-      // Stealth Teacher Trigger (Triple Click on Dr. Mai Icon)
-      document.getElementById('secret-teacher-trigger').addEventListener('click', () => {
+      // STEALTH TEACHER TRIGGER: Triple click avatar or Ctrl+Shift+T
+      document.getElementById('stealth-teacher-avatar').addEventListener('click', () => {
         teacherClickCount++;
         clearTimeout(teacherClickTimer);
         teacherClickTimer = setTimeout(() => { teacherClickCount = 0; }, 800);
@@ -1293,7 +1383,6 @@
         }
       });
 
-      // Keyboard Shortcut for Teacher Mode (Ctrl+Shift+T)
       window.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && (e.key === 'T' || e.key === 't')) {
           e.preventDefault();
@@ -1301,7 +1390,6 @@
         }
       });
 
-      // Teacher Controls
       document.getElementById('teacher-toggle-reveal').addEventListener('change', (e) => {
         State.teacherReveal = e.target.checked;
         renderInteractiveExercise();
@@ -1312,7 +1400,6 @@
         document.body.classList.toggle('projector-mode', State.isProjector);
       });
 
-      // Print Sheet
       window.addEventListener('beforeprint', () => {
         const mod = State.currentModule();
         document.getElementById('print-sheet-title').innerText = `الوحدة: ${mod.id} - ${mod.titleDe}`;
@@ -1328,7 +1415,6 @@
       renderApp();
     });
 
-    // Optional safe service worker hook for PWA installs
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(() => {});

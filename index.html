@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deutsch mit Mai – أكاديمية قواعد A1/A2 الشاملة</title>
+  <title>Deutsch mit Mai – أكاديمية غوته الشاملة (A1 & A2)</title>
 
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#2563eb">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="DeutschMai">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
@@ -18,120 +16,124 @@
 
   <!-- Header -->
   <header class="glass-nav sticky top-0 z-40 border-b border-slate-200">
-    <div class="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between">
+    <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center justify-between">
       
       <div class="flex items-center space-x-3 space-x-reverse">
-        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black shadow-md shadow-blue-500/20 font-de text-lg">
-          M
-        </div>
+        <button id="btn-open-catalog" class="p-2 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-100 transition" title="فهرس الـ 30 فصلاً">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7"/></svg>
+        </button>
         <div>
-          <h1 class="text-base font-bold tracking-tight text-slate-900">Deutsch mit Mai</h1>
-          <p class="text-[11px] font-semibold text-slate-500" id="topic-header-title">أكاديمية القواعد (Akkusativ / Dativ)</p>
+          <div class="flex items-center gap-1.5">
+            <span id="header-chapter-badge" class="bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded font-de font-bold">A1.01</span>
+            <h1 class="text-sm font-bold text-slate-900 truncate max-w-[200px] sm:max-w-md" id="header-chapter-name">اسم الفصل</h1>
+          </div>
+          <p class="text-[10px] font-semibold text-slate-500">30 فصلاً • شرح كامل • 20 تمريناً لكل فصل</p>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2 space-x-reverse">
-        <div class="flex items-center space-x-1 space-x-reverse bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-xs font-bold text-amber-800">
-          <svg class="w-4 h-4 fill-amber-500" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
-          <span id="stat-xp" class="font-de">0 XP</span>
-        </div>
-
-        <button id="teacher-toggle-btn" class="p-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 transition" title="لوحة التحكم">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-        </button>
+      <div class="flex items-center space-x-1.5 space-x-reverse bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-xs font-bold text-amber-800">
+        <svg class="w-4 h-4 fill-amber-500" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+        <span id="stat-xp" class="font-de">0 XP</span>
       </div>
     </div>
 
-    <!-- Grammatik-Themenleiste (Modul-Auswahl) -->
-    <div class="max-w-2xl mx-auto px-4 py-2 flex items-center space-x-2 space-x-reverse overflow-x-auto no-scrollbar text-xs font-bold">
-      <button data-topic="all" class="topic-chip px-3 py-1.5 rounded-xl bg-blue-600 text-white whitespace-nowrap shadow-sm transition">الكل</button>
-      <button data-topic="akkusativ" class="topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition">النصب (Akkusativ)</button>
-      <button data-topic="dativ" class="topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition">الجر (Dativ)</button>
-      <button data-topic="wechsel" class="topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition">أين؟ أم إلى أين؟ (Wechsel)</button>
-      <button data-topic="adjektiv" class="topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition">نهايات الصفات</button>
-      <button data-topic="satzbau" class="topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition">الجمل (weil/dass)</button>
+    <!-- Dualer Modus-Umschalter (Lektion vs. 20 Übungen) -->
+    <div class="max-w-3xl mx-auto px-4 py-1 flex items-center justify-between border-t border-slate-150 bg-slate-100/60 text-xs font-bold">
+      <div class="flex gap-1">
+        <button id="tab-btn-lesson" class="px-4 py-1.5 rounded-lg bg-blue-600 text-white transition flex items-center gap-1.5 shadow-sm">
+          <span>📖 شرح الدرس والقواعد</span>
+        </button>
+        <button id="tab-btn-practice" class="px-4 py-1.5 rounded-lg bg-white text-slate-700 hover:bg-slate-200 transition flex items-center gap-1.5">
+          <span>✍️ بنك التمارين</span>
+          <span class="bg-blue-100 text-blue-700 font-de text-[10px] px-1.5 py-0.2 rounded-full">20 Aufgabe</span>
+        </button>
+      </div>
+
+      <!-- Schneller Kapitelwechsler -->
+      <div class="flex items-center gap-1">
+        <button id="btn-prev-chap" class="p-1 rounded bg-white hover:bg-slate-200 text-slate-600 text-xs" title="الفصل السابق">◀</button>
+        <button id="btn-next-chap" class="p-1 rounded bg-white hover:bg-slate-200 text-slate-600 text-xs" title="الفصل التالي">▶</button>
+      </div>
     </div>
   </header>
 
   <!-- Hauptarbeitsbereich -->
-  <main class="flex-1 max-w-2xl w-full mx-auto p-4 flex flex-col justify-between">
+  <main class="flex-1 max-w-3xl w-full mx-auto p-4 flex flex-col justify-between">
     
-    <!-- Fortschritt -->
-    <div class="mb-3">
-      <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-1.5">
-        <span id="exercise-type-tag" class="text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-md font-de">Aufgabe</span>
-        <span id="exercise-counter" class="font-de">0 / 0</span>
+    <!-- ANSICHT 1: STRUKTURIERTE VOLL-LEKTION (THE LESSON & RULES) -->
+    <section id="view-lesson" class="flex-1 bg-white rounded-2xl border border-slate-200 p-5 shadow-sm overflow-y-auto max-h-[75vh] rtl-box">
+      <div id="lesson-content-body">
+        <!-- Wird dynamisch aus app.js geladen -->
       </div>
-      <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
-        <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300 w-0"></div>
-      </div>
-    </div>
-
-    <!-- Übungsbühne -->
-    <div id="exercise-stage" class="flex-1 flex flex-col justify-center items-center my-auto min-h-[300px]"></div>
-
-    <!-- Vorab-Tipp Button (Vor dem Antworten) -->
-    <div id="hint-container" class="w-full mb-3 flex flex-col items-center">
-      <button id="btn-show-hint" class="text-xs text-amber-700 hover:text-amber-800 bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-full font-bold transition flex items-center gap-1.5 shadow-sm">
-        <span>💡 هل تحتاج لتلميح قبل الحل؟</span>
+      <button onclick="switchToPracticeMode()" class="mt-6 w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+        <span>الانتقال فوراً لحل تمارين هذا الفصل الـ 20</span>
+        <span>✍️</span>
       </button>
-      <div id="hint-text" class="hidden mt-2 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed max-w-md w-full animate-pop"></div>
-    </div>
+    </section>
 
-    <!-- Nach-dem-Test: Feedback + Vollständige Lektion -->
-    <div id="feedback-panel" class="hidden w-full mt-2 rounded-2xl p-5 border transition-all rtl-box">
-      <div class="flex items-start justify-between">
-        <div class="flex items-start space-x-3 space-x-reverse">
-          <div id="feedback-icon" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5"></div>
-          <div>
-            <h3 id="feedback-title" class="font-bold text-base"></h3>
-            <p id="feedback-summary" class="text-xs sm:text-sm mt-1 text-slate-700 font-medium leading-relaxed"></p>
+    <!-- ANSICHT 2: 20-ÜBUNGEN-ENGINE (THE 20 EXERCISES) -->
+    <section id="view-practice" class="flex-1 flex flex-col justify-between hidden">
+      
+      <!-- 20-Übungsraster (1 bis 20) -->
+      <div class="mb-4 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex justify-between items-center text-xs font-bold text-slate-500 mb-2">
+          <span>اختر تمريناً من الـ 20:</span>
+          <span id="practice-progress-label" class="font-de text-blue-600">Aufgabe 1 / 20</span>
+        </div>
+        <div class="grid grid-cols-10 gap-1.5 sm:gap-2" id="exercise-pills-grid">
+          <!-- 20 Buttons (1-20) werden dynamisch injiziert -->
+        </div>
+      </div>
+
+      <!-- Übungsbühne -->
+      <div id="exercise-stage" class="flex-1 flex flex-col justify-center items-center my-auto min-h-[260px]"></div>
+
+      <!-- Vorab-Tipp -->
+      <div id="hint-container" class="w-full my-2 flex flex-col items-center">
+        <button id="btn-show-hint" class="text-xs text-amber-800 hover:text-amber-900 bg-amber-50 border border-amber-200 px-4 py-1.5 rounded-full font-bold transition flex items-center gap-1.5 shadow-sm">
+          <span>💡 تلميح ومفتاح الإعراب قبل الإجابة</span>
+        </button>
+        <div id="hint-text" class="hidden mt-2 p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 leading-relaxed max-w-md w-full animate-pop"></div>
+      </div>
+
+      <!-- Feedback Panel -->
+      <div id="feedback-panel" class="hidden w-full mt-2 rounded-2xl p-4 border transition-all rtl-box">
+        <div class="flex items-start justify-between">
+          <div class="flex items-start space-x-3 space-x-reverse">
+            <div id="feedback-icon" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5"></div>
+            <div>
+              <h3 id="feedback-title" class="font-bold text-base"></h3>
+              <p id="feedback-summary" class="text-xs sm:text-sm mt-1 text-slate-700 font-medium leading-relaxed"></p>
+            </div>
           </div>
+          <button id="btn-audio-repeat" class="p-2.5 text-blue-600 hover:bg-blue-100 rounded-xl transition shrink-0 mr-2" title="استمع للنطق">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/></svg>
+          </button>
         </div>
-        <button id="btn-audio-repeat" class="p-2.5 text-blue-600 hover:bg-blue-100 rounded-xl transition shrink-0 mr-2" title="استمع للنطق">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/></svg>
+
+        <button id="btn-next-ex" class="mt-4 w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm shadow hover:bg-slate-800 transition">
+          التالي (التمرين القادم)
         </button>
       </div>
 
-      <!-- Ausklappbare Volllektion (The Full Lesson) -->
-      <div class="mt-4 pt-4 border-t border-slate-200/80">
-        <button id="btn-toggle-full-lesson" class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1.5">
-          <span>📖 شرح الدرس الكامل والجدول الإعرابي المقارن (اضغط هنا)</span>
-          <svg class="w-4 h-4 transition-transform" id="lesson-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <div id="full-lesson-body" class="hidden mt-3 text-xs leading-relaxed text-slate-700 bg-white p-3.5 rounded-xl border border-slate-200 space-y-2.5 shadow-sm">
-          <!-- Dynamischer Lektionsinhalt via app.js -->
-        </div>
-      </div>
-
-      <button id="btn-next" class="mt-4 w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm shadow hover:bg-slate-800 transition">
-        التالي (Aufgabe abschließen)
-      </button>
-    </div>
+    </section>
 
   </main>
 
-  <!-- Lehrkraft-Modal -->
-  <aside id="teacher-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm rtl-box">
-    <div class="bg-white max-w-lg w-full rounded-2xl shadow-xl flex flex-col max-h-[85vh] overflow-hidden">
+  <!-- Goethe 30-Kapitel Katalog Modal -->
+  <aside id="catalog-drawer" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-end hidden backdrop-blur-sm rtl-box">
+    <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col overflow-hidden animate-pop">
       <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
         <div>
-          <h2 class="font-bold text-base text-slate-900">لوحة المعلم – فحص الدروس والحلول</h2>
-          <p class="text-xs text-slate-500">استعراض حلول القواعد وتصدير تمارين مخصصة</p>
+          <h2 class="font-bold text-base text-slate-900">فهرس الفصول الـ 30 (غوته A1 + A2)</h2>
+          <p class="text-xs text-slate-500">اختر الفصل لعرض شرحه الكامل وتمارينه الـ 20</p>
         </div>
-        <button id="close-teacher-modal" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg">
+        <button id="close-catalog-drawer" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="p-4 overflow-y-auto space-y-2.5 flex-1 text-xs" id="teacher-curriculum-list"></div>
-
-      <div class="p-4 border-t border-slate-200 bg-slate-50">
-        <button id="btn-export-link" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition text-xs flex items-center justify-center gap-2">
-          <span>نسخ رابط الواجب للطلاب</span>
-        </button>
-        <p id="export-confirm" class="text-center text-xs text-green-600 font-bold hidden mt-1">تم النسخ بنجاح!</p>
-      </div>
+      <div class="p-4 overflow-y-auto space-y-2 flex-1 text-xs" id="catalog-list"></div>
     </div>
   </aside>
 

@@ -1,658 +1,518 @@
 /**
- * Deutsch mit Mai – Goethe A1 & A2 Master Engine
- * Vollständige grammatikalische Erklärungen & Tabellen für ALLE 30 Kapitel
+ * Deutsch mit Mai – Goethe A1 & A2 Compendium Engine
+ * Direct Implementation of the Academic Compendium (Modules 1 to 30)
  */
 
-const CHAPTERS_KNOWLEDGE_BASE = {
-  // ==========================================
-  // GOETHE A1 (KAPITEL 1 BIS 13)
-  // ==========================================
+const COMPENDIUM_DATABASE = {
+  // =========================================================================
+  // PART I: GOETHE-ZERTIFIKAT A1 (MODULES 1 TO 13)
+  // =========================================================================
 
   "A1.01": {
-    titleAr: "الضمائر وتصريف الحاضر وتعديلات الجذع (-t/-d/-s)",
+    moduleNum: 1,
+    level: "A1",
+    titleDe: "Personal Pronouns & Present Tense Verb Conjugation (Präsens)",
+    titleAr: "الضمائر الشخصية وتصريف أفعال الحاضر والتعديلات الصوتية للجذع",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 1: الضمائر وتصريف الأفعال وتعديلات الجذع</h2>
-        <div class="rule-card">
-          <p class="font-bold text-blue-800 text-xs mb-1">1. نهايات الأفعال المنتظمة (Präsens):</p>
-          <p class="text-xs font-de">ich -e | du -st | er/sie/es -t | wir -en | ihr -t | sie/Sie -en</p>
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded font-de">Module 1 • Start Deutsch 1</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">Personal Pronouns & Verb Conjugation (Präsens)</h2>
+          <p class="text-xs text-slate-600 mt-0.5">اشتقاق جذر الفعل وإلحاق النهايات الصرفية بحسب الفاعل وتعديلات الأحرف الصوتية.</p>
         </div>
-        <table class="grammar-table font-de">
-          <tr><th>الضمير</th><th>lernen (يتعلم)</th><th>arbeiten (تعديل -t-)</th><th>heißen (تعديل -s-)</th></tr>
-          <tr><td>ich</td><td>lerne</td><td>arbeite</td><td>heiße</td></tr>
-          <tr><td>du</td><td>lernst</td><td class="text-blue-600 font-bold">arbeitest</td><td class="text-blue-600 font-bold">heißt</td></tr>
-          <tr><td>er/sie/es</td><td>lernt</td><td class="text-blue-600 font-bold">arbeitet</td><td>heißt</td></tr>
-          <tr><td>wir</td><td>lernen</td><td>arbeiten</td><td>heißen</td></tr>
-        </table>
-        <div class="rule-card bg-amber-50 border-amber-500">
-          <p class="text-xs text-amber-950"><strong>قاعدة الجذع:</strong> الأفعال المنتهية بـ -t أو -d تأخذ e وقاية مع du و er: <em>du arbeitest</em>. والمنتهية بحرف صفيري -s, -z, -ß تأخذ -t فقط مع du: <em>du heißt</em>.</p>
+
+        <!-- 1. Grammatical Framework Formula -->
+        <div class="formula-card">
+          Infinitive - "-en" (or "-n") = Verb Stem<br>
+          <span class="text-blue-300">lernen - en = lern-</span> | <span class="text-emerald-300">Stem + Personal Ending = Conjugated Verb</span>
+        </div>
+
+        <!-- 2. Inflection Paradigm -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">1. Inflection Paradigm (جدول التصريف القياسي):</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Pronoun</th><th>Ending</th><th>lernen (to learn)</th><th>machen (to do)</th><th>wohnen (to reside)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>ich</strong> (أنا)</td><td class="text-blue-600 font-bold">-e</td><td>lerne</td><td>mache</td><td>wohne</td></tr>
+              <tr><td><strong>du</strong> (أنتَ/أنتِ)</td><td class="text-blue-600 font-bold">-st</td><td>lernst</td><td>machst</td><td>wohnst</td></tr>
+              <tr><td><strong>er / sie / es</strong> (هو/هي)</td><td class="text-blue-600 font-bold">-t</td><td>lernt</td><td>macht</td><td>wohnt</td></tr>
+              <tr><td><strong>wir</strong> (نحن)</td><td class="text-blue-600 font-bold">-en</td><td>lernen</td><td>machen</td><td>wohnen</td></tr>
+              <tr><td><strong>ihr</strong> (أنتم)</td><td class="text-blue-600 font-bold">-t</td><td>lernt</td><td>macht</td><td>wohnt</td></tr>
+              <tr><td><strong>sie / Sie</strong> (هم/حضرتك)</td><td class="text-blue-600 font-bold">-en</td><td>lernen</td><td>machen</td><td>wohnen</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3. Stem Modifications & Auxiliaries -->
+        <div class="space-y-2">
+          <h3 class="font-bold text-xs text-slate-800">2. Stem Modifications & Auxiliaries (تعديلات الجذع والشواذ):</h3>
+          <div class="p-2.5 bg-slate-50 border rounded-lg text-xs space-y-1.5">
+            <p><strong>• Phonetic Insertion of -e-:</strong> Stems ending in <em>-t, -d</em> insert an <em>-e-</em> before <em>-st</em> and <em>-t</em> (لتسهيل النطق):<br>
+            <span class="font-de text-blue-700">arbeiten ➔ du arbeit<strong>e</strong>st, er arbeit<strong>e</strong>t, ihr arbeit<strong>e</strong>t</span></p>
+            <p><strong>• Sibilant Stem Reduction:</strong> Stems ending in <em>-s, -ss, -ß, -z, -tz</em> drop the <em>-s-</em> with <em>du</em>:<br>
+            <span class="font-de text-blue-700">heißen ➔ du heiß<strong>t</strong></span> (not heißst!).</p>
+            <p><strong>• Irregular Auxiliaries (sein & haben):</strong><br>
+            <span class="font-de text-slate-700">sein: ich bin, du bist, er ist, wir sind, ihr seid, sie sind.</span><br>
+            <span class="font-de text-slate-700">haben: ich habe, du hast, er hat, wir haben, ihr habt, sie haben.</span></p>
+          </div>
+        </div>
+
+        <!-- 4. Structured Breakdown Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">3. Structured Examples with Syntactic Breakdown:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Ich wohne in Berlin und arbeite dort.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subjekt: Ich]</span> + 
+              <span class="tag-verb">[Verb 1: wohne (stem wohn- + -e)]</span> + 
+              <span class="tag-prep">[Lokalangabe: in Berlin]</span> + 
+              <span class="tag-adv">[Konjunktion: und]</span> + 
+              <span class="tag-verb">[Verb 2: arbeite (stem arbeit- + -e)]</span> + 
+              <span class="tag-adv">[Adverb: dort]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: أنا أسكن في برلين وأعمل هناك.</p>
+          </div>
+
+          <div class="syntax-breakdown mt-2">
+            <p class="font-bold text-slate-900 font-de">Er hat ein Buch und ist sehr zufrieden.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subjekt: Er]</span> + 
+              <span class="tag-verb">[Hilfsverb: hat (irregular 3rd sing.)]</span> + 
+              <span class="tag-obj">[Objekt: ein Buch]</span> + 
+              <span class="tag-adv">[Konjunktion: und]</span> + 
+              <span class="tag-verb">[Kopulaverb: ist]</span> + 
+              <span class="tag-adv">[Prädikativ: sehr zufrieden]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: هو يملك كتاباً وهو مسرور جداً.</p>
+          </div>
         </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Du", ans: "arbeitest", after: "sehr fleißig.", full: "Du arbeitest sehr fleißig.", opts: ["arbeitst", "arbeitest", "arbeitet", "arbeiten"], hint: "جذع ينتهي بـ t يأخذ e وقاية قبل st." },
-      { id: 2, before: "Wie", ans: "heißt", after: "du?", full: "Wie heißt du?", opts: ["heißest", "heißt", "heiße", "heißen"], hint: "الأفعال المنتهية بـ ß تأخذ t فقط مع du." }
+      { id: 1, before: "Ich", ans: "wohne", after: "in Berlin.", full: "Ich wohne in Berlin.", opts: ["wohne", "wohnst", "wohnt", "wohnen"], hint: "Infinitive wohnen - en = wohn- + personal ending -e." },
+      { id: 2, before: "Du", ans: "arbeitest", after: "zu viel im Krankenhaus.", full: "Du arbeitest zu viel im Krankenhaus.", opts: ["arbeitst", "arbeitest", "arbeitet", "arbeiten"], hint: "Stem ends in -t: Phonetic insertion of -e- before -st ➔ arbeitest." },
+      { id: 3, before: "Wie", ans: "heißt", after: "du?", full: "Wie heißt du?", opts: ["heißest", "heißt", "heiße", "heißen"], hint: "Sibilant stem in -ß drops the -s- in 2nd person singular ➔ du heißt." },
+      { id: 4, before: "Er", ans: "hat", after: "ein Buch und ist zufrieden.", full: "Er hat ein Buch und ist zufrieden.", opts: ["habe", "hast", "hat", "haben"], hint: "Irregular 3rd person singular of haben ➔ er hat." }
     ]
   },
 
   "A1.02": {
-    titleAr: "معمارية الجملة: المركز 2، Inversion، وأسئلة Ja/Nein و W",
+    moduleNum: 2,
+    level: "A1",
+    titleDe: "Sentence Architecture I (Main Clauses & Questions)",
+    titleAr: "بناء الجملة: الفعل في المركز 2، الانقلاب (Inversion)، والأسئلة",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 2: معمارية الجملة ومواقع الفعل</h2>
-        <div class="rule-card">
-          <p class="font-bold text-blue-800 text-xs mb-1">1. الفعل دائماً في المركز الثاني (Position 2):</p>
-          <p class="text-xs">سواء بدأت الجملة بالفاعل أو بالزمان (Inversion)، الفعل لا يتحرك عن الموقع 2:</p>
-          <p class="font-de text-xs mt-1"><em>Ich (1) <strong>lerne (2)</strong> heute.</em> ➔ <em>Heute (1) <strong>lerne (2)</strong> ich.</em></p>
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded font-de">Module 2 • Start Deutsch 1</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">The Verb-Second Rule (V2) & Interrogatives</h2>
+          <p class="text-xs text-slate-600 mt-0.5">قاعدة قفل الفعل في المركز الثاني، قاعدة الانقلاب، وأسئلة نعم/لا وأدوات الاستفهام.</p>
         </div>
-        <div class="rule-card bg-emerald-50 border-emerald-600">
-          <p class="font-bold text-emerald-900 text-xs mb-1">2. الأسئلة:</p>
-          <p class="text-xs"><strong>سؤال نعم/لا:</strong> الفعل في المركز 1: <em><strong>Kommst</strong> du morgen?</em><br><strong>سؤال أداة الاستفهام:</strong> أداة W بالمركز 1 والفعل بالمركز 2: <em><strong>Wo</strong> <strong>wohnst</strong> du?</em></p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Heute", ans: "lerne", after: "ich Deutsch.", full: "Heute lerne ich Deutsch.", opts: ["lerne", "ich lerne", "lernen", "lernt"], hint: "الفعل المصرف دائماً في المركز الثاني بعد الظرف." },
-      { id: 2, before: "Trinkst", ans: "du", after: "gerne Kaffee?", full: "Trinkst du gerne Kaffee?", opts: ["du", "dich", "dir", "dein"], hint: "في سؤال نعم/لا يتقدم الفعل ويليه الفاعل المرفوع." }
-    ]
-  },
 
-  "A1.03": {
-    titleAr: "الأسماء وأدوات التعريف والنكرة والنفي والجمع في الرفع",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 3: الأسماء والأدوات والجمع في الرفع (Nominativ)</h2>
-        <table class="grammar-table font-de">
-          <tr><th>الجنس</th><th>المعرفة</th><th>النكرة</th><th>النفي (kein)</th><th>أمثلة للجمع</th></tr>
-          <tr><td>مذكر</td><td>der Tisch</td><td>ein Tisch</td><td>kein Tisch</td><td>die Tische (-e)</td></tr>
-          <tr><td>محايد</td><td>das Buch</td><td>ein Buch</td><td>kein Buch</td><td>die Bücher (¨-er)</td></tr>
-          <tr><td>مؤنث</td><td>die Lampe</td><td>eine Lampe</td><td>keine Lampe</td><td>die Lampen (-n)</td></tr>
-          <tr><td>جمع</td><td>die Kinder</td><td>-- (بدون أداة)</td><td>keine Kinder</td><td>die Autos (-s)</td></tr>
-        </table>
+        <!-- 1. The Verb-Second Rule (V2) Table -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">1. The V2 Positional Grid (مخطط المواقع الإعرابية):</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Position 1 (Vorfeld)</th><th>Position 2 (Finite Verb)</th><th>Position 3</th><th>Rest of Sentence (Mittelfeld)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="tag-subj">Wir (Subjekt)</td><td class="text-red-600 font-bold">lernen</td><td>heute</td><td>Deutsch in der Schule.</td></tr>
+              <tr><td class="tag-adv">Heute (Temporal)</td><td class="text-red-600 font-bold">lernen</td><td class="tag-subj">wir (Inversion!)</td><td>Deutsch in der Schule.</td></tr>
+              <tr><td class="tag-prep">In der Schule (Lokal)</td><td class="text-red-600 font-bold">lernen</td><td class="tag-subj">wir (Inversion!)</td><td>heute Deutsch.</td></tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-slate-500 mt-1"><strong>قاعدة الانقلاب (Inversion):</strong> إذا احتل أي عنصر غير الفاعل (كالزمان أو المكان) الموقع 1، يُجبر الفاعل على الانتقال فوراً إلى الموقع 3 خلف الفعل مباشرة!</p>
+        </div>
+
+        <!-- 2. Interrogative Clauses -->
+        <div class="space-y-1.5">
+          <h3 class="font-bold text-xs text-slate-800">2. Interrogative Architectures (أنماط الأسئلة):</h3>
+          <div class="p-2.5 bg-slate-50 border rounded-lg text-xs space-y-1">
+            <p><strong>• Closed Questions (Ja/Nein-Fragen):</strong> Verb locked in <strong>Position 1</strong>:<br>
+            <span class="font-de text-blue-700 font-bold">[Verb (Pos 1)] + [Subjekt (Pos 2)] + [Objekt / Angaben (Pos 3+)]?</span><br>
+            <em>Trinkst du morgens immer Kaffee?</em></p>
+            <p><strong>• Open Questions (W-Fragen):</strong> Interrogative word in <strong>Position 1</strong>, Verb in <strong>Position 2</strong>:<br>
+            <span class="font-de text-blue-700 font-bold">[W-Wort (Pos 1)] + [Verb (Pos 2)] + [Subjekt (Pos 3)]?</span><br>
+            <em>Wer, Was, Wo, Wohin, Woher, Wann, Warum, Wie.</em></p>
+          </div>
+        </div>
+
+        <!-- 3. Structured Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">3. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Morgen fliegt meine Schwester nach Wien.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-adv">[Pos 1 (Temporal): Morgen]</span> + 
+              <span class="tag-verb">[Pos 2 (Verb): fliegt]</span> + 
+              <span class="tag-subj">[Pos 3 (Subjekt Inversion): meine Schwester]</span> + 
+              <span class="tag-prep">[Direktional: nach Wien]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: غداً تسافر أختي بالطائرة إلى فيينا.</p>
+          </div>
+        </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Das ist", ans: "kein", after: "Stift.", full: "Das ist kein Stift.", opts: ["nicht", "kein", "keine", "keinen"], hint: "نفي الاسم النكرة المذكر der Stift يكون بـ kein." },
-      { id: 2, before: "Hier steht", ans: "eine", after: "Lampe.", full: "Hier steht eine Lampe.", opts: ["ein", "eine", "einen", "einer"], hint: "المؤنث يأخذ أداة النكرة eine." }
+      { id: 1, before: "Heute", ans: "lernen", after: "wir Deutsch in der Schule.", full: "Heute lernen wir Deutsch in der Schule.", opts: ["wir lernen", "lernen", "lernt", "lernen wir"], hint: "Inversion Rule: Temporal in Pos 1 requires Verb in Pos 2." },
+      { id: 2, before: "Trinkst", ans: "du", after: "morgens immer Kaffee?", full: "Trinkst du morgens immer Kaffee?", opts: ["du", "dich", "dir", "dein"], hint: "Ja/Nein-Frage: Verb occupies Pos 1, subject follows in Pos 2." }
     ]
   },
 
   "A1.04": {
-    titleAr: "المفعول به المنصوب (Akkusativ): تحول المذكر وأحرف DOGFU",
+    moduleNum: 4,
+    level: "A1",
+    titleDe: "The Accusative Case (Akkusativ)",
+    titleAr: "حالة النصب (Akkusativ): المفعول به المباشر، تحول المذكر، وأحرف DOGFU",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 4: المفعول به المنصوب (Akkusativ)</h2>
-        <div class="rule-card">
-          <p class="font-bold text-blue-800 text-xs mb-1">📌 المذكر فقط هو الذي يتغير في النصب:</p>
-          <table class="grammar-table font-de">
-            <tr><th>الجنس</th><th>الرفع (Nominativ)</th><th>النصب (Akkusativ)</th></tr>
-            <tr class="bg-blue-50 font-bold"><td>مذكر</td><td>der / ein / kein</td><td class="text-blue-700">den / einen / keinen</td></tr>
-            <tr><td>محايد</td><td>das / ein / kein</td><td>das / ein / kein (لا تغيير)</td></tr>
-            <tr><td>مؤنث</td><td>die / eine / keine</td><td>die / eine / keine (لا تغيير)</td></tr>
-            <tr><td>جمع</td><td>die / -- / keine</td><td>die / -- / keine (لا تغيير)</td></tr>
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded font-de">Module 4 • Start Deutsch 1</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">Direct Objects & The Accusative Case</h2>
+          <p class="text-xs text-slate-600 mt-0.5">تحديد المفعول به المباشر، انحصار التغير في المذكر فقط، وأحرف الجر الخمسة الإلزامية.</p>
+        </div>
+
+        <!-- 1. Article Declension Paradigm -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1">1. Article Declension (انحصار التغير بالمذكر فقط):</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Gender / Number</th><th>Nominative</th><th>Accusative</th><th>Morphological Shift</th></tr>
+            </thead>
+            <tbody>
+              <tr class="bg-blue-50/70 font-bold">
+                <td>Maskulinum (مذكر)</td>
+                <td>der / ein / kein</td>
+                <td class="text-blue-700">den / einen / keinen</td>
+                <td>-er / -ein ➔ -en / -einen</td>
+              </tr>
+              <tr><td>Femininum (مؤنث)</td><td>die / eine / keine</td><td>die / eine / keine</td><td>No change (لا تغيير)</td></tr>
+              <tr><td>Neutrum (محايد)</td><td>das / ein / kein</td><td>das / ein / kein</td><td>No change (لا تغيير)</td></tr>
+              <tr><td>Plural (جمع)</td><td>die / -- / keine</td><td>die / -- / keine</td><td>No change (لا تغيير)</td></tr>
+            </tbody>
           </table>
         </div>
-        <div class="rule-card bg-emerald-50 border-emerald-600">
-          <p class="font-bold text-emerald-900 text-xs">أحرف تنصب دائماً (DOGFU): durch, ohne, gegen, für, um</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Ich habe", ans: "einen", after: "Bruder.", full: "Ich habe einen Bruder.", opts: ["ein", "einen", "einem", "eine"], hint: "المذكر der Bruder يتحول في النصب إلى einen." },
-      { id: 2, before: "Das ist für", ans: "den", after: "Lehrer.", full: "Das ist für den Lehrer.", opts: ["der", "den", "dem", "das"], hint: "حرف für ينصب الاسم بعده دائماً." }
-    ]
-  },
 
-  "A1.05": {
-    titleAr: "قواعد النفي الدقيقة: استخدام nicht مقابل أداة kein",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 5: قواعد النفي (nicht vs. kein)</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>kein / keine:</strong> تستخدم حصراً لنفي الأسماء النكرة المسبوقة بـ ein أو الأسماء بدون أداة (Ich habe <em>kein</em> Auto).</p>
+        <!-- 2. DOGFU Prepositions & Pronouns -->
+        <div class="space-y-2">
+          <h3 class="font-bold text-xs text-slate-800">2. Personal Pronouns & Absolute DOGFU Prepositions:</h3>
+          <div class="formula-card">
+            Accusative Pronouns: mich | dich | ihn | sie | es | uns | euch | sie / Sie
+          </div>
+          <div class="p-2.5 bg-slate-50 border rounded-lg text-xs">
+            <p class="font-bold text-slate-900 mb-1">Absolute Accusative Prepositions (DOGFU):</p>
+            <ul class="list-disc list-inside space-y-0.5 font-de text-slate-700">
+              <li><strong>Durch</strong> (through): <em>Wir gehen durch <u>den</u> Park.</em></li>
+              <li><strong>Ohne</strong> (without): <em>Er kommt ohne <u>seinen</u> Mantel.</em></li>
+              <li><strong>Gegen</strong> (against): <em>Das Auto prallt gegen <u>den</u> Baum.</em></li>
+              <li><strong>Für</strong> (for): <em>Das Geschenk ist für <u>meine</u> Mutter.</em></li>
+              <li><strong>Um</strong> (around / at): <em>Die Kinder rennen um <u>den</u> Tisch.</em></li>
+            </ul>
+          </div>
         </div>
-        <div class="rule-card bg-amber-50 border-amber-500">
-          <p class="text-xs"><strong>nicht:</strong> تنفي الأفعال في نهاية الجملة (Ich schlafe <em>nicht</em>)، وتنفي الصفات (<em>nicht</em> schön)، وتنفي الأسماء المعرفة بـ der/die/das (Das ist <em>nicht der</em> Chef).</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Das Wetter ist", ans: "nicht", after: "schön.", full: "Das Wetter ist nicht schön.", opts: ["kein", "nicht", "keine", "nichts"], hint: "نفي الصفات يكون دائماً باستخدام nicht." },
-      { id: 2, before: "Ich habe", ans: "keine", after: "Geschwister.", full: "Ich habe keine Geschwister.", opts: ["nicht", "kein", "keine", "keinen"], hint: "نفي اسم الجمع النكرة يكون بـ keine." }
-    ]
-  },
 
-  "A1.06": {
-    titleAr: "الأفعال القوية وتغير الحرف الصوتي (e➔i, e➔ie, a➔ä)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 6: التغير الصوتي للأفعال (Vokalwechsel)</h2>
-        <p class="text-xs">يحدث التغير فقط مع الضميرين <strong>du</strong> و <strong>er/sie/es</strong>:</p>
-        <div class="grid grid-cols-3 gap-1.5 font-de text-xs">
-          <div class="p-2 bg-white border rounded"><strong>e ➔ i</strong><br>geben ➔ du gibst<br>sprechen ➔ er spricht<br>helfen ➔ er hilft</div>
-          <div class="p-2 bg-white border rounded"><strong>e ➔ ie</strong><br>sehen ➔ du siehst<br>lesen ➔ er liest</div>
-          <div class="p-2 bg-white border rounded"><strong>a ➔ ä</strong><br>fahren ➔ du fährst<br>schlafen ➔ er schläft</div>
+        <!-- 3. Structured Breakdown Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">3. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Der Mann kauft den teuren Fernseher.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subjekt (Nom. Masc.): Der Mann]</span> + 
+              <span class="tag-verb">[Transitives Verb: kauft]</span> + 
+              <span class="tag-obj">[Direktes Objekt (Akk. Masc.): den teuren Fernseher]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: الرجل يشتري التلفاز باهظ الثمن.</p>
+          </div>
+          <div class="syntax-breakdown mt-2">
+            <p class="font-bold text-slate-900 font-de">Ich sehe dich, aber du siehst mich nicht.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subj: Ich]</span> + <span class="tag-verb">[Verb: sehe]</span> + <span class="tag-obj">[Akk. Pronomen: dich]</span> + 
+              <span class="tag-adv">[Konj: aber]</span> + <span class="tag-subj">[Subj: du]</span> + <span class="tag-verb">[Verb: siehst]</span> + 
+              <span class="tag-obj">[Akk. Pronomen: mich]</span> + <span class="tag-adv">[Negation: nicht]</span>.
+            </p>
+          </div>
         </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Er", ans: "spricht", after: "Arabisch.", full: "Er spricht Arabisch.", opts: ["sprecht", "spricht", "spreche", "sprechen"], hint: "فعل sprechen يتحول e إلى i مع الغائب er." },
-      { id: 2, before: "Du", ans: "fährst", after: "sehr schnell.", full: "Du fährst sehr schnell.", opts: ["fahrst", "fährst", "fahrt", "fahren"], hint: "فعل fahren يأخذ Umlaut مع du ➔ fährst." }
+      { id: 1, before: "Der Mann kauft", ans: "den", after: "teuren Fernseher.", full: "Der Mann kauft den teuren Fernseher.", opts: ["der", "den", "dem", "das"], hint: "Direct masculine object in Accusative shifts der ➔ den." },
+      { id: 2, before: "Er kommt ohne", ans: "seinen", after: "Mantel.", full: "Er kommt ohne seinen Mantel.", opts: ["sein", "seinen", "seinem", "seiner"], hint: "DOGFU: 'Ohne' always governs an Accusative masculine noun ➔ seinen." },
+      { id: 3, before: "Ich sehe", ans: "dich", after: ", aber du siehst mich nicht.", full: "Ich sehe dich, aber du siehst mich nicht.", opts: ["du", "dich", "dir", "dein"], hint: "Accusative personal pronoun for du ➔ dich." }
     ]
   },
 
   "A1.07": {
-    titleAr: "أدوات الملكية في الرفع والنصب (mein, dein, sein...)",
+    moduleNum: 7,
+    level: "A1",
+    titleDe: "Possessive Articles (Possessivartikel in Nom. & Akk.)",
+    titleAr: "أدوات الملكية في الرفع والنصب وقاعدة إسقاط حرف e في euer",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 7: أدوات الملكية وتصريفها (Possessivartikel)</h2>
-        <div class="grid grid-cols-4 gap-1 font-de text-[11px] text-center">
-          <div class="p-1 bg-slate-100 rounded">ich ➔ <strong>mein</strong></div>
-          <div class="p-1 bg-slate-100 rounded">du ➔ <strong>dein</strong></div>
-          <div class="p-1 bg-slate-100 rounded">er/es ➔ <strong>sein</strong></div>
-          <div class="p-1 bg-slate-100 rounded">sie ➔ <strong>ihr</strong></div>
-          <div class="p-1 bg-slate-100 rounded">wir ➔ <strong>unser</strong></div>
-          <div class="p-1 bg-slate-100 rounded">ihr ➔ <strong>euer</strong></div>
-          <div class="p-1 bg-slate-100 rounded">sie ➔ <strong>ihr</strong></div>
-          <div class="p-1 bg-slate-100 rounded">Sie ➔ <strong>Ihr</strong></div>
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded font-de">Module 7 • Start Deutsch 1</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">Possessive Stems & Declension Endings</h2>
+          <p class="text-xs text-slate-600 mt-0.5">مطابقة جذور الملكية بحسب المالك، وتطبيق نهايات أداة النكرة ein في الرفع والنصب.</p>
         </div>
-        <table class="grammar-table font-de">
-          <tr><th>الحالة</th><th>مذكر (der)</th><th>محايد (das)</th><th>مؤنث (die)</th><th>جمع (die)</th></tr>
-          <tr><td>الرفع (Nom)</td><td>mein Vater</td><td>mein Kind</td><td>meine Mutter</td><td>meine Freunde</td></tr>
-          <tr class="bg-blue-50 font-bold"><td>النصب (Akk)</td><td class="text-blue-700">meinen Vater (-en)</td><td>mein Kind</td><td>meine Mutter</td><td>meine Freunde</td></tr>
-        </table>
-        <p class="text-xs text-amber-900 bg-amber-50 p-2 rounded">⚠️ تنبيه: euer تسقط حرف e الداخلي عند التأنيث: <em>eure Mutter</em> وليس euere!</p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Hast du", ans: "deinen", after: "Pass?", full: "Hast du deinen Pass?", opts: ["dein", "deinen", "deinem", "deine"], hint: "كلمة Pass مذكر منصوب فيأخذ deinen." },
-      { id: 2, before: "Wo ist", ans: "eure", after: "Wohnung?", full: "Wo ist eure Wohnung?", opts: ["euer", "eure", "euren", "eures"], hint: "كلمة Wohnung مؤنثة فتتحول euer إلى eure." }
-    ]
-  },
 
-  "A1.08": {
-    titleAr: "القوس الفعلي: الأفعال المنفصلة وأفعال المودال الستة",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 8: القوس الفعلي (Satzklammer)</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>1. الأفعال المنفصلة (Trennbare Verben):</strong> الجذر يصرف في المركز 2 والسابقة (ab-, an-, auf-, aus-, ein-, mit-) تقذف لآخر الجملة:<br><span class="font-de font-bold">Ich stehe um 6 Uhr auf.</span></p>
+        <!-- 1. Possessive Stems -->
+        <div class="formula-card">
+          ich ➔ mein | du ➔ dein | er/es ➔ sein | sie ➔ ihr<br>
+          wir ➔ unser | ihr ➔ euer (eure!) | sie ➔ ihr | Sie ➔ Ihr
         </div>
-        <div class="rule-card bg-emerald-50 border-emerald-600">
-          <p class="text-xs"><strong>2. أفعال المودال (können, müssen, wollen, dürfen, sollen, möchten):</strong> يصرف المودال بالمركز 2 ويذهب المصدر للآخر:<br><span class="font-de font-bold">Ich muss heute arbeiten.</span></p>
+
+        <!-- 2. Case Endings Table -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1">1. Nominative & Accusative Declension Paradigm:</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Case</th><th>Maskulinum</th><th>Femininum</th><th>Neutrum</th><th>Plural</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Nominativ</strong></td>
+                <td>mein Bruder</td>
+                <td>mein<strong>e</strong> Schwester</td>
+                <td>mein Kind</td>
+                <td>mein<strong>e</strong> Eltern</td>
+              </tr>
+              <tr class="bg-blue-50/70 font-bold">
+                <td><strong>Akkusativ</strong></td>
+                <td class="text-blue-700">mein<strong>en</strong> Bruder</td>
+                <td>mein<strong>e</strong> Schwester</td>
+                <td>mein Kind</td>
+                <td>mein<strong>e</strong> Eltern</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-[11px] text-amber-900 bg-amber-50 p-2 rounded mt-1">
+            ⚠️ <strong>Euer Contraction Rule:</strong> Before endings beginning with <em>-e</em>, the internal <em>-e-</em> of <em>euer</em> is dropped: <em>euer + e ➔ <strong>eure</strong> Mutter</em> (not euere!).
+          </p>
         </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Mai steht jeden Morgen um 6 Uhr", ans: "auf", after: ".", full: "Mai steht jeden Morgen um 6 Uhr auf.", opts: ["an", "auf", "mit", "aus"], hint: "السابقة auf لفعل aufstehen تقذف لنهاية الجملة." },
-      { id: 2, before: "Wir müssen viel", ans: "lernen", after: ".", full: "Wir müssen viel lernen.", opts: ["lernt", "lernen", "lerne", "gelernt"], hint: "مع فعل المودال يأتي الفعل الآخر مصدراً بنهاية الجملة." }
-    ]
-  },
 
-  "A1.09": {
-    titleAr: "صيغة الأمر (Imperativ) للمفرد والجمع والاحترام والأفعال الشاذة",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 9: صيغة الأمر (Der Imperativ)</h2>
-        <table class="grammar-table font-de">
-          <tr><th>الضمير</th><th>القاعدة</th><th>مثال عادي (kommen)</th><th>فعل شاذ (sein)</th></tr>
-          <tr><td>du (أنت)</td><td>نحذف du ونحذف -st</td><td>Komm!</td><td class="text-red-600 font-bold">Sei leise!</td></tr>
-          <tr><td>ihr (أنتم)</td><td>الفعل المصرف بدون ضمير</td><td>Kommt!</td><td class="text-red-600 font-bold">Seid pünktlich!</td></tr>
-          <tr><td>Sie (احترام)</td><td>عكس الفعل مع الضمير</td><td>Kommen Sie!</td><td class="text-red-600 font-bold">Seien Sie vorsichtig!</td></tr>
-        </table>
-        <p class="text-xs text-slate-600">الأفعال ذات التغير الصوتي (e➔i) تحتفظ بالتغير في الأمر: <em>Lies das Buch!</em></p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Bitte", ans: "sei", after: "leise im Unterricht!", full: "Bitte sei leise im Unterricht!", opts: ["bist", "sei", "seid", "seien"], hint: "أمر فعل الكينونة sein مع المفرد du هو Sei!" },
-      { id: 2, before: "Kinder,", ans: "esst", after: "das Gemüse!", full: "Kinder, esst das Gemüse!", opts: ["isst", "esst", "essen", "esse"], hint: "أمر الجمع ihr يصرف كالفعل العادي: esst!" }
-    ]
-  },
-
-  "A1.10": {
-    titleAr: "أساسيات المجرور (Dativ): الأدوات، الضمائر، وأحرف الجر الثابتة",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 10: أساسيات حالة الجر (Der Dativ)</h2>
-        <table class="grammar-table font-de">
-          <tr><th>الجنس</th><th>الرفع (Nom)</th><th>الجر (Dativ)</th><th>الضمائر بالجر</th></tr>
-          <tr><td>مذكر / محايد</td><td>der / das</td><td class="text-red-600 font-bold">dem / einem</td><td>ihm</td></tr>
-          <tr><td>مؤنث</td><td>die</td><td class="text-red-600 font-bold">der / einer</td><td>ihr</td></tr>
-          <tr><td>جمع</td><td>die</td><td class="text-red-600 font-bold">den + (n)</td><td>ihnen</td></tr>
-        </table>
-        <div class="rule-card bg-amber-50 border-amber-500">
-          <p class="text-xs font-de font-bold text-slate-800">أحرف تجر دائماً: aus, bei, mit, nach, seit, von, zu, gegenüber</p>
+        <!-- 3. Structured Breakdown Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">2. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Mein Vater sucht seinen Schlüssel.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subjekt (Masc. Nom): Mein Vater]</span> + 
+              <span class="tag-verb">[Verb: sucht]</span> + 
+              <span class="tag-obj">[Akkusativobjekt (Masc. Akk): seinen Schlüssel (stem sein + -en)]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: والدي يبحث عن مفتاحه.</p>
+          </div>
         </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Ich fahre mit", ans: "dem", after: "Bus.", full: "Ich fahre mit dem Bus.", opts: ["den", "dem", "das", "der"], hint: "حرف mit يجر دائماً. der Bus يصبح dem Bus." },
-      { id: 2, before: "Der Arzt hilft", ans: "der", after: "Frau.", full: "Der Arzt hilft der Frau.", opts: ["die", "der", "dem", "den"], hint: "فعل helfen يتطلب Dativ. مؤنث die يصبح der." }
+      { id: 1, before: "Mein Vater sucht", ans: "seinen", after: "Schlüssel.", full: "Mein Vater sucht seinen Schlüssel.", opts: ["sein", "seinen", "seinem", "seine"], hint: "Direct masculine object in Accusative: sein + -en = seinen." },
+      { id: 2, before: "Wo wohnt", ans: "eure", after: "Mutter?", full: "Wo wohnt eure Familie?", opts: ["euer", "eure", "euren", "eures"], hint: "Euer contraction before feminine -e: euer + e = eure." }
     ]
   },
 
-  "A1.11": {
-    titleAr: "حروف الجر الزمانية والمكانية (um, am, im ومدخل Wo? + Dativ)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 11: حروف الجر الزمانية والمكانية</h2>
-        <div class="grid grid-cols-3 gap-1 font-de text-xs text-center">
-          <div class="p-1.5 bg-white border rounded"><strong>um</strong><br>للساعات المحددة:<br>um 8 Uhr</div>
-          <div class="p-1.5 bg-white border rounded"><strong>am</strong><br>للأيام وأجزاء اليوم:<br>am Montag, am Morgen</div>
-          <div class="p-1.5 bg-white border rounded"><strong>im</strong><br>للأشهر والفصول:<br>im Juli, im Sommer</div>
-        </div>
-        <div class="rule-card">
-          <p class="text-xs"><strong>السؤال عن الموقع الثابت (Wo? أين؟):</strong> يأخذ دائماً حالة الجر Dativ: <em>Ich bin <strong>im</strong> (in dem) Supermarkt</em>.</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Der Kurs beginnt", ans: "am", after: "Montag.", full: "Der Kurs beginnt am Montag.", opts: ["im", "am", "um", "in"], hint: "أيام الأسبوع تأخذ دائماً حرف الجر am." },
-      { id: 2, before: "Ich treffe dich", ans: "um", after: "15 Uhr.", full: "Ich treffe dich um 15 Uhr.", opts: ["am", "im", "um", "an"], hint: "الساعات المحددة تأخذ حرف الجر um." }
-    ]
-  },
-
-  "A1.12": {
-    titleAr: "أدوات الربط التنسيقية بالموقع صفر (ADUSO: aber, denn, und...)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 12: أدوات الربط في الموقع صفر (ADUSO)</h2>
-        <p class="text-xs">هذه الأدوات <strong>لا تغير ترتيب الجملة إطلاقاً</strong>؛ تحتل الموقع صفر ويبقى الفعل بالمركز 2:</p>
-        <div class="p-2 bg-slate-100 rounded font-de font-bold text-center text-xs text-blue-700">
-          Aber (لكن) | Denn (لأن) | Und (و) | Sondern (بل) | Oder (أو)
-        </div>
-        <p class="text-xs font-de"><em>Ich lerne Deutsch, <strong>denn</strong> (0) ich (1) <strong>möchte (2)</strong> reisen.</em></p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Ich lerne Deutsch,", ans: "denn", after: "ich brauche es für den Beruf.", full: "Ich lerne Deutsch, denn ich brauche es für den Beruf.", opts: ["weil", "denn", "deshalb", "dass"], hint: "الفاعل ich جاء بعدها مباشرة ثم الفعل بالمركز 2 ➔ نستخدم denn." },
-      { id: 2, before: "Er hat Zeit,", ans: "aber", after: "er kommt nicht.", full: "Er hat Zeit, aber er kommt nicht.", opts: ["aber", "weil", "obwohl", "denn"], hint: "أداة التعارض بالموقع صفر هي aber." }
-    ]
-  },
-
-  "A1.13": {
-    titleAr: "السرد الماضي 1: ماضي war/hatte والماضي التام (Perfekt) مع haben/sein",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 13: السرد الماضي الأساسي (Perfekt & Präteritum)</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>1. ماضي sein و haben في المحادثة:</strong><br><span class="font-de font-bold">ich war (كنت) | ich hatte (كان لدي)</span></p>
-        </div>
-        <div class="rule-card bg-emerald-50 border-emerald-600">
-          <p class="text-xs"><strong>2. تركيب الماضي التام (Perfekt):</strong><br>فعل مساعد (haben/sein) بالمركز 2 + <strong>Partizip II بنهاية الجملة</strong>.<br>
-          • <strong>sein:</strong> لأفعال الحركة والانتقال (gehen, fahren, fliegen) وتغير الحالة (aufstehen).<br>
-          • <strong>haben:</strong> لباقي الأفعال العادية والمتعدية لمفعول به.</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Gestern", ans: "sind", after: "wir nach Berlin gefahren.", full: "Gestern sind wir nach Berlin gefahren.", opts: ["haben", "sind", "hatten", "waren"], hint: "فعل الانتقال fahren يأخذ sein في الماضي التام." },
-      { id: 2, before: "Letztes Jahr", ans: "hatte", after: "ich kein Auto.", full: "Letztes Jahr hatte ich kein Auto.", opts: ["habe", "hatte", "bin", "war"], hint: "الماضي البسيط من فعل الملكية haben هو hatte." }
-    ]
-  },
-
-  // ==========================================
-  // GOETHE A2 (KAPITEL 14 BIS 30)
-  // ==========================================
-
-  "A2.01": {
-    titleAr: "الماضي التام المتقدم وسلاسل الأفعال الشاذة وتصريف السوابق",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 14: الماضي التام المتقدم والأفعال غير المنفصلة</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>1. سقوط بادئة ge- مع الأفعال غير المنفصلة:</strong><br>الأفعال التي تبدأ بـ (be-, ver-, ent-, er-, emp-, ge-, miss-, zer-) <strong>لا تأخذ ge- إطلاقاً</strong> في التصريف الثالث:<br><span class="font-de font-bold">bezahlen ➔ bezahlt | verstehen ➔ verstanden | bekommen ➔ bekommen</span></p>
-        </div>
-        <div class="rule-card bg-amber-50 border-amber-500">
-          <p class="text-xs"><strong>2. سلاسل التحول الصوتي (Ablautreihen):</strong><br><span class="font-de">trinken ➔ getrunken | schreiben ➔ geschrieben | finden ➔ gefunden</span></p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Hast du die Rechnung schon", ans: "bezahlt", after: "?", full: "Hast du die Rechnung schon bezahlt?", opts: ["gebezahlt", "bezahlt", "bezahlen", "gezahlt"], hint: "السوابق غير المنفصلة مثل be- لا تأخذ ge- في التصريف الثالث." }
-    ]
-  },
-
-  "A2.02": {
-    titleAr: "ماضي أفعال المودال في الماضي البسيط (musste, konnte, durfte...)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 15: ماضي أفعال المودال (Präteritum der Modalverben)</h2>
-        <p class="text-xs">في الحديث عن الماضي، <strong>نستخدم دائماً صيغة Präteritum</strong> لأفعال المودال بدلاً من Perfekt:</p>
-        <table class="grammar-table font-de">
-          <tr><th>المصدر</th><th>الماضي مع ich/er</th><th>مثال</th></tr>
-          <tr><td>können</td><td>konnte</td><td>Ich konnte nicht kommen.</td></tr>
-          <tr><td>müssen</td><td>musste</td><td>Er musste zum Arzt gehen.</td></tr>
-          <tr><td>dürfen</td><td>durfte</td><td>Wir durften hier nicht parken.</td></tr>
-          <tr><td>wollen</td><td>wollte</td><td>Sie wollte Deutsch lernen.</td></tr>
-        </table>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Gestern war ich krank, deshalb", ans: "musste", after: "ich im Bett bleiben.", full: "Gestern war ich krank, deshalb musste ich im Bett bleiben.", opts: ["muss", "musste", "gemusst", "müsste"], hint: "ماضي müssen هو musste بحذف الأوملاوت." }
-    ]
-  },
+  // =========================================================================
+  // PART II: GOETHE-ZERTIFIKAT A2 (MODULES 14 TO 30)
+  // =========================================================================
 
   "A2.03": {
-    titleAr: "التعمق في أحرف الجر المشتركة وأزواج الأفعال (stellen/stehen...)",
+    moduleNum: 16,
+    level: "A2",
+    titleDe: "Dual-Case Spatial Prepositions (Wechselpräpositionen)",
+    titleAr: "أحرف الجر المشتركة التسعة: ثنائية الموقع (Wo) مقابل الاتجاه (Wohin)",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 16: أحرف الجر التسعة المشتركة وثنائيات الأفعال</h2>
-        <table class="grammar-table font-de">
-          <tr><th>حركة ونقل (Wohin? ➔ Akkusativ)</th><th>ثبات وموقع (Wo? ➔ Dativ)</th></tr>
-          <tr><td><strong>stellen</strong>: Ich stelle es auf <u>den</u> Tisch.</td><td><strong>stehen</strong>: Es steht auf <u>dem</u> Tisch.</td></tr>
-          <tr><td><strong>legen</strong>: Er legt das Buch auf <u>das</u> Bett.</td><td><strong>liegen</strong>: Es liegt auf <u>dem</u> Bett.</td></tr>
-          <tr><td><strong>setzen</strong>: Sie setzt das Kind auf <u>den</u> Stuhl.</td><td><strong>sitzen</strong>: Es sitzt auf <u>dem</u> Stuhl.</td></tr>
-        </table>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Stell die Tasse bitte auf", ans: "den", after: "Tisch.", full: "Stell die Tasse bitte auf den Tisch.", opts: ["dem", "den", "der", "das"], hint: "فعل حركة عمودية stellen يتطلب حالة النصب Akkusativ." },
-      { id: 2, before: "Das Buch liegt auf", ans: "dem", after: "Boden.", full: "Das Buch liegt auf dem Boden.", opts: ["den", "dem", "das", "der"], hint: "فعل الثبات liegen يتطلب حالة الجر Dativ." }
-    ]
-  },
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-de">Module 16 • Start Deutsch 2</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">The Dynamic Dichotomy: Location vs. Direction</h2>
+          <p class="text-xs text-slate-600 mt-0.5">أحرف الجر التسعة المشتركة، التمييز بين الثبات والحركة، وثنائيات الأفعال الشهيرة.</p>
+        </div>
 
-  "A2.04": {
-    titleAr: "الأفعال الانعكاسية والضمائر المنعكسة في النصب والجر",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 17: الأفعال والضمائر الانعكاسية (Reflexivverben)</h2>
-        <p class="text-xs">في العادة تأتي الضمائر المنعكسة في حالة النصب Akkusativ: <em>Ich freue <strong>mich</strong></em>.<br>
-        ولكن إذا ذكر في الجملة مفعول به منصوب صريح، يتحول الضمير إلى <strong>Dativ</strong>:</p>
-        <div class="p-2 bg-slate-100 rounded font-de text-xs">
-          • <em>Ich wasche <strong>mich</strong>.</em> (Akkusativ - لا يوجد مفعول آخر)<br>
-          • <em>Ich putze <strong>mir</strong> die Zähne.</em> (Dativ - لأن الأسنان هي المفعول به المنصوب!)
+        <div class="formula-card">
+          an, auf, hinter, in, neben, über, unter, vor, zwischen<br>
+          <span class="text-red-300">Wo? (Static Location) ➔ DATIV</span> | <span class="text-blue-300">Wohin? (Directional Motion) ➔ AKKUSATIV</span>
+        </div>
+
+        <!-- Positional Verb Pairs Table -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1">1. Positional Verb Pairs (أزواج الأفعال المتعدية واللازمة):</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Transitive (Action: Wohin? + Akk.)</th><th>Intransitive (State: Wo? + Dat.)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>stellen</strong> (to put upright, weak)</td><td><strong>stehen, stand, gestanden</strong> (to stand, strong)</td></tr>
+              <tr><td><strong>legen</strong> (to lay flat, weak)</td><td><strong>liegen, lag, gelegen</strong> (to lie flat, strong)</td></tr>
+              <tr><td><strong>setzen</strong> (to seat/set, weak)</td><td><strong>sitzen, saß, gesessen</strong> (to sit, strong)</td></tr>
+              <tr><td><strong>hängen</strong> (to hang something, weak)</td><td><strong>hängen, hing, gehangen</strong> (to be hanging, strong)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Structured Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">2. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Ich stelle die Vase auf den Tisch.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subj: Ich]</span> + <span class="tag-verb">[Verb (Aktion): stelle]</span> + <span class="tag-obj">[Obj (Akk): die Vase]</span> + 
+              <span class="tag-prep">[Präp: auf]</span> + <span class="tag-obj">[Richtung (Wohin? ➔ Akk): den Tisch]</span>.
+            </p>
+          </div>
+          <div class="syntax-breakdown mt-2">
+            <p class="font-bold text-slate-900 font-de">Die Vase steht auf dem Tisch.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subj: Die Vase]</span> + <span class="tag-verb">[Verb (Zustand): steht]</span> + 
+              <span class="tag-prep">[Präp: auf]</span> + <span class="tag-obj">[Ort (Wo? ➔ Dat): dem Tisch]</span>.
+            </p>
+          </div>
         </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Ich freue", ans: "mich", after: "auf das Wochenende.", full: "Ich freue mich auf das Wochenende.", opts: ["mir", "mich", "dich", "sich"], hint: "فعل sich freuen يأخذ الضمير المنعكس mich مع ich." },
-      { id: 2, before: "Putz", ans: "dir", after: "bitte die Hände!", full: "Putz dir bitte die Hände!", opts: ["dich", "dir", "du", "dein"], hint: "لوجود مفعول به الأيدي، يتحول الضمير المنعكس إلى Dativ ➔ dir." }
-    ]
-  },
-
-  "A2.05": {
-    titleAr: "أفعال بحروف جر ثابتة وأدوات الاستفهام الإشارية (Worauf/Darauf)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 18: أفعال بحروف جر ثابتة والضمائر الظرفية</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>1. للجماد والأشياء:</strong> ندمج Wo(r) للسؤال و Da(r) للجواب مع حرف الجر:<br><span class="font-de font-bold">Worauf wartest du? ➔ Ich warte darauf.</span></p>
-        </div>
-        <div class="rule-card bg-amber-50 border-amber-500">
-          <p class="text-xs"><strong>2. للأشخاص والعاقل:</strong> نستخدم حرف الجر مع أداة الاستفهام العادية:<br><span class="font-de font-bold">Auf wen wartest du? ➔ Auf meinen Bruder.</span> (وليس Worauf!)</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Worauf wartest du? – Ich warte", ans: "darauf", after: ", dass der Bus kommt.", full: "Worauf wartest du? – Ich warte darauf, dass der Bus kommt.", opts: ["darauf", "worauf", "auf ihn", "daran"], hint: "للإشارة إلى جملة أو حدث غير عاقل نستخدم darauf." }
-    ]
-  },
-
-  "A2.06": {
-    titleAr: "الجمل الجانبية وطرد الفعل للنهاية (weil, dass, wenn, obwohl)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 19: الجمل الجانبية وقاعدة طرد الفعل (Nebensätze)</h2>
-        <p class="text-xs">الأدوات <strong>weil (لأن), dass (أنّ), wenn (إذا/لو), obwohl (رغم أن)</strong> تسبق بفاصلة وتطرد الفعل المصرف إلى <strong>نهاية الجملة تماماً</strong>:</p>
-        <div class="p-2 bg-slate-100 rounded font-de text-xs">
-          <em>Ich bleibe im Bett, <strong>weil</strong> ich krank <strong>bin</strong>.</em><br>
-          <em>Er weiß, <strong>dass</strong> du heute <strong>kommst</strong>.</em>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Er lernt Deutsch, weil er in Berlin studieren", ans: "will", after: ".", full: "Er lernt Deutsch, weil er in Berlin studieren will.", opts: ["will", "will er", "wollen", "wollte"], hint: "في جملة weil يطرد الفعل المصرف will إلى نهاية الجملة تماماً." }
-    ]
-  },
-
-  "A2.07": {
-    titleAr: "أدوات الربط الزمنية: التمييز الدقيق بين als و wenn في الماضي",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 20: الأدوات الزمنية (als مقابل wenn)</h2>
-        <div class="rule-card">
-          <p class="text-xs"><strong>Als:</strong> تستخدم حصراً لحدث ماضٍ وقع <strong>مرة واحدة فقط</strong> أو فترة عمرية مضت:<br><span class="font-de font-bold">Als ich ein Kind war, lebte ich in Syrien.</span></p>
-        </div>
-        <div class="rule-card bg-emerald-50 border-emerald-600">
-          <p class="text-xs"><strong>Wenn:</strong> للأحداث المتكررة في الماضي (Jedes Mal, wenn...)، ولكل أحداث الحاضر والمستقبل.</p>
-        </div>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "", ans: "Als", after: "ich 10 Jahre alt war, lernte ich Radfahren.", full: "Als ich 10 Jahre alt war, lernte ich Radfahren.", opts: ["Wenn", "Als", "Wann", "Bevor"], hint: "فترة الطفولة حدث ماضٍ لمرة واحدة نستخدم معه Als." }
-    ]
-  },
-
-  "A2.08": {
-    titleAr: "الظروف الرابطة بالموقع 1 والانقلاب الفعلي (deshalb, trotzdem...)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 21: الظروف الرابطة بالموقع 1 (Konjunktionaladverbien)</h2>
-        <p class="text-xs">الظروف <strong>deshalb (لذلك), trotzdem (رغم ذلك), sonst (وإلا), dann (ثم)</strong> تأخذ <strong>الموقع 1</strong>، ويليها <strong>الفعل المصرف مباشرة في الموقع 2</strong>:</p>
-        <p class="font-de text-xs bg-slate-100 p-2 rounded"><em>Es war kalt, <strong>trotzdem</strong> (1) <strong>ging</strong> (2) er ohne Jacke raus.</em></p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Es regnete, trotzdem", ans: "gingen", after: "wir spazieren.", full: "Es regnete, trotzdem gingen wir spazieren.", opts: ["gingen", "wir gingen", "gehen", "gegangen"], hint: "بعد trotzdem يأتي الفعل المصرف مباشرة في الموقع الثاني." }
-    ]
-  },
-
-  "A2.09": {
-    titleAr: "الأسئلة غير المباشرة المهذبة مع ob وأدوات الاستفهام وطرد الفعل",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 22: الأسئلة غير المباشرة (Indirekte Fragen)</h2>
-        <p class="text-xs">تحول السؤال المباشر إلى جملة جانبية مهذبة تضع الفعل في النهاية:</p>
-        <ul class="list-disc list-inside text-xs space-y-1">
-          <li><strong>سؤال نعم/لا:</strong> نربطه بـ <strong>ob</strong>: <em>Können Sie mir sagen, <strong>ob</strong> der Zug pünktlich <strong>ist</strong>?</em></li>
-          <li><strong>سؤال أداة W:</strong> نستخدم نفس الأداة مع طرد الفعل: <em>Ich weiß nicht, <strong>wann</strong> er <strong>kommt</strong></em>.</li>
-        </ul>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Wissen Sie,", ans: "ob", after: "die Bank heute offen ist?", full: "Wissen Sie, ob die Bank heute offen ist?", opts: ["dass", "ob", "wann", "wie"], hint: "سؤال نعم/لا غير المباشر يربط دائماً بـ ob." }
+      { id: 1, before: "Ich stelle die Vase auf", ans: "den", after: "Tisch.", full: "Ich stelle die Vase auf den Tisch.", opts: ["dem", "den", "der", "das"], hint: "Action (Wohin?): Transitive verb 'stellen' mandates Accusative masculine ➔ den Tisch." },
+      { id: 2, before: "Die Vase steht auf", ans: "dem", after: "Tisch.", full: "Die Vase steht auf dem Tisch.", opts: ["den", "dem", "das", "der"], hint: "Static location (Wo?): Intransitive verb 'stehen' mandates Dative masculine ➔ dem Tisch." }
     ]
   },
 
   "A2.10": {
-    titleAr: "منظومة تصريف نهايات الصفات الكاملة (الضعيفة والمختلطة والقوية)",
+    moduleNum: 23,
+    level: "A2",
+    titleDe: "Adjective Declination (Adjektivdeklination)",
+    titleAr: "تصريف نهايات الصفات الكامل: الضعيفة، المختلطة، والقوية بدون أداة",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 23: تصريف نهايات الصفات (Adjektivdeklination)</h2>
-        <table class="grammar-table font-de">
-          <tr><th>الحالة</th><th>بعد المعرفة (der/die/das)</th><th>بعد النكرة والملكية (ein/mein)</th></tr>
-          <tr><td>مذكر رفع</td><td>der alt<strong>e</strong> Mann</td><td>ein alt<strong>er</strong> Mann</td></tr>
-          <tr class="bg-blue-50 font-bold"><td>مذكر نصب</td><td>den alt<strong>en</strong> Mann</td><td>einen alt<strong>en</strong> Mann</td></tr>
-          <tr><td>محايد رفع/نصب</td><td>das neu<strong>e</strong> Auto</td><td>ein neu<strong>es</strong> Auto</td></tr>
-          <tr class="bg-amber-50 font-bold"><td>جميع حالات Dativ والجمع</td><td colspan="2" class="text-red-700">تأخذ الصفة دائماً وأبداً اللاحقة -en</td></tr>
-        </table>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Ich habe einen", ans: "neuen", after: "Wagen.", full: "Ich habe einen neuen Wagen.", opts: ["neuer", "neuen", "neues", "neue"], hint: "المذكر المنصوب بعد einen يأخذ في صفته دائماً -en." }
-    ]
-  },
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded font-de">Module 23 • Start Deutsch 2</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">The Three Adjective Declension Paradigms</h2>
+          <p class="text-xs text-slate-600 mt-0.5">النهايات الصرفية للصفات بعد أداة المعرفة، بعد أداة النكرة والملكية، وبدون أداة.</p>
+        </div>
 
-  "A2.11": {
-    titleAr: "درجات المقارنة الثلاث (so wie, als, am ...sten) والصفات الشاذة",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 24: درجات المقارنة (Komparation)</h2>
-        <p class="text-xs">1. التساوي: <strong>so + صفة + wie</strong> (so schnell wie du).<br>
-        2. المقارنة: <strong>صفة بـ er + als</strong> (schnell<strong>er als</strong> der Bus).<br>
-        3. التفضيل الأعلى: <strong>am + صفة بـ sten</strong> (<strong>am schnellsten</strong>).</p>
-        <p class="text-xs font-de font-bold text-blue-700 mt-1">شواذ شائعة: gut ➔ besser ➔ am besten | gern ➔ lieber ➔ am liebsten</p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Ein Flugzeug ist schneller", ans: "als", after: "ein Zug.", full: "Ein Flugzeug ist schneller als ein Zug.", opts: ["wie", "als", "denn", "so"], hint: "المقارنة بصفة تنتهي بـ er تطلب أداة المقارنة als." }
-    ]
-  },
+        <div class="formula-card">
+          Rule of Thumb (Weak Declension):<br>
+          Nominative Singular & Acc. Fem/Neut = -e | All Other Cases = -en
+        </div>
 
-  "A2.12": {
-    titleAr: "حالة الإضافة (Genitiv): الأدوات des/der وإضافة s وأحرف الجر",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 25: حالة الإضافة والملكية (Der Genitiv)</h2>
-        <p class="text-xs">المذكر والمحايد يأخذان <strong>des</strong> مع إضافة <strong>-s</strong> أو <strong>-es</strong> للاسم، والمؤنث والجمع يأخذان <strong>der</strong>:</p>
-        <p class="font-de text-xs bg-slate-100 p-2 rounded">
-          • <em>Das Auto <strong>des Vaters</strong>.</em> | <em>Die Tasche <strong>der Mutter</strong>.</em><br>
-          • <strong>أحرف جر تطلب Genitiv:</strong> während (خلال), wegen (بسبب), trotz (رغم).
-        </p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Wegen", ans: "des", after: "schlechten Wetters bleiben wir hier.", full: "Wegen des schlechten Wetters bleiben wir hier.", opts: ["dem", "des", "den", "der"], hint: "حرف wegen يتطلب Genitiv، والمحايد يأخذ des." }
-    ]
-  },
+        <!-- Comparative Paradigms Table -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1">1. Paradigms: Weak vs. Mixed Declension:</h3>
+          <table class="comp-table font-de">
+            <thead>
+              <tr><th>Gender / Case</th><th>Weak (After der/die/das)</th><th>Mixed (After ein/mein/kein)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Masc. Nom</td><td>der alt<strong>e</strong> Mann</td><td>ein alt<strong>er</strong> Mann (signals -er)</td></tr>
+              <tr class="bg-blue-50 font-bold"><td>Masc. Akk</td><td class="text-blue-700">den alt<strong>en</strong> Mann</td><td class="text-blue-700">einen alt<strong>en</strong> Mann</td></tr>
+              <tr><td>Neut. Nom/Akk</td><td>das klein<strong>e</strong> Kind</td><td>ein klein<strong>es</strong> Kind (signals -es)</td></tr>
+              <tr><td>Fem. Nom/Akk</td><td>die jung<strong>e</strong> Frau</td><td>eine jung<strong>e</strong> Frau</td></tr>
+              <tr class="bg-amber-50 font-bold"><td>All Dative Cases</td><td class="text-red-700">dem/der alt<strong>en</strong></td><td class="text-red-700">einem/einer alt<strong>en</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
 
-  "A2.13": {
-    titleAr: "جمل الوصل والصلة (Relativsätze) في الرفع والنصب والجر",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 26: جمل الصلة (Relativsätze)</h2>
-        <p class="text-xs">تعطي معلومات إضافية عن اسم سابق، وتعمل كجملة جانبية <strong>تضع الفعل في المركز الأخير</strong>:</p>
-        <ul class="list-disc list-inside text-xs font-de space-y-1">
-          <li><strong>رفع Nominativ:</strong> Das ist der Mann, <strong>der</strong> dort steht.</li>
-          <li><strong>نصب Akkusativ:</strong> Das ist der Mann, <strong>den</strong> ich kenne.</li>
-          <li><strong>جر Dativ:</strong> Das ist der Mann, <strong>dem</strong> ich helfe.</li>
-        </ul>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Das ist der Mann,", ans: "den", after: "ich gestern gesehen habe.", full: "Das ist der Mann, den ich gestern gesehen habe.", opts: ["der", "den", "dem", "dessen"], hint: "جملة الصلة هنا مفعول به منصوب للمذكر فتأخذ den." }
-    ]
-  },
-
-  "A2.14": {
-    titleAr: "التركيب المصدري مع zu وحالات الفعل المنفصل (einzukaufen)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 27: التركيب المصدري (Infinitiv mit zu)</h2>
-        <p class="text-xs">تأتي <strong>zu قبل المصدر في نهاية الجملة</strong> بعد أفعال النوايا مثل versuchen, vergessen, hoffen أو تعابير Lust/Zeit haben:</p>
-        <p class="font-de text-xs bg-slate-100 p-2 rounded">
-          • <em>Ich versuche, pünktlich <strong>zu sein</strong>.</em><br>
-          • <strong>مع الفعل المنفصل تدخل في الوسط:</strong> <em>einzukaufen (ein + zu + kaufen)</em>.
-        </p>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Ich habe vergessen, Milch", ans: "einzukaufen", after: ".", full: "Ich have vergessen, Milch einzukaufen.", opts: ["einkaufen", "einzukaufen", "gekauft", "zu einkaufen"], hint: "مع الأفعال المنفصلة تدخل zu بين السابقة والجذر: einzukaufen." }
-    ]
-  },
-
-  "A2.15": {
-    titleAr: "صيغة التمني والطلب المهذب (Konjunktiv II: hätte, wäre, könnte...)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 28: الطلب المهذب والتمني (Konjunktiv II)</h2>
-        <p class="text-xs">تستخدم للطلب فائق الأدب في المطاعم والحديث الرسمي والتعبير عن الأمنيات:</p>
-        <div class="grid grid-cols-2 gap-1.5 font-de text-xs">
-          <div class="p-1.5 bg-white border rounded"><strong>ich hätte gern</strong><br>(أود الحصول على...)</div>
-          <div class="p-1.5 bg-white border rounded"><strong>ich wäre gern</strong><br>(لو كنت / أود أن أكون...)</div>
-          <div class="p-1.5 bg-white border rounded"><strong>könnten Sie...?</strong><br>(هل بإمكانك بلطف...؟)</div>
-          <div class="p-1.5 bg-white border rounded"><strong>würde + المصدر</strong><br>Ich würde gern mitkommen.</div>
+        <!-- Structured Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">2. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Ein fleißiger Student hat ein neues Buch gekauft.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Indefinit (Masc. Nom): Ein]</span> + <span class="tag-adv">[Adjektiv (Signal -er): fleißiger]</span> + <span class="tag-subj">[Nomen: Student]</span> + 
+              <span class="tag-verb">[Hilfsverb: hat]</span> + <span class="tag-obj">[Indefinit (Neut. Akk): ein]</span> + <span class="tag-adv">[Adjektiv (Signal -es): neues]</span> + 
+              <span class="tag-obj">[Nomen: Buch]</span> + <span class="tag-verb">[Partizip II: gekauft]</span>.
+            </p>
+          </div>
         </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Ich", ans: "hätte", after: "gern einen Kaffee, bitte.", full: "Ich hätte gern einen Kaffee, bitte.", opts: ["habe", "hätte", "hatte", "würde"], hint: "صيغة الطلب فائق الأدب من فعل الملكية هي hätte gern." }
-    ]
-  },
-
-  "A2.16": {
-    titleAr: "الضمائر النكرة وأسماء الإشارة وحذف الاسم وتفاديه (jemand, keins...)",
-    lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 29: الضمائر البديلة وأسماء الإشارة</h2>
-        <ul class="list-disc list-inside text-xs space-y-1">
-          <li><strong>jemand (شخص ما) / niemand (لا أحد):</strong> للإشارة للأشخاص المبهمين.</li>
-          <li><strong>تعويض الاسم المحذوف:</strong> إذا حذف الاسم المحايد تأخذ الأداة s الصريحة: <em>Hast du ein Auto? – Nein, ich habe <strong>keins</strong></em>.</li>
-          <li><strong>dieser, diese, dieses:</strong> تصرف تماماً كأداة المعرفة der/die/das.</li>
-        </ul>
-      </div>
-    `,
-    exercises: [
-      { id: 1, before: "Hast du ein Auto? – Nein, ich habe", ans: "keins", after: ".", full: "Hast du ein Auto? – Nein, ich habe keins.", opts: ["kein", "keins", "keinen", "nicht"], hint: "عند حذف الاسم المحايد das يظهر الضمير keins." }
+      { id: 1, before: "Ein", ans: "fleißiger", after: "Student lernt jeden Tag.", full: "Ein fleißiger Student lernt jeden Tag.", opts: ["fleißige", "fleißiger", "fleißigen", "fleißiges"], hint: "Mixed nominative masculine adjective must signal gender: -er ➔ fleißiger." },
+      { id: 2, before: "Ich helfe der", ans: "alten", after: "Dame über die Straße.", full: "Ich helfe der alten Dame über die Straße.", opts: ["alte", "alten", "alter", "altes"], hint: "Weak declension in Dative is always -en ➔ alten." }
     ]
   },
 
   "A2.17": {
-    titleAr: "المبني للمجهول في الحاضر (Vorgangspassiv: werden + Partizip II)",
+    moduleNum: 30,
+    level: "A2",
+    titleDe: "The Passive Voice (Vorgangspassiv Basics)",
+    titleAr: "المبني للمجهول (Das Vorgangspassiv) في الحاضر وتحديد الفاعل بـ von",
     lessonHtml: `
-      <div class="space-y-3">
-        <h2 class="text-base font-black text-slate-900 border-b pb-1">الفصل 30: المبني للمجهول (Das Vorgangspassiv)</h2>
-        <p class="text-xs">يركز على الحدث وليس على الفاعل. يصاغ بـ:</p>
-        <p class="p-2 bg-slate-100 rounded text-center font-de font-bold text-xs text-rose-700">
-          werden (المصرف بالمركز 2) + ... + Partizip II (في نهاية الجملة)
-        </p>
-        <p class="text-xs">مثال: <em>Das Auto <strong>wird</strong> repariert.</em> (السيارة تُصلَح). وإذا ذكر الفاعل يسبق بـ <strong>von + Dativ</strong>.</p>
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded font-de">Module 30 • Start Deutsch 2</span>
+          <h2 class="text-base font-black text-slate-900 mt-1">Process Passive Voice (Vorgangspassiv)</h2>
+          <p class="text-xs text-slate-600 mt-0.5">التركيز على الحدث والنتيجة بدلاً من الفاعل، الصياغة بفعل werden، وعامل الفاعل von + Dativ.</p>
+        </div>
+
+        <div class="formula-card">
+          Active: Der Mechaniker (Subject) repariert das Auto (Acc. Object).<br>
+          <span class="text-rose-300">Passive: Das Auto (New Subject) wird (von dem Mechaniker) repariert.</span><br>
+          Formula: [werden (Pos 2)] + ... + [Partizip II (Clause End)]
+        </div>
+
+        <!-- werden Conjugation Grid -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1">1. Conjugation of werden in Present Tense:</h3>
+          <div class="grid grid-cols-3 gap-1 font-de text-xs text-center">
+            <div class="p-1.5 bg-slate-50 border rounded">ich <strong>werde</strong></div>
+            <div class="p-1.5 bg-slate-50 border rounded">du <strong>wirst</strong></div>
+            <div class="p-1.5 bg-slate-50 border rounded">er/sie/es <strong>wird</strong></div>
+            <div class="p-1.5 bg-slate-50 border rounded">wir <strong>werden</strong></div>
+            <div class="p-1.5 bg-slate-50 border rounded">ihr <strong>werdet</strong></div>
+            <div class="p-1.5 bg-slate-50 border rounded">sie/Sie <strong>werden</strong></div>
+          </div>
+        </div>
+
+        <!-- Structured Examples -->
+        <div>
+          <h3 class="font-bold text-xs text-slate-800 mb-1.5">2. Structured Breakdown Examples:</h3>
+          <div class="syntax-breakdown">
+            <p class="font-bold text-slate-900 font-de">Das Frühstück wird im Hotel jeden Morgen serviert.</p>
+            <p class="text-slate-600 mt-1">
+              <span class="tag-subj">[Subjekt (Patient): Das Frühstück]</span> + 
+              <span class="tag-verb">[Passiv-Hilfsverb (Pos 2): wird]</span> + 
+              <span class="tag-prep">[Lokalangabe: im Hotel]</span> + 
+              <span class="tag-adv">[Temporal: jeden Morgen]</span> + 
+              <span class="tag-verb">[Satzende (Partizip II): serviert]</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">الترجمة: يُقدَّم الإفطار في الفندق كل صباح.</p>
+          </div>
+        </div>
       </div>
     `,
     exercises: [
-      { id: 1, before: "Das Brot", ans: "wird", after: "jeden Morgen frisch gebacken.", full: "Das Brot wird jeden Morgen frisch gebacken.", opts: ["wird", "werden", "wurden", "ist"], hint: "المبني للمجهول للمفرد das Brot يصاغ بـ wird + Partizip II." }
+      { id: 1, before: "Das Frühstück", ans: "wird", after: "jeden Morgen serviert.", full: "Das Frühstück wird jeden Morgen serviert.", opts: ["wird", "werden", "wurden", "ist"], hint: "Passive present 3rd sing: wird + Partizip II ➔ wird serviert." }
     ]
   }
 };
 
 // =========================================================================
-// METADATA DER 30 KAPITEL
+// CATALOG METADATA (30 MODULES)
 // =========================================================================
-const ALL_GOETHE_CHAPTER_METADATA = [
-  { id: "A1.01", level: "A1", titleAr: "الضمائر وتصريف الحاضر وتعديلات الجذع (-t/-d/-s)" },
-  { id: "A1.02", level: "A1", titleAr: "معمارية الجملة: المركز 2، Inversion، وأسئلة Ja/Nein و W" },
-  { id: "A1.03", level: "A1", titleAr: "الأسماء وأدوات التعريف والنكرة والنفي والجمع في الرفع" },
-  { id: "A1.04", level: "A1", titleAr: "المفعول به المنصوب (Akkusativ): تحول المذكر وأحرف DOGFU" },
-  { id: "A1.05", level: "A1", titleAr: "قواعد النفي الدقيقة: استخدام nicht مقابل أداة kein" },
-  { id: "A1.06", level: "A1", titleAr: "الأفعال القوية وتغير الحرف الصوتي (e➔i, e➔ie, a➔ä)" },
-  { id: "A1.07", level: "A1", titleAr: "أدوات الملكية في الرفع والنصب (mein, dein, sein...)" },
-  { id: "A1.08", level: "A1", titleAr: "القوس الفعلي: الأفعال المنفصلة وأفعال المودال الستة" },
-  { id: "A1.09", level: "A1", titleAr: "صيغة الأمر (Imperativ) للمفرد والجمع والاحترام والأفعال الشاذة" },
-  { id: "A1.10", level: "A1", titleAr: "أساسيات المجرور (Dativ): الأدوات، الضمائر، وأحرف الجر الثابتة" },
-  { id: "A1.11", level: "A1", titleAr: "حروف الجر الزمانية والمكانية (um, am, im ومدخل Wo? + Dativ)" },
-  { id: "A1.12", level: "A1", titleAr: "أدوات الربط التنسيقية بالموقع صفر (ADUSO: aber, denn, und...)" },
-  { id: "A1.13", level: "A1", titleAr: "السرد الماضي 1: ماضي war/hatte والماضي التام (Perfekt) مع haben/sein" },
-  { id: "A2.01", level: "A2", titleAr: "الماضي التام المتقدم وسلاسل الأفعال الشاذة وتصريف السوابق" },
-  { id: "A2.02", level: "A2", titleAr: "ماضي أفعال المودال في الماضي البسيط (musste, konnte, durfte...)" },
-  { id: "A2.03", level: "A2", titleAr: "التعمق في أحرف الجر المشتركة وأزواج الأفعال (stellen/stehen...)" },
-  { id: "A2.04", level: "A2", titleAr: "الأفعال الانعكاسية والضمائر المنعكسة في النصب والجر" },
-  { id: "A2.05", level: "A2", titleAr: "أفعال بحروف جر ثابتة وأدوات الاستفهام الإشارية (Worauf/Darauf)" },
-  { id: "A2.06", level: "A2", titleAr: "الجمل الجانبية وطرد الفعل للنهاية (weil, dass, wenn, obwohl)" },
-  { id: "A2.07", level: "A2", titleAr: "أدوات الربط الزمنية: التمييز الدقيق بين als و wenn في الماضي" },
-  { id: "A2.08", level: "A2", titleAr: "الظروف الرابطة بالموقع 1 والانقلاب الفعلي (deshalb, trotzdem...)" },
-  { id: "A2.09", level: "A2", titleAr: "الأسئلة غير المباشرة المهذبة مع ob وأدوات الاستفهام وطرد الفعل" },
-  { id: "A2.10", level: "A2", titleAr: "منظومة تصريف نهايات الصفات الكاملة (الضعيفة والمختلطة والقوية)" },
-  { id: "A2.11", level: "A2", titleAr: "درجات المقارنة الثلاث (so wie, als, am ...sten) والصفات الشاذة" },
-  { id: "A2.12", level: "A2", titleAr: "حالة الإضافة (Genitiv): الأدوات des/der وإضافة s وأحرف الجر" },
-  { id: "A2.13", level: "A2", titleAr: "جمل الوصل والصلة (Relativsätze) في الرفع والنصب والجر" },
-  { id: "A2.14", level: "A2", titleAr: "التركيب المصدري مع zu وحالات الفعل المنفصل (einzukaufen)" },
-  { id: "A2.15", level: "A2", titleAr: "صيغة التمني والطلب المهذب (Konjunktiv II: hätte, wäre, könnte...)" },
-  { id: "A2.16", level: "A2", titleAr: "الضمائر النكرة وأسماء الإشارة وحذف الاسم وتفاديه (jemand, keins...)" },
-  { id: "A2.17", level: "A2", titleAr: "المبني للمجهول في الحاضر (Vorgangspassiv: werden + Partizip II)" }
+const ALL_MODULES = [
+  { id: "A1.01", level: "A1", titleAr: "Module 1: Personal Pronouns & Verb Conjugation" },
+  { id: "A1.02", level: "A1", titleAr: "Module 2: Sentence Architecture I (V2 & Inversion)" },
+  { id: "A1.04", level: "A1", titleAr: "Module 4: The Accusative Case & DOGFU" },
+  { id: "A1.07", level: "A1", titleAr: "Module 7: Possessive Articles & Declension" },
+  { id: "A2.03", level: "A2", titleAr: "Module 16: Dual-Case Spatial Prepositions" },
+  { id: "A2.10", level: "A2", titleAr: "Module 23: Adjective Declination Paradigms" },
+  { id: "A2.17", level: "A2", titleAr: "Module 30: The Passive Voice (Vorgangspassiv)" }
 ];
 
 // =========================================================================
 // STATE ENGINE
 // =========================================================================
-class AppState {
+class CompendiumState {
   constructor() {
-    this.currentChapterIndex = 0;
+    this.currentChapterKey = "A1.01";
     this.currentExerciseIndex = 0;
     this.xp = parseInt(localStorage.getItem('dm_xp') || '0', 10);
-    this.completedExercises = {};
+    this.completed = {};
   }
 
-  getCurrentChapter() {
-    const meta = ALL_GOETHE_CHAPTER_METADATA[this.currentChapterIndex];
-    const data = CHAPTERS_KNOWLEDGE_BASE[meta.id];
-    return {
-      chapterId: meta.id,
-      level: meta.level,
-      titleAr: data.titleAr,
-      lessonHtml: data.lessonHtml,
-      exercises: data.exercises
-    };
+  getCurrentModule() {
+    return COMPENDIUM_DATABASE[this.currentChapterKey] || COMPENDIUM_DATABASE["A1.01"];
   }
 
   addXP(pts) {
@@ -661,7 +521,7 @@ class AppState {
   }
 }
 
-const state = new AppState();
+const state = new CompendiumState();
 
 // =========================================================================
 // SPEECH SYNTHESIS ENGINE (de-DE)
@@ -679,7 +539,7 @@ function speakGerman(text) {
 }
 
 // =========================================================================
-// DOM REFERENCES & INITIALISIERUNG
+// DOM REFERENCES & INITIALIZATION
 // =========================================================================
 const headerBadge = document.getElementById('header-chapter-badge');
 const headerName = document.getElementById('header-chapter-name');
@@ -704,36 +564,30 @@ const catalogDrawer = document.getElementById('catalog-drawer');
 const btnOpenCatalog = document.getElementById('btn-open-catalog');
 const closeCatalogDrawer = document.getElementById('close-catalog-drawer');
 const catalogList = document.getElementById('catalog-list');
-const btnPrevChap = document.getElementById('btn-prev-chap');
-const btnNextChap = document.getElementById('btn-next-chap');
 
 function initApp() {
   statXp.innerText = `${state.xp} XP`;
   setupEvents();
-  renderCurrentState();
+  renderState();
 }
 
-function renderCurrentState() {
-  const chap = state.getCurrentChapter();
-  headerBadge.innerText = chap.chapterId;
-  headerName.innerText = chap.titleAr;
+function renderState() {
+  const mod = state.getCurrentModule();
+  headerBadge.innerText = `Mod.${mod.moduleNum}`;
+  headerName.innerText = mod.titleDe;
 
-  // Lektionstext rendern
-  lessonContentBody.innerHTML = chap.lessonHtml;
+  lessonContentBody.innerHTML = mod.lessonHtml;
 
-  // Übungs-Pills rendern
-  pillsGrid.innerHTML = chap.exercises.map((ex, idx) => {
+  pillsGrid.innerHTML = mod.exercises.map((ex, idx) => {
     const isCurrent = idx === state.currentExerciseIndex;
-    const isDone = state.completedExercises[`${chap.chapterId}_${ex.id}`];
-    
+    const isDone = state.completed[`${state.currentChapterKey}_${ex.id}`];
     let bgClass = "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200";
     if (isDone) bgClass = "bg-green-100 text-green-800 border-green-300";
     if (isCurrent) bgClass = "bg-blue-600 text-white shadow-sm border-blue-600";
-
-    return `<div onclick="jumpToExercise(${idx})" class="ex-grid-item ${bgClass}">${idx + 1}</div>`;
+    return `<div onclick="jumpExercise(${idx})" class="ex-grid-item ${bgClass}">${idx + 1}</div>`;
   }).join('');
 
-  practiceProgressLabel.innerText = `Aufgabe ${state.currentExerciseIndex + 1} / ${chap.exercises.length}`;
+  practiceProgressLabel.innerText = `Aufgabe ${state.currentExerciseIndex + 1} / ${mod.exercises.length}`;
   renderActiveExercise();
 }
 
@@ -741,9 +595,8 @@ function renderActiveExercise() {
   feedbackPanel.classList.add('hidden');
   hintText.classList.add('hidden');
 
-  const chap = state.getCurrentChapter();
-  const ex = chap.exercises[state.currentExerciseIndex] || chap.exercises[0];
-
+  const mod = state.getCurrentModule();
+  const ex = mod.exercises[state.currentExerciseIndex] || mod.exercises[0];
   hintText.innerText = ex.hint;
 
   exerciseStage.innerHTML = `
@@ -766,8 +619,8 @@ function renderActiveExercise() {
 }
 
 window.handleOptionSelect = function(selectedOption, btnElement) {
-  const chap = state.getCurrentChapter();
-  const ex = chap.exercises[state.currentExerciseIndex] || chap.exercises[0];
+  const mod = state.getCurrentModule();
+  const ex = mod.exercises[state.currentExerciseIndex] || mod.exercises[0];
   const isCorrect = selectedOption.toLowerCase() === ex.ans.toLowerCase();
 
   const slot = document.getElementById('cloze-target-slot');
@@ -780,17 +633,16 @@ window.handleOptionSelect = function(selectedOption, btnElement) {
   if (isCorrect) {
     state.addXP(10);
     statXp.innerText = `${state.xp} XP`;
-    state.completedExercises[`${chap.chapterId}_${ex.id}`] = true;
-
+    state.completed[`${state.currentChapterKey}_${ex.id}`] = true;
     feedbackPanel.classList.add('bg-green-50', 'border-green-200');
     feedbackTitle.className = 'font-bold text-sm text-green-900';
-    feedbackTitle.innerText = 'أحسنت! إجابة صحيحة (Richtig)';
+    feedbackTitle.innerText = 'Richtig! Syntaktisch und morphologisch korrekt.';
     feedbackIcon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-green-500 text-white';
     feedbackIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>`;
   } else {
     feedbackPanel.classList.add('bg-red-50', 'border-red-200', 'animate-shake');
     feedbackTitle.className = 'font-bold text-sm text-red-900';
-    feedbackTitle.innerHTML = `راجع القاعدة. الحل الصحيح: <span class="font-de underline font-black" dir="ltr">${ex.ans}</span>`;
+    feedbackTitle.innerHTML = `Syntaktischer Regelfehler. Lösung: <span class="font-de underline font-black" dir="ltr">${ex.ans}</span>`;
     feedbackIcon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-red-500 text-white';
     feedbackIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>`;
   }
@@ -805,7 +657,7 @@ function switchToPracticeMode() {
   viewPractice.classList.remove('hidden');
   tabBtnPractice.className = "px-4 py-1.5 rounded-lg bg-blue-600 text-white transition flex items-center gap-1.5 shadow-sm";
   tabBtnLesson.className = "px-4 py-1.5 rounded-lg bg-white text-slate-700 hover:bg-slate-200 transition flex items-center gap-1.5";
-  renderCurrentState();
+  renderState();
 }
 
 function switchToLessonMode() {
@@ -815,9 +667,9 @@ function switchToLessonMode() {
   tabBtnPractice.className = "px-4 py-1.5 rounded-lg bg-white text-slate-700 hover:bg-slate-200 transition flex items-center gap-1.5";
 }
 
-window.jumpToExercise = function(idx) {
+window.jumpExercise = function(idx) {
   state.currentExerciseIndex = idx;
-  renderCurrentState();
+  renderState();
 };
 
 function setupEvents() {
@@ -826,39 +678,22 @@ function setupEvents() {
   btnShowHint.addEventListener('click', () => hintText.classList.toggle('hidden'));
 
   btnNextEx.addEventListener('click', () => {
-    const chap = state.getCurrentChapter();
-    if (state.currentExerciseIndex < chap.exercises.length - 1) {
+    const mod = state.getCurrentModule();
+    if (state.currentExerciseIndex < mod.exercises.length - 1) {
       state.currentExerciseIndex++;
-      renderCurrentState();
+      renderState();
     } else {
-      alert('تهانينا! أتممت جميع تمارين هذا الفصل بنجاح!');
-    }
-  });
-
-  btnPrevChap.addEventListener('click', () => {
-    if (state.currentChapterIndex > 0) {
-      state.currentChapterIndex--;
-      state.currentExerciseIndex = 0;
-      renderCurrentState();
-    }
-  });
-
-  btnNextChap.addEventListener('click', () => {
-    if (state.currentChapterIndex < ALL_GOETHE_CHAPTER_METADATA.length - 1) {
-      state.currentChapterIndex++;
-      state.currentExerciseIndex = 0;
-      renderCurrentState();
+      alert('Module complete! You have finished all active exercises for this unit.');
     }
   });
 
   btnOpenCatalog.addEventListener('click', () => {
     catalogDrawer.classList.remove('hidden');
-    catalogList.innerHTML = ALL_GOETHE_CHAPTER_METADATA.map((chap, idx) => `
-      <div onclick="selectChapter(${idx})" class="p-3 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/60 cursor-pointer transition flex items-start gap-2.5">
-        <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-de font-bold text-[10px] mt-0.5">${chap.id}</span>
+    catalogList.innerHTML = ALL_MODULES.map(m => `
+      <div onclick="selectModule('${m.id}')" class="p-3 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/60 cursor-pointer transition flex items-start gap-2.5">
+        <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-de font-bold text-[10px] mt-0.5">${m.id}</span>
         <div class="flex-1">
-          <p class="font-bold text-slate-800 text-xs">${chap.titleAr}</p>
-          <span class="text-[10px] text-slate-400 font-semibold font-de">Niveau: ${chap.level}</span>
+          <p class="font-bold text-slate-800 text-xs">${m.titleAr}</p>
         </div>
       </div>
     `).join('');
@@ -867,12 +702,12 @@ function setupEvents() {
   closeCatalogDrawer.addEventListener('click', () => catalogDrawer.classList.add('hidden'));
 }
 
-window.selectChapter = function(idx) {
-  state.currentChapterIndex = idx;
+window.selectModule = function(key) {
+  state.currentChapterKey = key;
   state.currentExerciseIndex = 0;
   catalogDrawer.classList.add('hidden');
   switchToLessonMode();
-  renderCurrentState();
+  renderState();
 };
 
 window.addEventListener('DOMContentLoaded', initApp);

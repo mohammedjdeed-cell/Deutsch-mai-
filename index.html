@@ -3,68 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deutsch mit Mai – قواعد الألمانية للمبتدئين</title>
+  <title>Deutsch mit Mai – مسار القواعد الشامل A1 / A2</title>
 
-  <!-- PWA Meta -->
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#2563eb">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="DeutschMai">
 
-  <!-- Tailwind & Custom Styling -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="h-full flex flex-col font-sans antialiased selection:bg-blue-100 selection:text-blue-900">
 
-  <!-- Kopfzeile / Header -->
+  <!-- Header -->
   <header class="glass-nav sticky top-0 z-40 border-b border-slate-200">
-    <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="max-w-2xl mx-auto px-4 py-2.5 flex items-center justify-between">
       
-      <!-- Logo & Titel -->
       <div class="flex items-center space-x-3 space-x-reverse">
         <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black shadow-md shadow-blue-500/20 font-de text-lg">
           M
         </div>
         <div>
           <h1 class="text-base font-bold tracking-tight text-slate-900">Deutsch mit Mai</h1>
-          <p class="text-xs font-semibold text-slate-500" id="level-indicator">A1 / A2 – تمارين القواعد</p>
+          <p class="text-[11px] font-semibold text-slate-500" id="level-indicator">المسار الكامل: A1.1 ← A2.2</p>
         </div>
       </div>
 
-      <!-- XP & Lehrerpult Button -->
       <div class="flex items-center space-x-2 space-x-reverse">
         <div class="flex items-center space-x-1 space-x-reverse bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-xs font-bold text-amber-800">
-          <svg class="w-4 h-4 fill-amber-500" viewBox="0 0 20 20">
-            <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
-          </svg>
+          <svg class="w-4 h-4 fill-amber-500" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
           <span id="stat-xp" class="font-de">0 XP</span>
         </div>
 
-        <button id="teacher-toggle-btn" class="p-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 transition" title="لوحة المعلم">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-          </svg>
+        <button id="teacher-toggle-btn" class="p-2 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-100 transition" title="لوحة المعلم وإضافة التمارين">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
         </button>
       </div>
     </div>
 
-    <!-- Kategorien Filter -->
-    <div class="max-w-2xl mx-auto px-4 pb-3 flex items-center space-x-2 space-x-reverse overflow-x-auto text-xs font-semibold">
-      <button data-filter="all" class="filter-chip px-3.5 py-1.5 rounded-full whitespace-nowrap bg-blue-600 text-white shadow-sm transition">جميع التمارين</button>
-      <button data-filter="blitz" class="filter-chip px-3.5 py-1.5 rounded-full whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition">أدوات التعريف (Der/Die/Das)</button>
-      <button data-filter="cloze" class="filter-chip px-3.5 py-1.5 rounded-full whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition">املأ الفراغ</button>
-      <button data-filter="puzzle" class="filter-chip px-3.5 py-1.5 rounded-full whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition">ترتيب الجملة (Satzbau)</button>
-      <button data-filter="case" class="filter-chip px-3.5 py-1.5 rounded-full whitespace-nowrap bg-slate-100 text-slate-600 hover:bg-slate-200 transition">تحديد الحالات (Kasus)</button>
+    <!-- Niveau-Wahlschalter (Level Tabs) -->
+    <div class="max-w-2xl mx-auto px-4 py-1.5 flex items-center space-x-1.5 space-x-reverse border-t border-slate-150 text-xs font-bold overflow-x-auto">
+      <span class="text-slate-400 text-[11px] ml-1 shrink-0">المستوى:</span>
+      <button data-level="all" class="level-tab px-3 py-1 rounded-lg bg-blue-600 text-white transition">الكل</button>
+      <button data-level="A1.1" class="level-tab px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">A1.1</button>
+      <button data-level="A1.2" class="level-tab px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">A1.2</button>
+      <button data-level="A2.1" class="level-tab px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">A2.1</button>
+      <button data-level="A2.2" class="level-tab px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition">A2.2</button>
+    </div>
+
+    <!-- Übungsarten-Filter -->
+    <div class="max-w-2xl mx-auto px-4 pb-2.5 flex items-center space-x-2 space-x-reverse overflow-x-auto text-[11px] font-semibold text-slate-600">
+      <button data-filter="all" class="filter-chip px-3 py-1 rounded-full bg-slate-800 text-white transition">الكل</button>
+      <button data-filter="blitz" class="filter-chip px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 transition">Der / Die / Das</button>
+      <button data-filter="cloze" class="filter-chip px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 transition">الفراغات</button>
+      <button data-filter="puzzle" class="filter-chip px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 transition">ترتيب الجملة</button>
+      <button data-filter="case" class="filter-chip px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 transition">تحديد الإعراب</button>
     </div>
   </header>
 
   <!-- Hauptarbeitsbereich -->
   <main class="flex-1 max-w-2xl w-full mx-auto p-4 flex flex-col justify-between">
     
-    <!-- Fortschrittsanzeige -->
-    <div class="mb-4">
+    <div>
       <div class="flex justify-between text-xs font-bold text-slate-400 mb-1.5">
         <span id="exercise-type-tag">التمرين</span>
         <span id="exercise-counter" class="font-de">0 / 0</span>
@@ -74,15 +75,11 @@
       </div>
     </div>
 
-    <!-- Dynamischer Aufgabenbereich -->
-    <div id="exercise-stage" class="flex-1 flex flex-col justify-center items-center my-auto min-h-[320px]">
-      <!-- Wird durch app.js gerendert -->
-    </div>
+    <div id="exercise-stage" class="flex-1 flex flex-col justify-center items-center my-auto min-h-[340px]"></div>
 
-    <!-- Feedback-Panel mit arabischer Regelerklärung -->
+    <!-- Feedback-Drawer -->
     <div id="feedback-panel" class="hidden w-full mt-4 rounded-2xl p-5 border transition-all rtl-box">
       <div class="flex items-start justify-between">
-        
         <div class="flex items-start space-x-3 space-x-reverse">
           <div id="feedback-icon" class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-0.5"></div>
           <div>
@@ -90,15 +87,10 @@
             <p id="feedback-explanation" class="text-xs sm:text-sm mt-2 text-slate-700 leading-relaxed"></p>
           </div>
         </div>
-
         <button id="btn-audio-repeat" class="p-2.5 text-blue-600 hover:bg-blue-100 rounded-xl transition shrink-0 mr-2" title="استمع للنطق الألماني">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/>
-          </svg>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/></svg>
         </button>
-
       </div>
-      
       <button id="btn-next" class="mt-4 w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm shadow hover:bg-slate-800 transition">
         التالي
       </button>
@@ -106,27 +98,85 @@
 
   </main>
 
-  <!-- Lehrkraft-Modal -->
+  <!-- Lehrkraft-Modal & Aufgaben-Hinzufügen -->
   <aside id="teacher-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm rtl-box">
-    <div class="bg-white max-w-lg w-full rounded-2xl shadow-xl flex flex-col max-h-[85vh] overflow-hidden">
+    <div class="bg-white max-w-xl w-full rounded-2xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden">
       
       <div class="p-4 border-b border-slate-200 flex justify-between items-center bg-slate-50">
         <div>
-          <h2 class="font-bold text-base text-slate-900">لوحة المعلم (Teacher Dashboard)</h2>
-          <p class="text-xs text-slate-500">معاينة الحلول وإنشاء روابط واجبات مخصصة للطلاب</p>
+          <h2 class="font-bold text-base text-slate-900">لوحة المعلم وإدارة المنهاج</h2>
+          <p class="text-xs text-slate-500">إدارة التمارين، إضافة أسئلة جديدة، وتوليد روابط مخصصة</p>
         </div>
         <button id="close-teacher-modal" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="p-4 overflow-y-auto space-y-3 flex-1 text-xs" id="teacher-curriculum-list"></div>
+      <!-- Tabs im Modal -->
+      <div class="flex border-b border-slate-200 bg-slate-100 text-xs font-bold">
+        <button id="tab-btn-list" class="flex-1 py-2.5 text-blue-600 border-b-2 border-blue-600 bg-white">قائمة التمارين الحالية</button>
+        <button id="tab-btn-add" class="flex-1 py-2.5 text-slate-600 hover:bg-slate-50">إضافة تمرين جديد (+)</button>
+      </div>
+
+      <!-- Tab 1: Liste -->
+      <div id="modal-tab-list" class="p-4 overflow-y-auto space-y-2.5 flex-1 text-xs">
+        <div id="teacher-curriculum-list" class="space-y-2.5"></div>
+      </div>
+
+      <!-- Tab 2: Neue Aufgabe anlegen -->
+      <div id="modal-tab-add" class="p-4 overflow-y-auto space-y-3 flex-1 text-xs hidden">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">المستوى التعليمي:</label>
+          <select id="new-ex-level" class="w-full p-2 border rounded-lg bg-slate-50 font-de">
+            <option value="A1.1">A1.1</option>
+            <option value="A1.2">A1.2</option>
+            <option value="A2.1">A2.1</option>
+            <option value="A2.2">A2.2</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">نوع التمرين:</label>
+          <select id="new-ex-type" class="w-full p-2 border rounded-lg bg-slate-50" onchange="toggleFormFields(this.value)">
+            <option value="blitz">أدوات التعريف (Der/Die/Das Blitz)</option>
+            <option value="cloze">املأ الفراغ (Lückentext)</option>
+          </select>
+        </div>
+        
+        <div id="form-blitz-fields" class="space-y-2">
+          <input id="new-blitz-noun" placeholder="الاسم بالألماني (مثال: Auto)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+          <input id="new-blitz-meaning" placeholder="المعنى بالعربية (مثال: سيارة)" class="w-full p-2 border rounded-lg">
+          <input id="new-blitz-icon" placeholder="إيموجي رمزي (مثال: 🚗)" class="w-full p-2 border rounded-lg">
+          <select id="new-blitz-art" class="w-full p-2 border rounded-lg font-de">
+            <option value="der">der (مذكر)</option>
+            <option value="die">die (مؤنث)</option>
+            <option value="das">das (محايد)</option>
+          </select>
+          <input id="new-blitz-plural" placeholder="صيغة الجمع بالألمانية (مثال: die Autos)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+        </div>
+
+        <div id="form-cloze-fields" class="space-y-2 hidden">
+          <input id="new-cloze-inst" placeholder="التعليمة بالعربية (مثال: اختر تصريف الفعل الصحيح)" class="w-full p-2 border rounded-lg">
+          <input id="new-cloze-before" placeholder="بداية الجملة قبل الفراغ (مثال: Ich)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+          <input id="new-cloze-answer" placeholder="الكلمة الصحيحة في الفراغ (مثال: lerne)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+          <input id="new-cloze-after" placeholder="بقية الجملة بعد الفراغ (مثال: Deutsch.)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+          <input id="new-cloze-options" placeholder="الخيارات مفصولة بفاصلة (مثال: lerne, lernst, lernt)" class="w-full p-2 border rounded-lg font-de" dir="ltr">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">الشرح والقاعدة بالعربية (للإرشاد):</label>
+          <textarea id="new-ex-rule" rows="2" placeholder="اكتب القاعدة التعليمية بالعربية..." class="w-full p-2 border rounded-lg"></textarea>
+        </div>
+
+        <button onclick="addNewCustomExercise()" class="w-full py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold">
+          حفظ التمرين وإضافته فوراً للمسار
+        </button>
+      </div>
 
       <div class="p-4 border-t border-slate-200 bg-slate-50 flex flex-col gap-2">
         <button id="btn-export-link" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition text-xs flex items-center justify-center gap-2">
-          <span>نسخ رابط التمارين المختارة للطلاب</span>
+          <span>نسخ رابط الواجب للتمارين المحددة للطلاب</span>
         </button>
-        <p id="export-confirm" class="text-center text-xs text-green-600 font-bold hidden">تم نسخ الرابط للحافظة بنجاح!</p>
+        <p id="export-confirm" class="text-center text-xs text-green-600 font-bold hidden">تم نسخ الرابط المخصص بنجاح!</p>
       </div>
     </div>
   </aside>

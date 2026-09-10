@@ -1,327 +1,341 @@
 /**
- * Deutsch mit Mai – Vollständiges A1 & A2 Curriculum
+ * Deutsch mit Mai – Test-First & Tiefgehende Grammatik-Didaktik
  */
 
-// 1. VOLLSTÄNDIGER LEHRPLAN A1.1 BIS A2.2 (36 DIDAKTISCHE ÜBUNGEN)
-const DEFAULT_CURRICULUM = [
-  // ===================== STUFE A1.1 =====================
+// 1. UMFASSENDES GRAMMATIK-CURRICULUM (AKKUSATIV, DATIV, WECHSELP., ADJEKTIVDEKL.)
+const GRAMMAR_CURRICULUM = [
+  // ==========================================
+  // MODUL 1: AKKUSATIV (حالة النصب - المفعول به)
+  // ==========================================
   {
-    id: 1, level: "A1.1", type: "blitz",
-    noun: "Tisch", meaningAr: "طاولة (مذكر بالألمانية)", icon: "🪑",
-    correct: "der", plural: "die Tische",
-    ruleAr: "الاسم مذكر (der). تذكر أن الأجناس في الألمانية لا تطابق العربية؛ فالطاولة مؤنثة بالعربية لكنها مذكرة بالألمانية."
-  },
-  {
-    id: 2, level: "A1.1", type: "blitz",
-    noun: "Lampe", meaningAr: "مصباح / لمبة", icon: "💡",
-    correct: "die", plural: "die Lampen",
-    ruleAr: "قاعدة أساسية: معظم الأسماء المنتهية بـ '-e' تأخذ أداة المؤنث (die)."
-  },
-  {
-    id: 3, level: "A1.1", type: "blitz",
-    noun: "Buch", meaningAr: "كتاب (محايد)", icon: "📖",
-    correct: "das", plural: "die Bücher",
-    ruleAr: "في الألمانية يوجد جنس ثالث وهو المحايد (das). جمعها بالإمالة: die Bücher."
-  },
-  {
-    id: 4, level: "A1.1", type: "cloze",
-    instructionAr: "تصريف فعل الكينونة الأساسي (sein):",
-    sentenceBefore: "Hallo, ich", blankAnswer: "bin", sentenceAfter: "Ahmad und komme aus Syrien.",
-    fullSentence: "Hallo, ich bin Ahmad und komme aus Syrien.",
-    options: ["bin", "bist", "ist", "sind"],
-    ruleAr: "فعل الكينونة (sein) مع ضمير المتكلم (ich) هو شاذ ويصرف دائماً: ich bin."
-  },
-  {
-    id: 5, level: "A1.1", type: "cloze",
-    instructionAr: "تصريف الفعل المنتظم مع ضمير المخاطب (du):",
-    sentenceBefore: "Woher", blankAnswer: "kommst", sentenceAfter: "du?",
-    fullSentence: "Woher kommst du?",
-    options: ["komme", "kommst", "kommt", "kommen"],
-    ruleAr: "نهاية الفعل مع الضمير 'du' تكون دائماً باختتامها بحرفي '-st' (du kommst)."
-  },
-  {
-    id: 6, level: "A1.1", type: "cloze",
-    instructionAr: "نفي الأسماء باستخدام (kein / keine):",
-    sentenceBefore: "Das ist", blankAnswer: "kein", sentenceAfter: "Stift, das ist ein Pinsel.",
-    fullSentence: "Das ist kein Stift, das ist ein Pinsel.",
-    options: ["nicht", "kein", "keine", "keinen"],
-    ruleAr: "ننفي الاسم النكرة المذكر (der Stift) باستخدام 'kein'. كلمة 'nicht' تنفي الأفعال والصفات."
-  },
-  {
-    id: 7, level: "A1.1", type: "puzzle",
-    instructionAr: "ترتيب الجملة الرئيسية (الفعل دائماً في المركز 2):",
-    words: ["lerne", "Heute", "ich", "Deutsch"],
-    correctOrder: ["Heute", "lerne", "ich", "Deutsch"],
-    fullSentence: "Heute lerne ich Deutsch.",
-    ruleAr: "قاعدة الموقع الثاني (Verb auf Position 2): إذا بدأت الجملة بظرف زمان (Heute)، يأتي الفعل مباشرة بعده ثم الفاعل."
-  },
-  {
-    id: 8, level: "A1.1", type: "puzzle",
-    instructionAr: "تكوين سؤال مباشر بالأداة (W-Frage):",
-    words: ["wohnst", "Wo", "du", "jetzt"],
-    correctOrder: ["Wo", "wohnst", "du", "jetzt"],
-    fullSentence: "Wo wohnst du jetzt?",
-    ruleAr: "في سؤال أدوات الاستفهام: أداة الاستفهام أولاً (Wo)، ثم الفعل مباشرة (wohnst) في الموقع الثاني."
-  },
-  {
-    id: 9, level: "A1.1", type: "case",
-    instructionAr: "حدد وظيفة الاسم المرفوع (Nominativ):",
-    sentenceDisplay: "<span class='underline font-bold text-blue-600'>Der Lehrer</span> kommt heute pünktlich.",
-    highlightedPart: "Der Lehrer", fullSentence: "Der Lehrer kommt heute pünktlich.",
-    correct: "Nominativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "فاعل الجملة الذي يقوم بالفعل يكون دائماً في حالة الرفع (Nominativ)."
-  },
-
-  // ===================== STUFE A1.2 =====================
-  {
-    id: 10, level: "A1.2", type: "blitz",
-    noun: "Kaffee", meaningAr: "قهوة (مذكر)", icon: "☕",
-    correct: "der", plural: "die Kaffees",
-    ruleAr: "المشروبات المنبهة كالقهوة والشاي مذكرة في الألمانية (der Kaffee / der Tee)."
-  },
-  {
-    id: 11, level: "A1.2", type: "blitz",
-    noun: "Zeitung", meaningAr: "جريدة (مؤنث)", icon: "📰",
-    correct: "die", plural: "die Zeitungen",
-    ruleAr: "قاعدة ثابتة: كل الأسماء التي تنتهي باللاحقة '-ung' هي مؤنثة دائماً (die Zeitung)."
-  },
-  {
-    id: 12, level: "A1.2", type: "cloze",
-    instructionAr: "أداة النكرة في حالة المفعول به المنصوب (Akkusativ):",
-    sentenceBefore: "Ich kaufe", blankAnswer: "einen", sentenceAfter: "neuen Schreibtisch.",
-    fullSentence: "Ich kaufe einen neuen Schreibtisch.",
+    id: 1,
+    topic: "akkusativ",
+    level: "A1.2",
+    type: "cloze",
+    instructionAr: "اختر أداة النكرة المناسبة في حالة النصب (Akkusativ):",
+    sentenceBefore: "Ich habe",
+    blankAnswer: "einen",
+    sentenceAfter: "großen Bruder in Hamburg.",
+    fullSentence: "Ich habe einen großen Bruder in Hamburg.",
     options: ["ein", "einen", "einem", "eine"],
-    ruleAr: "الاسم مذكر (der Schreibtisch). المفعول به المباشر المنصوب (Akkusativ) يحول 'ein' إلى 'einen'."
+    hintAr: "اسأل نفسك: ما هو جنس كلمة (Bruder)؟ وماذا يحدث للمذكر فقط في حالة النصب؟",
+    summaryAr: "الفعل (haben) يأخذ مفعولاً به منصوباً (Akkusativ). في الألمانية، المذكر فقط هو الذي يتغير!",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-blue-700">📌 القاعدة الذهبية للنصب (Akkusativ):</p>
+        <p>في حالة النصب الألمانية، <strong>المذكر فقط هو الذي يتغير</strong>، بينما يبقى المؤنث والمحايد والجمع كما هم تماماً في الرفع!</p>
+        <table class="grammar-table my-2">
+          <thead>
+            <tr><th>الجنس</th><th>الرفع (Nominativ)</th><th>النصب (Akkusativ)</th></tr>
+          </thead>
+          <tbody>
+            <tr class="bg-blue-50/50"><td>المذكر (Maskulin)</td><td>der / ein</td><td class="font-bold text-blue-700">den / einen</td></tr>
+            <tr><td>المحايد (Neutral)</td><td>das / ein</td><td>das / ein (لا تغيير)</td></tr>
+            <tr><td>المؤنث (Feminin)</td><td>die / eine</td><td>die / eine (لا تغيير)</td></tr>
+            <tr><td>الجمع (Plural)</td><td>die / -</td><td>die / - (لا تغيير)</td></tr>
+          </tbody>
+        </table>
+        <p class="text-slate-600">أشهر أفعال النصب: <em>haben, suchen, kaufen, brauchen, finden, essen, trinken</em>.</p>
+      </div>
+    `
   },
   {
-    id: 13, level: "A1.2", type: "cloze",
-    instructionAr: "الأفعال المنفصلة (Trennbare Verben):",
-    sentenceBefore: "Am Morgen steht Mai um 6 Uhr", blankAnswer: "auf", sentenceAfter: ".",
-    fullSentence: "Am Morgen steht Mai um 6 Uhr auf.",
-    options: ["an", "auf", "aus", "mit"],
-    ruleAr: "الفعل المنفصل (aufstehen): يصرف الجذر 'steht' في المركز 2، والبادئة 'auf' تقذف إلى نهاية الجملة تماماً."
+    id: 2,
+    topic: "akkusativ",
+    level: "A1.2",
+    type: "cloze",
+    instructionAr: "ضمائر المفعول به المنصوب (Akkusativpronomen):",
+    sentenceBefore: "Ich liebe",
+    blankAnswer: "dich",
+    sentenceAfter: ", liebst du mich auch?",
+    fullSentence: "Ich liebe dich, liebst du mich auch?",
+    options: ["du", "dich", "dir", "dein"],
+    hintAr: "المتكلم يُحب من؟ يحب (أنتَ) بصيغة المفعول به المباشر المنصوب.",
+    summaryAr: "الضمير المنصوب من (du) هو (dich). تماماً مثلما تحول (ich) إلى (mich).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-blue-700">📌 جدول تحول الضمائر إلى النصب (Akkusativ):</p>
+        <div class="grid grid-cols-2 gap-2 text-center my-1 font-de">
+          <div class="bg-slate-100 p-1.5 rounded">ich ➔ <strong>mich</strong> (ياء المتكلم)</div>
+          <div class="bg-slate-100 p-1.5 rounded">du ➔ <strong>dich</strong> (كاف المخاطب)</div>
+          <div class="bg-slate-100 p-1.5 rounded">er ➔ <strong>ihn</strong> (هاء الغائب المذكر)</div>
+          <div class="bg-slate-100 p-1.5 rounded">sie ➔ <strong>sie</strong> (هاء الغائبة)</div>
+        </div>
+      </div>
+    `
   },
   {
-    id: 14, level: "A1.2", type: "cloze",
-    instructionAr: "الفعل المساعد الناقص (können = يستطيع):",
-    sentenceBefore: "Mein Bruder", blankAnswer: "kann", sentenceAfter: "sehr gut schwimmen.",
-    fullSentence: "Mein Bruder kann sehr gut schwimmen.",
-    options: ["kann", "kannst", "können", "könnt"],
-    ruleAr: "مع هو/هي (er/sie) لا يأخذ الفعل المساعد أي نهاية: er kann بدون حرف t."
-  },
-  {
-    id: 15, level: "A1.2", type: "puzzle",
-    instructionAr: "تكوين سؤال (نعم/لا) يبدأ بالفعل:",
-    words: ["Trinkst", "du", "gerne", "Orangensaft"],
-    correctOrder: ["Trinkst", "du", "gerne", "Orangensaft"],
-    fullSentence: "Trinkst du gerne Orangensaft?",
-    ruleAr: "في أسئلة نعم أو لا (Ja/Nein-Frage)، يتقدم الفعل المصرف ليحتل المركز الأول (Position 1)."
-  },
-  {
-    id: 16, level: "A1.2", type: "puzzle",
-    instructionAr: "القوس الفعلي مع فعل المودال (möchten):",
-    words: ["Wir", "möchten", "eine", "Pizza", "bestellen"],
-    correctOrder: ["Wir", "möchten", "eine", "Pizza", "bestellen"],
-    fullSentence: "Wir möchten eine Pizza bestellen.",
-    ruleAr: "قوس الأفعال: فعل möchten في الموقع الثاني، ومصدر الفعل الآخر (bestellen) في نهاية الجملة."
-  },
-  {
-    id: 17, level: "A1.2", type: "case",
-    instructionAr: "حدد حالة الاسم بعد الفعل المتعدي (haben):",
-    sentenceDisplay: "Haben Sie <span class='underline font-bold text-blue-600'>einen Moment</span> Zeit?",
-    highlightedPart: "einen Moment", fullSentence: "Haben Sie einen Moment Zeit?",
-    correct: "Akkusativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "الفعل haben يأخذ دائماً مفعولاً به منصوباً (Akkusativ). كلمة der Moment تحولت إلى einen Moment."
-  },
-  {
-    id: 18, level: "A1.2", type: "case",
-    instructionAr: "الضمائر الشخصية في حالة النصب (Akkusativ):",
-    sentenceDisplay: "Ich liebe <span class='underline font-bold text-blue-600'>dich</span> von ganzem Herzen.",
-    highlightedPart: "dich", fullSentence: "Ich liebe dich von ganzem Herzen.",
-    correct: "Akkusativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "الضمير 'dich' هو صيغة النصب للضمير 'du' (أحبكَ أنتَ = مفعول به منصوب)."
-  },
-
-  // ===================== STUFE A2.1 =====================
-  {
-    id: 19, level: "A2.1", type: "blitz",
-    noun: "Mädchen", meaningAr: "فتاة (محايد)", icon: "👧",
-    correct: "das", plural: "die Mädchen",
-    ruleAr: "تنبيه هام للناطقين بالعربية: رغم أن المعنى أنثى، إلا أن لاحقة التصغير '-chen' تجعل الكلمة محايدة (das) حتماً."
-  },
-  {
-    id: 20, level: "A2.1", type: "blitz",
-    noun: "Bäckerei", meaningAr: "مخبز (مؤنث)", icon: "🥖",
-    correct: "die", plural: "die Bäckereien",
-    ruleAr: "جميع الأسماء التي تنتهي باللاحقة '-ei' هي مؤنثة دائماً (die Bäckerei, die Konditorei)."
-  },
-  {
-    id: 21, level: "A2.1", type: "cloze",
-    instructionAr: "حرف الجر (mit) الذي يجر الاسم بعده دائماً (Dativ):",
-    sentenceBefore: "Ich fahre jeden Tag mit", blankAnswer: "dem", sentenceAfter: "Bus zur Arbeit.",
-    fullSentence: "Ich fahre jeden Tag mit dem Bus zur Arbeit.",
-    options: ["den", "dem", "das", "der"],
-    ruleAr: "حرف الجر 'mit' يفرض حالة الجر Dativ. أداة der Bus تصبح مع الجر 'dem Bus'."
-  },
-  {
-    id: 22, level: "A2.1", type: "cloze",
-    instructionAr: "حرف الجر (bei) مع المؤنث في حالة الجر:",
-    sentenceBefore: "Ali wohnt noch bei", blankAnswer: "seiner", sentenceAfter: "Familie.",
-    fullSentence: "Ali wohnt noch bei seiner Familie.",
-    options: ["seine", "seiner", "seinem", "seinen"],
-    ruleAr: "كلمة die Familie مؤنثة. بعد حرف الجر bei (Dativ) تصبح أداة الملكية 'seiner Familie'."
-  },
-  {
-    id: 23, level: "A2.1", type: "cloze",
-    instructionAr: "زمن الماضي التام (Perfekt) مع أفعال الحركة (sein):",
-    sentenceBefore: "Gestern", blankAnswer: "bin", sentenceAfter: "ich spät nach Hause gekommen.",
-    fullSentence: "Gestern bin ich spät nach Hause gekommen.",
-    options: ["habe", "bin", "hat", "war"],
-    ruleAr: "فعل الوصول (kommen) يدل على انتقال وتغير مكان، لذا يأخذ الفعل المساعد 'sein' (ich bin gekommen)."
-  },
-  {
-    id: 24, level: "A2.1", type: "puzzle",
-    instructionAr: "تركيب جملة الماضي التام (Perfekt):",
-    words: ["Wir", "haben", "gestern", "Grammatik", "gelernt"],
-    correctOrder: ["Wir", "haben", "gestern", "Grammatik", "gelernt"],
-    fullSentence: "Wir haben gestern Grammatik gelernt.",
-    ruleAr: "في زمن الماضي التام: الفعل المساعد (haben) في المركز 2، والتصريف الثالث (gelernt) في آخر الجملة."
-  },
-  {
-    id: 25, level: "A2.1", type: "puzzle",
-    instructionAr: "أحرف الجر المشتركة مع الثبات (Wo? = Dativ):",
-    words: ["Das", "Buch", "liegt", "auf", "dem", "Tisch"],
-    correctOrder: ["Das", "Buch", "liegt", "auf", "dem", "Tisch"],
-    fullSentence: "Das Buch liegt auf dem Tisch.",
-    ruleAr: "السؤال بـ 'أين يقع الكتاب؟' (ثبات) يفرض حالة الجر Dativ: على الطاولة = auf dem Tisch."
-  },
-  {
-    id: 26, level: "A2.1", type: "case",
-    instructionAr: "حدد حالة الاسم المجرور بالجر الثابت:",
-    sentenceDisplay: "Wir sprechen nach <span class='underline font-bold text-blue-600'>dem Unterricht</span> darüber.",
-    highlightedPart: "dem Unterricht", fullSentence: "Wir sprechen nach dem Unterricht darüber.",
-    correct: "Dativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "حرف الجر nach يجر الاسم بعده دائماً (Dativ). المفرد der Unterricht أصبح dem Unterricht."
-  },
-  {
-    id: 27, level: "A2.1", type: "case",
-    instructionAr: "المفعول به غير المباشر (الشخص المستفيد):",
-    sentenceDisplay: "Der Arzt hilft <span class='underline font-bold text-blue-600'>dem Patienten</span> sofort.",
-    highlightedPart: "dem Patienten", fullSentence: "Der Arzt hilft dem Patienten sofort.",
-    correct: "Dativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "الفعل 'helfen' يتعدى دائماً لمفعول به مجرور (Dativ): يساعد الطبيبُ المريضَ (dem Patienten)."
-  },
-
-  // ===================== STUFE A2.2 =====================
-  {
-    id: 28, level: "A2.2", type: "blitz",
-    noun: "Ergebnis", meaningAr: "نتيجة (محايد)", icon: "📊",
-    correct: "das", plural: "die Ergebnisse",
-    ruleAr: "الأسماء المنتهية باللاحقة '-nis' هي غالباً محايدة (das Ergebnis, das Zeugnis)."
-  },
-  {
-    id: 29, level: "A2.2", type: "cloze",
-    instructionAr: "حروف الجر التي تنصب دائماً (Akkusativ):",
-    sentenceBefore: "Ohne", blankAnswer: "meinen", sentenceAfter: "Bruder gehe ich nicht ins Kino.",
-    fullSentence: "Ohne meinen Bruder gehe ich nicht ins Kino.",
+    id: 3,
+    topic: "akkusativ",
+    level: "A2.2",
+    type: "cloze",
+    instructionAr: "أحرف الجر التي تنصب دائماً وبلا استثناء (Akkusativpräpositionen):",
+    sentenceBefore: "Das Geschenk ist für",
+    blankAnswer: "meinen",
+    sentenceAfter: "Vater.",
+    fullSentence: "Das Geschenk ist für meinen Vater.",
     options: ["meinem", "meinen", "meiner", "mein"],
-    ruleAr: "حرف الجر 'ohne' ينصب الاسم بعده دائماً (Akkusativ): der Bruder تصبح 'meinen Bruder'."
+    hintAr: "حرف الجر (für) ينصب الاسم دائماً. كلمة Vater مذكر (der).",
+    summaryAr: "بعد حرف الجر (für)، يتحول المذكر حتماً إلى (meinen Vater).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-blue-700">📌 أحرف الجر الخمسة التي تنصب دائماً (DOGFU):</p>
+        <p class="font-de font-bold text-slate-800">durch, ohne, gegen, für, um</p>
+        <p>بمجرد رؤية أحد هذه الأحرف، الاسم التالي يعرب مباشرة <strong>Akkusativ</strong> بدون تردد!</p>
+      </div>
+    `
+  },
+
+  // ==========================================
+  // MODUL 2: DATIV (حالة الجر - المفعول غير المباشر)
+  // ==========================================
+  {
+    id: 4,
+    topic: "dativ",
+    level: "A2.1",
+    type: "cloze",
+    instructionAr: "أداة المعرفة في حالة الجر (Dativ):",
+    sentenceBefore: "Ich fahre jeden Morgen mit",
+    blankAnswer: "dem",
+    sentenceAfter: "Bus zum Sprachkurs.",
+    fullSentence: "Ich fahre jeden Morgen mit dem Bus zum Sprachkurs.",
+    options: ["den", "dem", "das", "des"],
+    hintAr: "حرف الجر (mit) يعني 'بـِ أو مع' ويأخذ دائماً حالة الجر (Dativ). أصل الكلمة: der Bus.",
+    summaryAr: "المذكر (der) والمحايد (das) يتحولان في الجر (Dativ) دائماً إلى (dem).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-red-700">📌 كيف تتغير الأدوات في حالة الجر (Dativ)؟</p>
+        <p>في الـ Dativ <strong>تتغير كل الأدوات بدون استثناء</strong>:</p>
+        <table class="grammar-table my-2">
+          <thead>
+            <tr><th>الجنس</th><th>الرفع (Nominativ)</th><th>الجر (Dativ)</th><th>النكرة بالجر</th></tr>
+          </thead>
+          <tbody>
+            <tr class="bg-blue-50/40"><td>المذكر</td><td>der</td><td class="font-bold text-red-600">dem</td><td>einem</td></tr>
+            <tr class="bg-green-50/40"><td>المحايد</td><td>das</td><td class="font-bold text-red-600">dem</td><td>einem</td></tr>
+            <tr class="bg-red-50/40"><td>المؤنث</td><td>die</td><td class="font-bold text-red-600">der</td><td>einer</td></tr>
+            <tr class="bg-amber-50/40"><td>الجمع</td><td>die</td><td class="font-bold text-red-600">den + (n)</td><td>-</td></tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-slate-500">تذكر: المؤنث يأخذ في الجر 'der'، والجمع يأخذ 'den' مع إضافة حرف n لنهاية الاسم (z.B. den Kindern)!</p>
+      </div>
+    `
   },
   {
-    id: 30, level: "A2.2", type: "cloze",
-    instructionAr: "نهاية الصفات بعد أداة التعريف في حالة الرفع:",
-    sentenceBefore: "Der", blankAnswer: "neue", sentenceAfter: "Wagen von Mai ist sehr sparsam.",
-    fullSentence: "Der neue Wagen von Mai ist sehr sparsam.",
-    options: ["neu", "neue", "neuen", "neuem"],
-    ruleAr: "الصفة بعد أداة المعرفة للمفرد المذكر المرفوع (der) تأخذ فقط النهاية '-e' (der neue Wagen)."
+    id: 5,
+    topic: "dativ",
+    level: "A2.1",
+    type: "cloze",
+    instructionAr: "أفعال الجر الخاصة (Verben mit Dativ):",
+    sentenceBefore: "Der Deutschlehrer hilft",
+    blankAnswer: "den",
+    sentenceAfter: "Schülern bei der Aussprache.",
+    fullSentence: "Der Deutschlehrer hilft den Schülern bei der Aussprache.",
+    options: ["die", "der", "den", "dem"],
+    hintAr: "فعل (helfen) يساعد: لا ينصب أبداً، بل يجر الاسم بعده (Dativ). كلمة Schüler هنا جمع!",
+    summaryAr: "جمع الطلاب في الجر: أداة die تتحول إلى den مع n الجمع الملحقة (den Schülern).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-red-700">📌 أفعال تتعدى لمجرور (Dativ) فقط:</p>
+        <p>هناك أفعال هامة في الألمانية لا تأخذ مفعولاً به منصوباً بل تأخذ <strong>Dativ</strong> دائماً:</p>
+        <ul class="list-disc list-inside space-y-1 font-de">
+          <li><strong>helfen</strong> (يساعد): Ich helfe <u>dir</u>.</li>
+          <li><strong>danken</strong> (يشكر): Wir danken <u>dem Arzt</u>.</li>
+          <li><strong>gefallen</strong> (يعجب): Das Buch gefällt <u>mir</u>.</li>
+          <li><strong>gehören</strong> (ينتمي/مِلك): Das Auto gehört <u>meiner Mutter</u>.</li>
+        </ul>
+      </div>
+    `
   },
   {
-    id: 31, level: "A2.2", type: "cloze",
-    instructionAr: "المقارنة والتفضيل (Komparativ):",
-    sentenceBefore: "Ein Flugzeug ist schneller", blankAnswer: "als", sentenceAfter: "ein Zug.",
-    fullSentence: "Ein Flugzeug ist schneller als ein Zug.",
-    options: ["wie", "als", "denn", "so"],
-    ruleAr: "في المقارنة بين شيئين غير متساويين بوجود صيغة er (schneller) نستخدم أداة 'als' (أسرع من)."
+    id: 6,
+    topic: "dativ",
+    level: "A2.1",
+    type: "cloze",
+    instructionAr: "ضمائر المجرور الشخصية (Dativpronomen):",
+    sentenceBefore: "Wie geht es",
+    blankAnswer: "dir",
+    sentenceAfter: "? – Mir geht es sehr gut, danke!",
+    fullSentence: "Wie geht es dir? – Mir geht es sehr gut, danke!",
+    options: ["dich", "du", "dir", "dein"],
+    hintAr: "التعبير 'Wie geht es...' يطلب ضمير مجرور دائماً (Dativ).",
+    summaryAr: "في الـ Dativ: يتحول الضمير (ich ➔ mir) و (du ➔ dir).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-red-700">📌 ضمائر الـ Dativ كاملة:</p>
+        <div class="grid grid-cols-2 gap-1.5 text-center font-de">
+          <div class="bg-slate-100 p-1 rounded">ich ➔ <strong>mir</strong></div>
+          <div class="bg-slate-100 p-1 rounded">du ➔ <strong>dir</strong></div>
+          <div class="bg-slate-100 p-1 rounded">er / es ➔ <strong>ihm</strong></div>
+          <div class="bg-slate-100 p-1 rounded">sie ➔ <strong>ihr</strong></div>
+          <div class="bg-slate-100 p-1 rounded">wir ➔ <strong>uns</strong></div>
+          <div class="bg-slate-100 p-1 rounded">Sie/sie ➔ <strong>Ihnen/ihnen</strong></div>
+        </div>
+      </div>
+    `
+  },
+
+  // ==========================================
+  // MODUL 3: WECHSELPOSITIONS (أين؟ أم إلى أين؟)
+  // ==========================================
+  {
+    id: 7,
+    topic: "wechsel",
+    level: "A2.1",
+    type: "case",
+    instructionAr: "حدد الحالة الإعرابية (هل هي ثبات وموقع أم حركة ونقل؟):",
+    sentenceDisplay: "Das Bild hängt an <span class='underline font-bold text-blue-600'>der Wand</span>.",
+    highlightedPart: "der Wand",
+    fullSentence: "Das Bild hängt an der Wand.",
+    correct: "Dativ",
+    options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
+    hintAr: "اسأل نفسك: أين توجد الصورة؟ (ثبات وموقع = Wo) أم هناك حركة لنقلها؟",
+    summaryAr: "الصورة معلقة وثابتة على الحائط (Wo? ➔ Dativ). أصل الكلمة die Wand وأصبحت مع الجر der Wand.",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-emerald-700">📌 أحرف الجر المشتركة (Wechselpräpositionen):</p>
+        <p>هناك 9 أحرف جر في الألمانية قد تأخذ <strong>النصب</strong> أو <strong>الجر</strong> بحسب معنى الجملة:</p>
+        <p class="font-de font-bold text-center bg-slate-150 bg-slate-100 p-1 rounded">in, an, auf, neben, hinter, über, unter, vor, zwischen</p>
+        <div class="grid grid-cols-2 gap-2 mt-2">
+          <div class="border border-red-200 bg-red-50/60 p-2 rounded-lg">
+            <p class="font-bold text-red-800">1. ثبات وموقع (Wo? أين؟)</p>
+            <p class="text-[11px] text-red-900 mt-1">يأخذ <strong>Dativ (جر)</strong>.<br>مثال: Das Buch liegt auf <u>dem</u> Tisch.</p>
+          </div>
+          <div class="border border-blue-200 bg-blue-50/60 p-2 rounded-lg">
+            <p class="font-bold text-blue-800">2. حركة وتغيير مكان (Wohin? إلى أين؟)</p>
+            <p class="text-[11px] text-blue-900 mt-1">يأخذ <strong>Akkusativ (نصب)</strong>.<br>مثال: Ich lege das Buch auf <u>den</u> Tisch.</p>
+          </div>
+        </div>
+      </div>
+    `
   },
   {
-    id: 32, level: "A2.2", type: "puzzle",
+    id: 8,
+    topic: "wechsel",
+    level: "A2.2",
+    type: "cloze",
+    instructionAr: "حركة وتغيير مكان (Wohin? ➔ Akkusativ):",
+    sentenceBefore: "Ich gehe jetzt in",
+    blankAnswer: "die",
+    sentenceAfter: "Küche, um Tee zu kochen.",
+    fullSentence: "Ich gehe jetzt in die Küche, um Tee zu kochen.",
+    options: ["der", "die", "dem", "den"],
+    hintAr: "أنا ذاهب (انتقال وتغيير مكان إلى داخل المطبخ = Wohin?). كلمة Küche مؤنثة.",
+    summaryAr: "الحركة (Wohin?) تتطلب النصب (Akkusativ). والمؤنث في النصب لا يتغير ويبقى (die Küche).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-emerald-700">📌 أفعال الحركة مقابل أفعال الثبات:</p>
+        <div class="text-xs space-y-1 font-de">
+          <p>🔹 <strong>stellen</strong> (يضع عمودياً - Akkusativ) 🆚 <strong>stehen</strong> (واقف - Dativ)</p>
+          <p>🔹 <strong>legen</strong> (يضع أفقياً - Akkusativ) 🆚 <strong>liegen</strong> (مستلقٍ/موضوع - Dativ)</p>
+          <p>🔹 <strong>setzen</strong> (يُجلس شخصاً - Akkusativ) 🆚 <strong>sitzen</strong> (جالس - Dativ)</p>
+        </div>
+      </div>
+    `
+  },
+
+  // ==========================================
+  // MODUL 4: ADJEKTIVDEKLINATION (نهايات الصفات)
+  // ==========================================
+  {
+    id: 9,
+    topic: "adjektiv",
+    level: "A2.2",
+    type: "cloze",
+    instructionAr: "نهاية الصفة بعد أداة التعريف (المفرد المذكر المرفوع):",
+    sentenceBefore: "Der",
+    blankAnswer: "alte",
+    sentenceAfter: "Mann liest jeden Tag eine Zeitung.",
+    fullSentence: "Der alte Mann liest jeden Tag eine Zeitung.",
+    options: ["alt", "alte", "alten", "altes"],
+    hintAr: "الأداة (der) أظهرت بالفعل علامة المذكر، فما النهاية الضعيفة الخفيفة التي تأخذها الصفة؟",
+    summaryAr: "بعد أداة التعريف الصريحة (der/die/das) في الرفع، تأخذ الصفة دائماً النهاية الخفيفة (-e).",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-purple-700">📌 سر نهايات الصفات بعد أداة المعرفة (der / die / das):</p>
+        <p>إذا كانت أداة المعرفة موجودة وواضحة، فالصفة لا تحتاج لحمل علامة إضافية:</p>
+        <ul class="list-disc list-inside space-y-1 font-de">
+          <li>المفرد في الرفع (Nominativ): تأخذ الصفة <strong>-e</strong> فقط (der neu<u>e</u> Wagen, die schön<u>e</u> Frau, das klein<u>e</u> Kind).</li>
+          <li>في حالات الجر (Dativ) والجمع والنصب للمذكر: تأخذ الصفة دائماً النهاية <strong>-en</strong> (mit dem neu<u>en</u> Wagen).</li>
+        </ul>
+      </div>
+    `
+  },
+  {
+    id: 10,
+    topic: "adjektiv",
+    level: "A2.2",
+    type: "cloze",
+    instructionAr: "نهاية الصفة بعد أداة النكرة (ein):",
+    sentenceBefore: "Mai hat ein",
+    blankAnswer: "neues",
+    sentenceAfter: "Auto gekauft.",
+    fullSentence: "Mai hat ein neues Auto gekauft.",
+    options: ["neue", "neues", "neuen", "neuem"],
+    hintAr: "كلمة Auto محايدة (das). أداة النكرة (ein) لم توضح جنس الكلمة، لذا يجب أن تنوب الصفة عنها!",
+    summaryAr: "أداة النكرة 'ein' حيادية، فتقوم الصفة بإظهار علامة المحايد بحمل اللاحقة (-es) ➔ neues Auto.",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-purple-700">📌 نهايات الصفة بعد النكرة (ein / eine):</p>
+        <p>هنا يجب على الصفة أن تُظهر جنس الاسم بوضوح:</p>
+        <table class="grammar-table">
+          <tr><th>مذكر</th><td>ein alt<strong>er</strong> Mann (أخذت علامة der)</td></tr>
+          <tr><th>محايد</th><td>ein neu<strong>es</strong> Auto (أخذت علامة das)</td></tr>
+          <tr><th>مؤنث</th><td>eine schön<strong>e</strong> Blume (أخذت علامة die)</td></tr>
+        </table>
+      </div>
+    `
+  },
+
+  // ==========================================
+  // MODUL 5: SATZBAU & NEBENSÄTZE (ترتيب الجمل)
+  // ==========================================
+  {
+    id: 11,
+    topic: "satzbau",
+    level: "A2.2",
+    type: "puzzle",
     instructionAr: "جملة التعليل الجانبية مع (weil = لأن):",
-    words: ["Ich", "bleibe", "zuhause,", "weil", "ich", "krank", "bin"],
-    correctOrder: ["Ich", "bleibe", "zuhause,", "weil", "ich", "krank", "bin"],
-    fullSentence: "Ich bleibe zuhause, weil ich krank bin.",
-    ruleAr: "قاعدة ذهبية في الألمانية: أداة الربط 'weil' تدفع بالفعل المصرف (bin) إلى نهاية الجملة تماماً."
-  },
-  {
-    id: 33, level: "A2.2", type: "puzzle",
-    instructionAr: "جملة المفعول به مع (dass = أن):",
-    words: ["Er", "weiß,", "dass", "du", "heute", "kommst"],
-    correctOrder: ["Er", "weiß,", "dass", "du", "heute", "kommst"],
-    fullSentence: "Er weiß, dass du heute kommst.",
-    ruleAr: "الجملة الجانبية مع 'dass' تجعل الفعل المصرف (kommst) يأتي في آخر الكلمة قبل النقطة."
-  },
-  {
-    id: 34, level: "A2.2", type: "puzzle",
-    instructionAr: "الجملة الشرطية مع (wenn = إذا / لو):",
-    words: ["Wenn", "die", "Sonne", "scheint,", "spazieren", "wir"],
-    correctOrder: ["Wenn", "die", "Sonne", "scheint,", "spazieren", "wir"],
-    fullSentence: "Wenn die Sonne scheint, spazieren wir.",
-    ruleAr: "إذا بدأت الجملة بـ Wenn، ينتهي الشطر الأول بفعل (scheint)، ويبدأ الشطر الثاني مباشرة بفعل (spazieren)."
-  },
-  {
-    id: 35, level: "A2.2", type: "case",
-    instructionAr: "حروف الجر المشتركة مع الحركة وتغيير المكان (Wohin? = Akkusativ):",
-    sentenceDisplay: "Ich lege das Buch auf <span class='underline font-bold text-blue-600'>den Tisch</span>.",
-    highlightedPart: "den Tisch", fullSentence: "Ich lege das Buch auf den Tisch.",
-    correct: "Akkusativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "الفعل 'legen' يدل على حركة ونقل للشيء (إلى أين؟ Wohin؟). لذلك تأخذ auf هنا النصب Akkusativ: den Tisch."
-  },
-  {
-    id: 36, level: "A2.2", type: "case",
-    instructionAr: "الأفعال الانعكاسية (Reflexivpronomen):",
-    sentenceDisplay: "Ich freue <span class='underline font-bold text-blue-600'>mich</span> sehr auf den Urlaub.",
-    highlightedPart: "mich", fullSentence: "Ich freue mich sehr auf den Urlaub.",
-    correct: "Akkusativ", options: ["Nominativ (مرفوع)", "Akkusativ (منصوب)", "Dativ (مجرور)"],
-    ruleAr: "الضمير المنعكس مع فعل (sich freuen) يكون في حالة النصب Akkusativ: ich freue mich."
+    words: ["Ich", "lerne,", "weil", "ich", "in", "Deutschland", "studieren", "will"],
+    correctOrder: ["Ich", "lerne,", "weil", "ich", "in", "Deutschland", "studieren", "will"],
+    fullSentence: "Ich lerne, weil ich in Deutschland studieren will.",
+    hintAr: "تذكر دائماً: في جملة weil، يهرب الفعل المصرف (will) إلى آخر الكلمة في الجملة!",
+    summaryAr: "أداة الربط 'weil' ترسل الفعل المساعد المصرف (will) إلى نهاية الجملة تماماً.",
+    lessonHtml: `
+      <div class="space-y-2">
+        <p class="font-bold text-amber-700">📌 قاعدة الجمل الجانبية (Nebensatz):</p>
+        <p>الأدوات التالية تُسمى (طرادات الأفعال)، لأنها تطرد الفعل المصرف لآخر الجملة:</p>
+        <p class="font-de font-bold text-center bg-slate-100 p-1 rounded">weil (لأن), dass (أنّ), wenn (إذا/لو), ob (فيما إذا)</p>
+        <p class="text-xs">الموقع الثاني مخصص للجملة الرئيسية فقط، أما في الجملة الجانبية فالفعل يكون آخر كلمة قبل النقطة!</p>
+      </div>
+    `
   }
 ];
 
-// 2. STATE & LOCALSTORAGE FÜR EIGENE AUFGABEN
+// 2. APP STATE
 class AppState {
   constructor() {
-    const savedCustom = localStorage.getItem('dm_custom_curriculum');
-    this.curriculum = savedCustom ? JSON.parse(savedCustom) : [...DEFAULT_CURRICULUM];
-    
+    this.curriculum = [...GRAMMAR_CURRICULUM];
     this.currentList = [...this.curriculum];
     this.currentIndex = 0;
     this.xp = parseInt(localStorage.getItem('dm_xp') || '0', 10);
     this.puzzleSelection = [];
-    
-    this.levelFilter = 'all';
-    this.typeFilter = 'all';
-
-    this.urlParams = new URLSearchParams(window.location.search);
-  }
-
-  saveCustomCurriculum() {
-    localStorage.setItem('dm_custom_curriculum', JSON.stringify(this.curriculum));
-  }
-
-  saveXP() {
-    localStorage.setItem('dm_xp', this.xp);
+    this.selectedTopic = 'all';
   }
 
   addXP(points) {
     this.xp += points;
-    this.saveXP();
+    localStorage.setItem('dm_xp', this.xp);
   }
 
-  applyFilters() {
-    this.currentList = this.curriculum.filter(item => {
-      const matchLevel = (this.levelFilter === 'all') || (item.level === this.levelFilter);
-      const matchType = (this.typeFilter === 'all') || (item.type === this.typeFilter);
-      return matchLevel && matchType;
-    });
+  filterByTopic(topic) {
+    this.selectedTopic = topic;
     this.currentIndex = 0;
+    if (topic === 'all') {
+      this.currentList = [...this.curriculum];
+    } else {
+      this.currentList = this.curriculum.filter(ex => ex.topic === topic);
+    }
   }
 }
 
@@ -337,8 +351,8 @@ function speakGerman(text) {
   utterance.rate = 0.85;
 
   const voices = window.speechSynthesis.getVoices();
-  const germanVoice = voices.find(v => v.lang && v.lang.startsWith('de'));
-  if (germanVoice) utterance.voice = germanVoice;
+  const deVoice = voices.find(v => v.lang && v.lang.startsWith('de'));
+  if (deVoice) utterance.voice = deVoice;
 
   window.speechSynthesis.speak(utterance);
 }
@@ -351,48 +365,40 @@ if ('speechSynthesis' in window) {
 const stage = document.getElementById('exercise-stage');
 const feedbackPanel = document.getElementById('feedback-panel');
 const feedbackTitle = document.getElementById('feedback-title');
-const feedbackExplanation = document.getElementById('feedback-explanation');
+const feedbackSummary = document.getElementById('feedback-summary');
+const fullLessonBody = document.getElementById('full-lesson-body');
+const btnToggleFullLesson = document.getElementById('btn-toggle-full-lesson');
+const lessonArrow = document.getElementById('lesson-arrow');
 const feedbackIcon = document.getElementById('feedback-icon');
 const btnNext = document.getElementById('btn-next');
 const btnAudioRepeat = document.getElementById('btn-audio-repeat');
+const btnShowHint = document.getElementById('btn-show-hint');
+const hintText = document.getElementById('hint-text');
 const statXp = document.getElementById('stat-xp');
 const progressBar = document.getElementById('progress-bar');
 const counterLabel = document.getElementById('exercise-counter');
 const typeTag = document.getElementById('exercise-type-tag');
-const teacherToggleBtn = document.getElementById('teacher-toggle-btn');
-const teacherModal = document.getElementById('teacher-modal');
-const closeTeacherModal = document.getElementById('close-teacher-modal');
-const curriculumList = document.getElementById('teacher-curriculum-list');
-const btnExportLink = document.getElementById('btn-export-link');
-const exportConfirm = document.getElementById('export-confirm');
+const topicChips = document.querySelectorAll('.topic-chip');
 
 // 5. INITIALISIERUNG
 function initApp() {
   statXp.innerText = `${state.xp} XP`;
-
-  // Custom Assignment Link (?custom=1,5,10)
-  if (state.urlParams.has('custom')) {
-    const ids = state.urlParams.get('custom').split(',').map(Number);
-    state.currentList = state.curriculum.filter(item => ids.includes(item.id));
-    if (state.currentList.length === 0) state.currentList = [...state.curriculum];
-  }
-
-  if (state.urlParams.get('view') === 'teacher') {
-    openTeacherModal();
-  }
-
-  setupLevelTabs();
-  setupTypeFilters();
-  setupTeacherModalTabs();
+  setupTopicFilters();
+  setupHintButton();
+  setupLessonToggle();
+  setupTeacherModal();
   loadCurrentExercise();
   registerServiceWorker();
 }
 
-// 6. AUFGABEN-LADUNG & RENDERER
+// 6. EXERCISE ENGINE
 function loadCurrentExercise() {
   feedbackPanel.classList.add('hidden');
+  hintText.classList.add('hidden');
+  fullLessonBody.classList.add('hidden');
+  lessonArrow.classList.remove('rotate-180');
   state.puzzleSelection = [];
-  
+
   const current = state.currentList[state.currentIndex];
   if (!current) {
     renderCompletionScreen();
@@ -402,42 +408,16 @@ function loadCurrentExercise() {
   const progressPercent = ((state.currentIndex) / state.currentList.length) * 100;
   progressBar.style.width = `${progressPercent}%`;
   counterLabel.innerText = `${state.currentIndex + 1} / ${state.currentList.length}`;
-  typeTag.innerText = `[${current.level}] ${getTypeLabel(current.type)}`;
+  typeTag.innerText = `[${current.level}] ${current.topic.toUpperCase()}`;
+
+  // Vorab-Tipp vorbereiten
+  hintText.innerText = current.hintAr;
 
   switch (current.type) {
-    case 'blitz': renderBlitz(current); break;
     case 'cloze': renderCloze(current); break;
     case 'puzzle': renderPuzzle(current); break;
     case 'case': renderCase(current); break;
   }
-}
-
-function getTypeLabel(type) {
-  switch(type) {
-    case 'blitz': return 'أدوات التعريف';
-    case 'cloze': return 'املأ الفراغ';
-    case 'puzzle': return 'ترتيب الجملة';
-    case 'case': return 'مكتشف الإعراب';
-    default: return 'قواعد';
-  }
-}
-
-function renderBlitz(item) {
-  stage.innerHTML = `
-    <div class="w-full flex flex-col items-center animate-pop text-center">
-      <div class="text-6xl mb-2">${item.icon || '📝'}</div>
-      <span class="text-xs font-bold text-slate-500 mb-1">${item.meaningAr}</span>
-      <h2 class="text-4xl font-black text-slate-900 font-de mb-8 tracking-wide">${item.noun}</h2>
-
-      <div class="grid grid-cols-3 gap-3 w-full max-w-sm font-de">
-        <button onclick="handleBlitzAnswer('der', this)" class="touch-tile py-4 text-center font-bold text-xl rounded-2xl border-2 border-blue-200 text-blue-600 bg-white hover:bg-blue-50 shadow-sm transition">der</button>
-        <button onclick="handleBlitzAnswer('die', this)" class="touch-tile py-4 text-center font-bold text-xl rounded-2xl border-2 border-red-200 text-red-600 bg-white hover:bg-red-50 shadow-sm transition">die</button>
-        <button onclick="handleBlitzAnswer('das', this)" class="touch-tile py-4 text-center font-bold text-xl rounded-2xl border-2 border-green-200 text-green-600 bg-white hover:bg-green-50 shadow-sm transition">das</button>
-      </div>
-
-      <div id="blitz-plural-reveal" class="h-6 mt-4 text-xs font-bold font-de text-slate-400"></div>
-    </div>
-  `;
 }
 
 function renderCloze(item) {
@@ -470,12 +450,12 @@ function renderPuzzle(item) {
       <p class="text-xs font-bold text-slate-500 mb-4 text-center rtl-box">${item.instructionAr}</p>
 
       <div id="puzzle-dropzone" class="w-full min-h-[64px] p-3 bg-slate-100 rounded-2xl border-2 border-dashed border-slate-300 flex flex-wrap gap-2 items-center justify-start mb-6 font-de ltr-box" dir="ltr">
-        <span id="puzzle-placeholder" class="text-xs text-slate-400 mx-auto font-sans">اضغط على الكلمات بالترتيب...</span>
+        <span id="puzzle-placeholder" class="text-xs text-slate-400 mx-auto font-sans">اضغط الكلمات بالترتيب الصحيح...</span>
       </div>
 
       <div id="puzzle-bank" class="flex flex-wrap justify-center gap-2 w-full mb-6 font-de" dir="ltr">
         ${shuffled.map((word, idx) => `
-          <button id="tile-${idx}" onclick="handlePuzzleTileClick('${word}', 'tile-${idx}')" class="touch-tile px-4 py-2 bg-white border border-slate-200 text-slate-800 font-semibold rounded-xl shadow-sm hover:border-slate-400 transition text-sm">
+          <button id="tile-${idx}" onclick="handlePuzzleTileClick('${word}', 'tile-${idx}')" class="touch-tile px-3.5 py-2 bg-white border border-slate-200 text-slate-800 font-semibold rounded-xl shadow-sm hover:border-slate-400 transition text-sm">
             ${word}
           </button>
         `).join('')}
@@ -512,24 +492,7 @@ function renderCase(item) {
   `;
 }
 
-// 7. ANTWORTEN-HANDLING
-window.handleBlitzAnswer = function(selectedArticle, btnElement) {
-  const current = state.currentList[state.currentIndex];
-  const isCorrect = selectedArticle === current.correct;
-
-  const pluralBox = document.getElementById('blitz-plural-reveal');
-  if (pluralBox) {
-    pluralBox.innerText = `Plural: ${current.plural}`;
-    pluralBox.classList.add('text-slate-800');
-  }
-
-  if (current.correct === 'der') btnElement.classList.add('bg-masculine');
-  if (current.correct === 'die') btnElement.classList.add('bg-feminine');
-  if (current.correct === 'das') btnElement.classList.add('bg-neuter');
-
-  evaluateOutcome(isCorrect, `${current.correct} ${current.noun}`, current.ruleAr, `${current.correct} ${current.noun}. ${current.plural}`);
-};
-
+// 7. ANTWORTEN-VERARBEITUNG
 window.handleClozeAnswer = function(selectedOption, btnElement) {
   const current = state.currentList[state.currentIndex];
   const isCorrect = selectedOption.toLowerCase() === current.blankAnswer.toLowerCase();
@@ -538,7 +501,7 @@ window.handleClozeAnswer = function(selectedOption, btnElement) {
   slot.innerText = selectedOption;
   slot.classList.add(isCorrect ? 'text-green-600' : 'text-red-600');
 
-  evaluateOutcome(isCorrect, current.blankAnswer, current.ruleAr, current.fullSentence);
+  evaluateOutcome(isCorrect, current.blankAnswer, current.summaryAr, current.lessonHtml, current.fullSentence);
 };
 
 window.handlePuzzleTileClick = function(word, elementId) {
@@ -568,17 +531,17 @@ window.evaluatePuzzle = function() {
   const targetSentence = current.correctOrder.join(' ');
   const isCorrect = userSentence.trim() === targetSentence.trim();
 
-  evaluateOutcome(isCorrect, targetSentence, current.ruleAr, current.fullSentence);
+  evaluateOutcome(isCorrect, targetSentence, current.summaryAr, current.lessonHtml, current.fullSentence);
 };
 
 window.handleCaseAnswer = function(selectedCaseKey, btnElement) {
   const current = state.currentList[state.currentIndex];
   const isCorrect = selectedCaseKey === current.correct;
-  evaluateOutcome(isCorrect, current.correct, current.ruleAr, current.fullSentence);
+  evaluateOutcome(isCorrect, current.correct, current.summaryAr, current.lessonHtml, current.fullSentence);
 };
 
-// 8. PÄDAGOGISCHES FEEDBACK
-function evaluateOutcome(isCorrect, solutionDisplay, explanationAr, germanAudioSentence) {
+// 8. PÄDAGOGISCHES FEEDBACK & VOLLSTÄNDIGE LEKTION
+function evaluateOutcome(isCorrect, solutionDisplay, summaryAr, lessonHtml, audioSentence) {
   stage.querySelectorAll('button').forEach(b => b.classList.add('pointer-events-none'));
   feedbackPanel.classList.remove('hidden', 'bg-red-50', 'border-red-200', 'bg-green-50', 'border-green-200', 'animate-shake');
 
@@ -588,21 +551,49 @@ function evaluateOutcome(isCorrect, solutionDisplay, explanationAr, germanAudioS
     
     feedbackPanel.classList.add('bg-green-50', 'border-green-200');
     feedbackTitle.className = 'font-bold text-sm text-green-900';
-    feedbackTitle.innerText = 'أحسنت! إجابة ممتازة (Richtig)';
+    feedbackTitle.innerText = 'أحسنت! إجابة صحيحة (Richtig)';
     feedbackIcon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-green-500 text-white';
     feedbackIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>`;
   } else {
     feedbackPanel.classList.add('bg-red-50', 'border-red-200', 'animate-shake');
     feedbackTitle.className = 'font-bold text-sm text-red-900';
-    feedbackTitle.innerHTML = `راجع القاعدة. الحل الصحيح: <span class="font-de underline font-black" dir="ltr">${solutionDisplay}</span>`;
+    feedbackTitle.innerHTML = `إجابة تحتاج لمراجعة. الحل: <span class="font-de underline font-black" dir="ltr">${solutionDisplay}</span>`;
     feedbackIcon.className = 'w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-red-500 text-white';
     feedbackIcon.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/></svg>`;
   }
 
-  feedbackExplanation.innerText = explanationAr;
+  feedbackSummary.innerText = summaryAr;
+  fullLessonBody.innerHTML = lessonHtml;
 
-  speakGerman(germanAudioSentence);
-  btnAudioRepeat.onclick = () => speakGerman(germanAudioSentence);
+  speakGerman(audioSentence);
+  btnAudioRepeat.onclick = () => speakGerman(audioSentence);
+}
+
+// 9. UI-KOMPONENTEN (HINT & LESSON TOGGLE)
+function setupHintButton() {
+  btnShowHint.addEventListener('click', () => {
+    hintText.classList.toggle('hidden');
+  });
+}
+
+function setupLessonToggle() {
+  btnToggleFullLesson.addEventListener('click', () => {
+    fullLessonBody.classList.toggle('hidden');
+    lessonArrow.classList.toggle('rotate-180');
+  });
+}
+
+function setupTopicFilters() {
+  topicChips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      topicChips.forEach(c => c.className = "topic-chip px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 whitespace-nowrap hover:bg-slate-200 transition");
+      e.target.className = "topic-chip px-3 py-1.5 rounded-xl bg-blue-600 text-white whitespace-nowrap shadow-sm transition";
+
+      const topic = e.target.getAttribute('data-topic');
+      state.filterByTopic(topic);
+      loadCurrentExercise();
+    });
+  });
 }
 
 btnNext.addEventListener('click', () => {
@@ -618,162 +609,52 @@ function renderCompletionScreen() {
       <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
         <svg class="w-8 h-8 fill-amber-500" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1z"/></svg>
       </div>
-      <h2 class="text-2xl font-black text-slate-900 mb-2">ممتاز جداً! أتممت هذه المرحلة</h2>
-      <p class="text-xs text-slate-600 mb-6">لقد انتهيت من جميع تمارين المستوى المحدد. يمكنك الانتقال للمستوى التالي!</p>
-      <button onclick="restartLevel()" class="w-full py-3 bg-blue-600 text-white rounded-xl font-bold shadow hover:bg-blue-700 transition">
-        إعادة تمارين هذا القسم
+      <h2 class="text-2xl font-black text-slate-900 mb-2">رائع! أتممت هذا المحور التعليمي</h2>
+      <p class="text-xs text-slate-600 mb-6">لقد اختبرت معلوماتك واطلعت على القواعد النحوية المقارنة بنجاح.</p>
+      <button onclick="restartTopic()" class="w-full py-3 bg-blue-600 text-white rounded-xl font-bold shadow hover:bg-blue-700 transition">
+        إعادة تمارين هذا المحور
       </button>
     </div>
   `;
 }
 
-window.restartLevel = function() {
+window.restartTopic = function() {
   state.currentIndex = 0;
   loadCurrentExercise();
 };
 
-// 9. FILTERLOGIK
-function setupLevelTabs() {
-  const tabs = document.querySelectorAll('.level-tab');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', (e) => {
-      tabs.forEach(t => t.className = "level-tab px-3 py-1 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition");
-      e.target.className = "level-tab px-3 py-1 rounded-lg bg-blue-600 text-white transition";
-      
-      state.levelFilter = e.target.getAttribute('data-level');
-      state.applyFilters();
-      loadCurrentExercise();
-    });
-  });
-}
+function setupTeacherModal() {
+  const teacherToggleBtn = document.getElementById('teacher-toggle-btn');
+  const teacherModal = document.getElementById('teacher-modal');
+  const closeTeacherModal = document.getElementById('close-teacher-modal');
+  const curriculumList = document.getElementById('teacher-curriculum-list');
+  const btnExportLink = document.getElementById('btn-export-link');
+  const exportConfirm = document.getElementById('export-confirm');
 
-function setupTypeFilters() {
-  const chips = document.querySelectorAll('.filter-chip');
-  chips.forEach(chip => {
-    chip.addEventListener('click', (e) => {
-      chips.forEach(c => c.className = "filter-chip px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200 transition");
-      e.target.className = "filter-chip px-3 py-1 rounded-full bg-slate-800 text-white transition";
-      
-      state.typeFilter = e.target.getAttribute('data-filter');
-      state.applyFilters();
-      loadCurrentExercise();
-    });
-  });
-}
-
-// 10. LEHRKRAFT-MODAL & NEUE AUFGABE HINZUFÜGEN
-function setupTeacherModalTabs() {
-  const tabList = document.getElementById('tab-btn-list');
-  const tabAdd = document.getElementById('tab-btn-add');
-  const viewList = document.getElementById('modal-tab-list');
-  const viewAdd = document.getElementById('modal-tab-add');
-
-  tabList.addEventListener('click', () => {
-    tabList.className = "flex-1 py-2.5 text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
-    tabAdd.className = "flex-1 py-2.5 text-slate-600 hover:bg-slate-50 font-bold";
-    viewList.classList.remove('hidden');
-    viewAdd.classList.add('hidden');
-  });
-
-  tabAdd.addEventListener('click', () => {
-    tabAdd.className = "flex-1 py-2.5 text-blue-600 border-b-2 border-blue-600 bg-white font-bold";
-    tabList.className = "flex-1 py-2.5 text-slate-600 hover:bg-slate-50 font-bold";
-    viewAdd.classList.remove('hidden');
-    viewList.classList.add('hidden');
-  });
-}
-
-window.toggleFormFields = function(type) {
-  document.getElementById('form-blitz-fields').classList.toggle('hidden', type !== 'blitz');
-  document.getElementById('form-cloze-fields').classList.toggle('hidden', type !== 'cloze');
-};
-
-window.addNewCustomExercise = function() {
-  const level = document.getElementById('new-ex-level').value;
-  const type = document.getElementById('new-ex-type').value;
-  const ruleAr = document.getElementById('new-ex-rule').value || 'انتبه للقاعدة النحوية بالألمانية.';
-  const newId = state.curriculum.length + 1;
-
-  let newEx = null;
-
-  if (type === 'blitz') {
-    newEx = {
-      id: newId,
-      level: level,
-      type: 'blitz',
-      noun: document.getElementById('new-blitz-noun').value.trim(),
-      meaningAr: document.getElementById('new-blitz-meaning').value.trim(),
-      icon: document.getElementById('new-blitz-icon').value.trim() || '📝',
-      correct: document.getElementById('new-blitz-art').value,
-      plural: document.getElementById('new-blitz-plural').value.trim(),
-      ruleAr: ruleAr
-    };
-  } else if (type === 'cloze') {
-    const opts = document.getElementById('new-cloze-options').value.split(',').map(s => s.trim());
-    const before = document.getElementById('new-cloze-before').value.trim();
-    const ans = document.getElementById('new-cloze-answer').value.trim();
-    const after = document.getElementById('new-cloze-after').value.trim();
-
-    newEx = {
-      id: newId,
-      level: level,
-      type: 'cloze',
-      instructionAr: document.getElementById('new-cloze-inst').value.trim(),
-      sentenceBefore: before,
-      blankAnswer: ans,
-      sentenceAfter: after,
-      fullSentence: `${before} ${ans} ${after}`,
-      options: opts,
-      ruleAr: ruleAr
-    };
-  }
-
-  if (newEx) {
-    state.curriculum.push(newEx);
-    state.saveCustomCurriculum();
-    state.applyFilters();
-    openTeacherModal();
-    alert('تمت إضافة التمرين بنجاح إلى المنهج وحفظه محلياً!');
-    document.getElementById('tab-btn-list').click();
-  }
-};
-
-function openTeacherModal() {
-  teacherModal.classList.remove('hidden');
-  curriculumList.innerHTML = state.curriculum.map(ex => {
-    return `
-      <div class="p-3 rounded-xl border border-slate-200 flex items-start gap-3 bg-slate-50 rtl-box">
-        <input type="checkbox" id="teacher-chk-${ex.id}" value="${ex.id}" checked class="mt-1 accent-blue-600 rounded">
-        <div class="flex-1">
-          <div class="flex justify-between items-center">
-            <span class="font-bold text-xs text-slate-800">[${ex.level}] ${getTypeLabel(ex.type)}</span>
-            <span class="text-[10px] text-slate-400 font-de">#${ex.id}</span>
-          </div>
-          <p class="text-slate-700 text-xs mt-1 font-de" dir="ltr">${ex.fullSentence || ex.noun}</p>
-          <p class="text-blue-700 text-[11px] mt-0.5 font-bold font-de" dir="ltr">Lösung: ${ex.correct || ex.blankAnswer || ex.correctOrder?.join(' ')}</p>
-          <p class="text-slate-500 text-[10px] mt-1">${ex.ruleAr}</p>
+  teacherToggleBtn.addEventListener('click', () => {
+    teacherModal.classList.remove('hidden');
+    curriculumList.innerHTML = state.curriculum.map(ex => `
+      <div class="p-3 rounded-xl border border-slate-200 bg-slate-50 rtl-box">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold text-xs text-blue-700">[${ex.level}] محور: ${ex.topic}</span>
+          <span class="text-[10px] text-slate-400 font-de">#${ex.id}</span>
         </div>
+        <p class="text-slate-700 text-xs font-de font-semibold" dir="ltr">${ex.fullSentence || ex.sentenceDisplay}</p>
+        <p class="text-green-700 text-[11px] font-bold mt-1 font-de" dir="ltr">Lösung: ${ex.blankAnswer || ex.correct || ex.correctOrder?.join(' ')}</p>
       </div>
-    `;
-  }).join('');
+    `).join('');
+  });
+
+  closeTeacherModal.addEventListener('click', () => teacherModal.classList.add('hidden'));
+
+  btnExportLink.addEventListener('click', () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      exportConfirm.classList.remove('hidden');
+      setTimeout(() => exportConfirm.classList.add('hidden'), 2000);
+    });
+  });
 }
 
-teacherToggleBtn.addEventListener('click', openTeacherModal);
-closeTeacherModal.addEventListener('click', () => teacherModal.classList.add('hidden'));
-
-btnExportLink.addEventListener('click', () => {
-  const selected = teacherModal.querySelectorAll('input[type="checkbox"]:checked');
-  const ids = Array.from(selected).map(chk => chk.value).join(',');
-  const baseUrl = window.location.origin + window.location.pathname;
-  const assignmentUrl = `${baseUrl}?custom=${ids}`;
-
-  navigator.clipboard.writeText(assignmentUrl).then(() => {
-    exportConfirm.classList.remove('hidden');
-    setTimeout(() => exportConfirm.classList.add('hidden'), 2500);
-  });
-});
-
-// 11. SERVICE WORKER
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js').catch(() => {});

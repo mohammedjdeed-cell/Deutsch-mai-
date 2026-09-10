@@ -1,41 +1,44 @@
-/* Custom German Grammatical Color Schemes */
-.article-masculine {
-  color: #2563eb;
-  border-color: #2563eb;
-}
-.bg-masculine {
-  background-color: #2563eb;
-  color: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --font-arabic: 'Tajawal', sans-serif;
+  --font-german: 'Inter', system-ui, sans-serif;
 }
 
-.article-feminine {
-  color: #dc2626;
-  border-color: #dc2626;
-}
-.bg-feminine {
-  background-color: #dc2626;
-  color: #ffffff;
+body {
+  font-family: var(--font-arabic);
 }
 
-.article-neuter {
-  color: #16a34a;
-  border-color: #16a34a;
-}
-.bg-neuter {
-  background-color: #16a34a;
-  color: #ffffff;
+.font-de {
+  font-family: var(--font-german);
+  direction: ltr !important;
+  unicode-bidi: isolate;
 }
 
-.article-plural {
-  color: #d97706;
-  border-color: #d97706;
-}
-.bg-plural {
-  background-color: #d97706;
-  color: #ffffff;
+.rtl-box {
+  direction: rtl;
+  text-align: right;
 }
 
-/* Animations */
+.ltr-box {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Deutsche grammatikalische Farbkodierung */
+.article-masculine { color: #2563eb; border-color: #2563eb; }
+.bg-masculine { background-color: #2563eb; color: #ffffff; }
+
+.article-feminine { color: #dc2626; border-color: #dc2626; }
+.bg-feminine { background-color: #dc2626; color: #ffffff; }
+
+.article-neuter { color: #16a34a; border-color: #16a34a; }
+.bg-neuter { background-color: #16a34a; color: #ffffff; }
+
+.article-plural { color: #d97706; border-color: #d97706; }
+.bg-plural { background-color: #d97706; color: #ffffff; }
+
+/* Animationen */
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-8px); }
@@ -56,7 +59,7 @@
   animation: popSuccess 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* Mobile Touch Optimization */
+/* Touch-Optimierung */
 button, .touch-tile {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -67,9 +70,8 @@ button:active, .touch-tile:active {
   transform: scale(0.97);
 }
 
-/* Glassmorphism utility */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

@@ -1,92 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;700;800&display=swap');
 
 :root {
-  --font-arabic: 'Tajawal', sans-serif;
-  --font-german: 'Inter', system-ui, sans-serif;
+  --font-ar: 'Tajawal', sans-serif;
+  --font-de: 'Inter', system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-arabic);
+  font-family: var(--font-ar);
 }
 
 .font-de {
-  font-family: var(--font-german);
+  font-family: var(--font-de);
   direction: ltr !important;
   unicode-bidi: isolate;
 }
 
-.rtl-box {
-  direction: rtl;
-  text-align: right;
+.rtl-box { direction: rtl; text-align: right; }
+.ltr-box { direction: ltr; text-align: left; }
+
+/* Grammatik-Regelkarten */
+.rule-card {
+  border-right: 4px solid #2563eb;
+  background-color: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 10px 0;
 }
 
-.ltr-box {
-  direction: ltr;
-  text-align: left;
-}
-
-/* Deutsche grammatikalische Farbkodierung */
-.article-masculine { color: #2563eb; border-color: #2563eb; }
-.bg-masculine { background-color: #2563eb; color: #ffffff; }
-
-.article-feminine { color: #dc2626; border-color: #dc2626; }
-.bg-feminine { background-color: #dc2626; color: #ffffff; }
-
-.article-neuter { color: #16a34a; border-color: #16a34a; }
-.bg-neuter { background-color: #16a34a; color: #ffffff; }
-
-.article-plural { color: #d97706; border-color: #d97706; }
-.bg-plural { background-color: #d97706; color: #ffffff; }
-
-/* Grammatik-Tabelle */
+/* Tabellen */
 .grammar-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.75rem;
+  margin: 10px 0;
 }
 .grammar-table th, .grammar-table td {
   border: 1px solid #e2e8f0;
-  padding: 6px 8px;
+  padding: 8px 10px;
   text-align: center;
 }
 .grammar-table th {
   background-color: #f1f5f9;
   font-weight: 700;
+  color: #1e293b;
+}
+
+/* 20-Übungen-Raster */
+.ex-grid-item {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-de);
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
 /* Animationen */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-8px); }
-  40%, 80% { transform: translateX(8px); }
-}
-
-.animate-shake {
-  animation: shake 0.4s ease-in-out;
-}
-
 @keyframes popSuccess {
-  0% { transform: scale(0.95); opacity: 0; }
+  0% { transform: scale(0.96); opacity: 0; }
   60% { transform: scale(1.02); opacity: 1; }
   100% { transform: scale(1); }
 }
-
-.animate-pop {
-  animation: popSuccess 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
+.animate-pop { animation: popSuccess 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 
 button, .touch-tile {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   touch-action: manipulation;
 }
-
-button:active, .touch-tile:active {
-  transform: scale(0.97);
-}
+button:active, .touch-tile:active { transform: scale(0.97); }
 
 .glass-nav {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

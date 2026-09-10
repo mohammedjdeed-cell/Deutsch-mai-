@@ -3,74 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deutsch mit Mai – أكاديمية معهد غوته الشاملة</title>
+  <title>Deutsch mit Dr. Mai – أكاديمية غوته الشاملة</title>
 
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#1d4ed8">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: { 500: '#2563eb', 600: '#1d4ed8' }
-          }
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-full flex flex-col antialiased">
 
-  <!-- Universal 2026 Header -->
-  <header class="nav-glass sticky top-0 z-40">
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- Universal Executive Navigation Bar -->
+  <header class="dr-header sticky top-0 z-40 transition-colors">
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
       
-      <!-- Right Side: Drawer Toggle & Module Title -->
+      <!-- Right: Catalog Menu & Current Chapter Title -->
       <div class="flex items-center space-x-3 space-x-reverse">
-        <button id="btn-open-catalog" class="p-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="فهرس الوحدات">
+        <button id="btn-open-catalog" class="p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="فهرس الوحدات">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7"/></svg>
         </button>
         <div>
           <div class="flex items-center gap-2">
-            <span id="header-mod-badge" class="bg-blue-600 text-white text-xs px-2.5 py-0.5 rounded-md font-de font-extrabold">A1.01</span>
-            <h1 id="header-mod-title" class="text-sm sm:text-base font-black text-slate-900 dark:text-white truncate max-w-[200px] sm:max-w-md md:max-w-xl">
+            <span id="header-mod-badge" class="bg-blue-700 text-white text-xs px-2.5 py-0.5 rounded font-de font-black shadow-sm">A1.01</span>
+            <h1 id="header-mod-title" class="text-sm sm:text-base font-black truncate max-w-[200px] sm:max-w-md md:max-w-lg">
               عنوان الوحدة
             </h1>
           </div>
-          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400">منهاج غوته الرسمي • 40 تمريناً تدريبياً</p>
+          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-0.5">دروس واختبارات د. مي • 40 تمريناً لكل وحدة</p>
         </div>
       </div>
 
-      <!-- Left Side: Controls (Theme Toggle, Prev/Next, XP) -->
+      <!-- Left: Navigation Controls & Theme Toggle -->
       <div class="flex items-center space-x-2 space-x-reverse">
         
-        <!-- Prev/Next Navigation Controls -->
-        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-zinc-700">
-          <button id="btn-prev-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition flex items-center gap-1" title="الوحدة السابقة">
+        <!-- Prev / Next Chronological Arrows -->
+        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-300 dark:border-slate-700">
+          <button id="btn-prev-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-black transition flex items-center gap-1.5" title="الوحدة السابقة">
             <span>السابق</span>
-            <span class="font-de">◀</span>
+            <span class="font-de font-bold">◀</span>
           </button>
-          <div class="w-px h-4 bg-slate-300 dark:bg-zinc-700 mx-1"></div>
-          <button id="btn-next-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition flex items-center gap-1" title="الوحدة التالية">
-            <span class="font-de">▶</span>
+          <div class="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1"></div>
+          <button id="btn-next-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-black transition flex items-center gap-1.5" title="الوحدة التالية">
+            <span class="font-de font-bold">▶</span>
             <span>التالي</span>
           </button>
         </div>
 
-        <!-- Dark / Light Theme Toggle -->
-        <button id="btn-theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition" title="تبديل الوضع الليلي">
-          <svg id="icon-theme-sun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="icon-theme-moon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <!-- High-Contrast Dark/Light Mode Toggle -->
+        <button id="btn-theme-toggle" class="p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="تبديل النمط">
+          <svg id="icon-theme-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="icon-theme-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
         <!-- XP Badge -->
-        <div class="flex items-center space-x-1.5 space-x-reverse bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-xl text-amber-600 dark:text-amber-400 font-de font-black text-xs">
+        <div class="flex items-center space-x-1.5 space-x-reverse bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-xl text-amber-600 dark:text-amber-400 font-de font-black text-xs">
           <span>⚡</span>
           <span id="stat-xp">0 XP</span>
         </div>
@@ -78,35 +66,35 @@
       </div>
     </div>
 
-    <!-- Mode Selector Tab Bar -->
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between border-t border-slate-200/60 dark:border-zinc-800/80">
+    <!-- Mode Selector Tabs (Lesson vs 40 Exercises) -->
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-800">
       <div class="flex gap-2">
-        <button id="tab-btn-lesson" class="px-4 py-2 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition">
+        <button id="tab-btn-lesson" class="px-4 py-2 rounded-xl bg-blue-700 text-white font-bold text-xs flex items-center gap-2 shadow transition">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          <span>درس وقواعد الوحدة</span>
+          <span>شرح د. مي وقواعد الوحدة</span>
         </button>
-        <button id="tab-btn-practice" class="px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+        <button id="tab-btn-practice" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-2 transition">
           <span>✍️ بنك التمارين</span>
-          <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-[10px] font-de px-1.5 py-0.5 rounded-full font-black">40 Aufgabe</span>
+          <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 text-[10px] font-de px-2 py-0.5 rounded-full font-black">40 Aufgabe</span>
         </button>
       </div>
-      <span id="current-tier-indicator" class="text-xs font-bold text-slate-500 hidden sm:block">المستوى التدريبي: التأسيس</span>
+      <span class="text-xs font-bold text-slate-500 hidden sm:block">منهاج غوته الرسمي الكامل</span>
     </div>
   </header>
 
-  <!-- Full-Width Fluid Workspace -->
-  <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col justify-between">
+  <!-- Fluid Main Content Canvas (No double scrollbars) -->
+  <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col justify-between">
     
-    <!-- VIEW 1: COMPENDIUM GRAMMAR LESSON (Full-width, natural scrolling) -->
+    <!-- VIEW 1: DR. MAI TEACHER LESSON (Fluid natural page scroll) -->
     <section id="view-lesson" class="w-full space-y-6">
       <div id="lesson-content-body" class="space-y-6">
-        <!-- Rendered via app.js -->
+        <!-- Rendered dynamically via app.js -->
       </div>
 
-      <div class="pt-6 border-t border-slate-200 dark:border-zinc-800">
-        <button onclick="switchToPracticeMode()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-500/20 transition flex items-center justify-center gap-2">
-          <span>ابدأ حل تمارين هذه الوحدة (40 تمريناً تدريجياً)</span>
-          <span class="font-de">➔</span>
+      <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+        <button onclick="switchToPracticeMode()" class="w-full py-4 bg-blue-700 hover:bg-blue-800 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-600/20 transition flex items-center justify-center gap-2">
+          <span>ابدأ التدريب التفاعلي الآن (40 تمريناً مقسماً حسب الصعوبة)</span>
+          <span class="font-de text-base">➔</span>
         </button>
       </div>
     </section>
@@ -115,18 +103,18 @@
     <section id="view-practice" class="w-full flex-1 flex flex-col justify-between hidden space-y-6">
       
       <!-- 40-Pills Navigator -->
-      <div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-sm space-y-4">
+      <div class="dr-card p-5 space-y-4">
         
-        <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-bold border-b border-slate-100 dark:border-zinc-800 pb-3">
-          <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
-            <span class="text-slate-400 text-xs ml-1">تصفية المراحل:</span>
-            <button onclick="filterTier('all')" class="tier-chip px-3 py-1 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold">الكل (1-40)</button>
-            <button onclick="filterTier(1)" class="tier-chip px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-emerald-600 font-bold">🟢 1-10 تأسيس</button>
-            <button onclick="filterTier(2)" class="tier-chip px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-600 font-bold">🟡 11-20 تثبيت</button>
-            <button onclick="filterTier(3)" class="tier-chip px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-orange-600 font-bold">🟠 21-30 تطبيق</button>
-            <button onclick="filterTier(4)" class="tier-chip px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-rose-600 font-bold">🔴 31-40 امتحان</button>
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-bold border-b border-slate-200 dark:border-slate-800 pb-3">
+          <div class="flex items-center gap-2 overflow-x-auto pb-1">
+            <span class="text-slate-500 dark:text-slate-400 text-xs ml-1">تصفية التمارين:</span>
+            <button onclick="filterTier('all')" class="tier-chip px-3 py-1.5 rounded-lg bg-blue-700 text-white font-black text-xs transition">الكل (1-40)</button>
+            <button onclick="filterTier(1)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 font-black text-xs transition">🟢 1-10 تأسيس</button>
+            <button onclick="filterTier(2)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-700 dark:text-amber-400 font-black text-xs transition">🟡 11-20 تثبيت</button>
+            <button onclick="filterTier(3)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-orange-700 dark:text-orange-400 font-black text-xs transition">🟠 21-30 تطبيق</button>
+            <button onclick="filterTier(4)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-rose-700 dark:text-rose-400 font-black text-xs transition">🔴 31-40 غوته</button>
           </div>
-          <span id="practice-progress-label" class="font-de font-black text-blue-600 dark:text-blue-400">Aufgabe 1 / 40</span>
+          <span id="practice-progress-label" class="font-de font-black text-blue-700 dark:text-blue-400 text-xs">Aufgabe 1 / 40</span>
         </div>
 
         <!-- 40 Grid Pills -->
@@ -135,30 +123,30 @@
         </div>
       </div>
 
-      <!-- Active Exercise Card Arena -->
+      <!-- Active Question Arena -->
       <div id="exercise-stage" class="w-full flex-1 flex flex-col items-center justify-center py-8">
         <!-- Rendered dynamically via app.js -->
       </div>
 
-      <!-- Teacher Hint & Explanation Toggle -->
+      <!-- Teacher Hint Drawer -->
       <div class="w-full flex flex-col items-center">
-        <button id="btn-show-hint" class="px-5 py-2.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 text-amber-900 dark:text-amber-200 text-xs font-bold transition flex items-center gap-2">
-          <span>💡 تلميح وشرح الأستاذة مي قبل الإجابة</span>
+        <button id="btn-show-hint" class="px-5 py-2.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 text-xs font-black transition flex items-center gap-2">
+          <span>💡 مساعدة وتلميح من د. مي قبل الإجابة</span>
         </button>
-        <div id="hint-text" class="hidden mt-3 p-4 bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/80 rounded-2xl text-xs sm:text-sm text-amber-950 dark:text-amber-100 max-w-2xl w-full leading-relaxed animate-pop"></div>
+        <div id="hint-text" class="hidden mt-3 p-4 bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 rounded-2xl text-xs sm:text-sm text-blue-950 dark:text-blue-100 max-w-2xl w-full leading-relaxed animate-pop"></div>
       </div>
 
-      <!-- Feedback Panel -->
-      <div id="feedback-panel" class="hidden w-full p-6 rounded-2xl border transition-all shadow-sm">
+      <!-- High-Contrast Feedback Component -->
+      <div id="feedback-panel" class="hidden w-full p-6 rounded-2xl border transition-all shadow-md">
         <div class="flex items-start justify-between gap-4">
           <div class="flex items-start space-x-3.5 space-x-reverse">
-            <div id="feedback-icon" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5"></div>
+            <div id="feedback-icon" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5 font-bold text-white"></div>
             <div>
               <h3 id="feedback-title" class="font-black text-base"></h3>
-              <p id="feedback-summary" class="text-xs sm:text-sm mt-1 text-slate-700 dark:text-slate-300 font-medium leading-relaxed"></p>
+              <p id="feedback-summary" class="text-xs sm:text-sm mt-1.5 text-slate-700 dark:text-slate-300 font-medium leading-relaxed"></p>
             </div>
           </div>
-          <button id="btn-audio-repeat" class="p-3 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-xl transition shrink-0" title="استمع للنطق الصحيح">
+          <button id="btn-audio-repeat" class="p-3 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-xl transition shrink-0" title="استمع للنطق الصحيح">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/></svg>
           </button>
         </div>
@@ -173,32 +161,32 @@
 
   </main>
 
-  <!-- Right-Anchored Catalog Drawer -->
+  <!-- Firmly Right-Anchored Drawer (Matches Button Position) -->
   <div id="catalog-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
     <!-- Backdrop -->
-    <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity" onclick="toggleCatalog(false)"></div>
+    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCatalog(false)"></div>
     
     <!-- Slide-over panel anchored firmly to the RIGHT -->
     <div class="fixed inset-y-0 right-0 max-w-full flex">
-      <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-zinc-800">
+      <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800">
         
         <!-- Drawer Header -->
-        <div class="p-5 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between">
+        <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <h2 class="font-black text-base text-slate-900 dark:text-white">منهاج غوته (30 وحدة)</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400">A1 (13 وحدة) • A2 (17 وحدة)</p>
+            <h2 class="font-black text-base text-slate-900 dark:text-white">منهاج غوته الرسمي (30 وحدة)</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">اختر الوحدة لفتح شرح د. مي والـ 40 تمريناً</p>
           </div>
-          <button onclick="toggleCatalog(false)" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <button onclick="toggleCatalog(false)" class="p-2 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
 
-        <!-- Search Bar -->
-        <div class="p-4 border-b border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-slate-900/50">
-          <input id="catalog-search" type="text" placeholder="ابحث عن وحدة (Akkusativ, Dativ, Passiv...)" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white outline-none focus:border-blue-600 transition">
+        <!-- Search Input -->
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
+          <input id="catalog-search" type="text" placeholder="ابحث عن وحدة (Akkusativ, Dativ, Passiv...)" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white outline-none focus:border-blue-600 transition">
         </div>
 
-        <!-- Modules List -->
+        <!-- Scrollable Units List -->
         <div class="p-4 overflow-y-auto space-y-2 flex-1" id="catalog-list">
           <!-- Populated dynamically via app.js -->
         </div>

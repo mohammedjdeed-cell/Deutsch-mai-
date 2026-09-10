@@ -3,198 +3,1303 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Deutsch mit Dr. Mai – أكاديمية غوته الشاملة</title>
+  <title>Deutsch mit Dr. Mai – أكاديمية غوته التفاعلية A1–A2</title>
 
-  <link rel="manifest" href="manifest.webmanifest">
+  <!-- PWA Metadata & Inlined Manifest -->
   <meta name="theme-color" content="#1d4ed8">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiRGV1dHNjaCBtaXQgRHIuIE1haSIsInNob3J0X25hbWUiOiJEZXV0c2NoTWFpIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwZjE3MmEiLCJ0aGVtZV9jb2xvciI6IiMxZDRlZDgiLCJpY29ucyI6W3sic3JjIjoiaHR0cHM6Ly9mYXZpY29uLmlvL2ljby9mYXZpY29uLTE2eDE2LnBuZyIsInNpemVzIjoiMTZ4MTYiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+
+  <!-- Typography: Tajawal (Arabic) + Plus Jakarta Sans (German) + JetBrains Mono (Grammar Formulas) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            ar: ['Tajawal', 'sans-serif'],
+            de: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 900: '#1e3a8a' },
+            nom: { bg: '#dbeafe', text: '#1e40af', dark: '#1e3a8a' },
+            akk: { bg: '#dcfce7', text: '#166534', dark: '#14532d' },
+            dat: { bg: '#fef3c7', text: '#92400e', dark: '#78350f' },
+            gen: { bg: '#f3e8ff', text: '#6b21a8', dark: '#581c87' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* =========================================================================
+       CUSTOM STYLES & PEDAGOGICAL DESIGN TOKENS
+       ========================================================================= */
+    :root {
+      --bg-app: #f8fafc;
+      --bg-card: #ffffff;
+      --border-card: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+    .dark {
+      --bg-app: #030712;
+      --bg-card: #0b1120;
+      --border-card: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* Directional Isolation */
+    .ltr-zone { direction: ltr !important; text-align: left !important; unicode-bidi: isolate; }
+    .rtl-zone { direction: rtl !important; text-align: right !important; unicode-bidi: isolate; }
+
+    /* Tactile 3D Buttons */
+    .btn-tactile {
+      transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+    }
+    .btn-tactile:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    /* Structural Formula Terminal */
+    .formula-terminal {
+      background: linear-gradient(145deg, #090e1a, #030712);
+      border: 1px solid #1e293b;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Custom Word Tiles for Scramble Practice */
+    .word-tile {
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.12);
+    }
+    .word-tile:hover { transform: translateY(-2px); }
+    .word-tile:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.12); }
+    .word-tile.used { opacity: 0.35; pointer-events: none; transform: scale(0.96); filter: grayscale(1); }
+
+    /* Grammar Table Scrollbar */
+    .table-container::-webkit-scrollbar { height: 6px; }
+    .table-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .dark .table-container::-webkit-scrollbar-thumb { background: #334155; }
+
+    /* Shaking & Pop Keyframes */
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+    .animate-shake { animation: shake 0.35s ease-in-out; }
+
+    @keyframes popIn { 0% { transform: scale(0.96); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .animate-pop { animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+    /* Classroom Projector High-Contrast Mode */
+    body.projector-mode {
+      font-size: 1.25rem !important;
+    }
+    body.projector-mode .formula-terminal {
+      font-size: 1.5rem !important;
+      padding: 1.5rem !important;
+    }
+    body.projector-mode .dr-card {
+      border-width: 2px !important;
+    }
+
+    /* Print Styles for Printable Worksheet Generator */
+    @media print {
+      body { background: white !important; color: black !important; font-size: 11pt; }
+      header, #toolbar-bottom, #catalog-drawer, .no-print, #trainer-section { display: none !important; }
+      #view-lesson { display: block !important; }
+      .dr-card { border: 1px solid #94a3b8 !important; box-shadow: none !important; break-inside: avoid; }
+      .formula-terminal { background: #f8fafc !important; color: black !important; border: 1px solid black !important; }
+      #print-worksheet-area { display: block !important; }
+    }
+  </style>
 </head>
+
 <body class="min-h-full flex flex-col antialiased">
 
-  <!-- Universal Executive Navigation Bar -->
-  <header class="dr-header sticky top-0 z-40 transition-colors">
-    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+  <!-- =========================================================================
+       1. UNIVERSAL EXECUTIVE HEADER
+       ========================================================================= -->
+  <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-2">
       
-      <!-- Right: Catalog Menu & Current Chapter Title -->
-      <div class="flex items-center space-x-3 space-x-reverse">
-        <button id="btn-open-catalog" class="p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="فهرس الوحدات">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h7"/></svg>
+      <!-- Right: Catalog Toggle & Current Module Title -->
+      <div class="flex items-center gap-3">
+        <button id="btn-catalog" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition btn-tactile" title="فهرس الوحدات الدراسية">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h8"/></svg>
         </button>
         <div>
           <div class="flex items-center gap-2">
-            <span id="header-mod-badge" class="bg-blue-700 text-white text-xs px-2.5 py-0.5 rounded font-de font-black shadow-sm">A1.01</span>
-            <h1 id="header-mod-title" class="text-sm sm:text-base font-black truncate max-w-[200px] sm:max-w-md md:max-w-lg">
-              عنوان الوحدة
-            </h1>
+            <span id="badge-level" class="bg-blue-600 text-white text-[11px] font-de font-black px-2 py-0.5 rounded shadow-sm">A1.01</span>
+            <h1 id="header-title" class="text-sm sm:text-base font-black truncate max-w-[180px] sm:max-w-xs md:max-w-md">الضمائر الشخصية وتصريف الحاضر</h1>
           </div>
-          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-0.5">دروس واختبارات د. مي • 40 تمريناً لكل وحدة</p>
+          <p class="text-[11px] font-bold text-slate-500 dark:text-slate-400">منهاج معهد غوته الرسمي • تدريب تفاعلي وشرح معلم</p>
         </div>
       </div>
 
-      <!-- Left: Navigation Controls & Theme Toggle -->
-      <div class="flex items-center space-x-2 space-x-reverse">
+      <!-- Left: Teacher Mode, Projector, XP, & Theme -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
         
-        <!-- Prev / Next Chronological Arrows -->
-        <div class="flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-300 dark:border-slate-700">
-          <button id="btn-prev-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-black transition flex items-center gap-1.5" title="الوحدة السابقة">
-            <span>السابق</span>
-            <span class="font-de font-bold">◀</span>
-          </button>
-          <div class="w-px h-4 bg-slate-300 dark:bg-slate-600 mx-1"></div>
-          <button id="btn-next-mod" class="px-3 py-1.5 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-black transition flex items-center gap-1.5" title="الوحدة التالية">
-            <span class="font-de font-bold">▶</span>
-            <span>التالي</span>
-          </button>
-        </div>
+        <!-- Teacher Toolkit Button -->
+        <button id="btn-teacher-mode" class="px-2.5 py-1.5 rounded-xl border border-amber-300 dark:border-amber-700 bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 text-xs font-black flex items-center gap-1 transition btn-tactile" title="أدوات المعلم (كشف الحلول / وضع القاعة)">
+          <span>👩‍🏫</span>
+          <span class="hidden md:inline">وضع المعلم</span>
+        </button>
 
-        <!-- High-Contrast Dark/Light Mode Toggle -->
-        <button id="btn-theme-toggle" class="p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="تبديل النمط">
-          <svg id="icon-theme-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          <svg id="icon-theme-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <!-- Projector Mode Toggle -->
+        <button id="btn-projector" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="عرض قاعة الدروس (خط كبير)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </button>
+
+        <!-- Audio Rate Selector -->
+        <button id="btn-audio-speed" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] font-de font-bold text-slate-600 dark:text-slate-300" title="سرعة النطق الصوتي">
+          🔊 0.85x
+        </button>
+
+        <!-- Dark/Light Theme -->
+        <button id="btn-theme" class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+          <svg id="icon-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="icon-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
 
         <!-- XP Badge -->
-        <div class="flex items-center space-x-1.5 space-x-reverse bg-amber-500/10 border border-amber-500/30 px-3 py-1.5 rounded-xl text-amber-600 dark:text-amber-400 font-de font-black text-xs">
+        <div class="flex items-center gap-1 bg-amber-500/10 border border-amber-500/30 px-2.5 py-1.5 rounded-xl text-amber-700 dark:text-amber-400 font-de font-black text-xs">
           <span>⚡</span>
-          <span id="stat-xp">0 XP</span>
+          <span id="xp-counter">0 XP</span>
         </div>
 
       </div>
     </div>
 
-    <!-- Mode Selector Tabs (Lesson vs 40 Exercises) -->
-    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-between border-t border-slate-200 dark:border-slate-800">
+    <!-- Mode Selector Tabs -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-1.5 flex items-center justify-between border-t border-slate-100 dark:border-slate-800/80">
       <div class="flex gap-2">
-        <button id="tab-btn-lesson" class="px-4 py-2 rounded-xl bg-blue-700 text-white font-bold text-xs flex items-center gap-2 shadow transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          <span>شرح د. مي وقواعد الوحدة</span>
+        <button id="tab-lesson" class="px-4 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition btn-tactile">
+          <span>📖 شرح د. مي والقواعد</span>
         </button>
-        <button id="tab-btn-practice" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-2 transition">
-          <span>✍️ بنك التمارين</span>
-          <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 text-[10px] font-de px-2 py-0.5 rounded-full font-black">40 Aufgabe</span>
+        <button id="tab-practice" class="px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-1.5 transition">
+          <span>✍️ ورشة التدريب التفاعلي</span>
+          <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 text-[10px] font-de font-black px-1.5 py-0.2 rounded-full">4 أنماط</span>
+        </button>
+        <button id="tab-reference" class="hidden sm:flex px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs items-center gap-1.5 transition">
+          <span>🗂️ بوصلة القواعد السريعة</span>
         </button>
       </div>
-      <span class="text-xs font-bold text-slate-500 hidden sm:block">منهاج غوته الرسمي الكامل</span>
+
+      <!-- Quick Prev/Next Module Arrows -->
+      <div class="flex items-center gap-1">
+        <button id="btn-prev-mod" class="px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-black text-slate-600 dark:text-slate-300">السابق ◀</button>
+        <button id="btn-next-mod" class="px-2.5 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-black text-slate-600 dark:text-slate-300">▶ التالي</button>
+      </div>
     </div>
   </header>
 
-  <!-- Fluid Main Content Canvas (No double scrollbars) -->
-  <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col justify-between">
-    
-    <!-- VIEW 1: DR. MAI TEACHER LESSON (Fluid natural page scroll) -->
-    <section id="view-lesson" class="w-full space-y-6">
-      <div id="lesson-content-body" class="space-y-6">
-        <!-- Rendered dynamically via app.js -->
+  <!-- =========================================================================
+       2. MAIN CONTENT AREA
+       ========================================================================= -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6">
+
+    <!-- ---------------------------------------------------------------------
+         VIEW 1: DR. MAI TEACHER LECTURE & GRAMMAR (SHARH)
+         --------------------------------------------------------------------- -->
+    <section id="view-lesson" class="space-y-6">
+      <div id="lesson-render-target" class="space-y-6">
+        <!-- Rendered dynamically -->
       </div>
 
-      <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
-        <button onclick="switchToPracticeMode()" class="w-full py-4 bg-blue-700 hover:bg-blue-800 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-600/20 transition flex items-center justify-center gap-2">
-          <span>ابدأ التدريب التفاعلي الآن (40 تمريناً مقسماً حسب الصعوبة)</span>
-          <span class="font-de text-base">➔</span>
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-3 items-center justify-between no-print">
+        <button onclick="switchTab('practice')" class="px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-blue-600/25 transition btn-tactile flex items-center gap-2">
+          <span>انتقل إلى ورشة التدريب التفاعلي لهذا الدرس</span>
+          <span class="font-de">➔</span>
+        </button>
+        <button onclick="window.print()" class="px-4 py-3.5 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-2xl text-xs font-bold transition flex items-center gap-2">
+          <span>🖨️ طباعة ورقة عمل للطلاب (Worksheet)</span>
         </button>
       </div>
     </section>
 
-    <!-- VIEW 2: 40-EXERCISE TIERED ENGINE -->
-    <section id="view-practice" class="w-full flex-1 flex flex-col justify-between hidden space-y-6">
+    <!-- ---------------------------------------------------------------------
+         VIEW 2: MULTI-MODE INTERACTIVE PRACTICE ARENA
+         --------------------------------------------------------------------- -->
+    <section id="view-practice" class="hidden space-y-6">
       
-      <!-- 40-Pills Navigator -->
-      <div class="dr-card p-5 space-y-4">
-        
-        <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-bold border-b border-slate-200 dark:border-slate-800 pb-3">
-          <div class="flex items-center gap-2 overflow-x-auto pb-1">
-            <span class="text-slate-500 dark:text-slate-400 text-xs ml-1">تصفية التمارين:</span>
-            <button onclick="filterTier('all')" class="tier-chip px-3 py-1.5 rounded-lg bg-blue-700 text-white font-black text-xs transition">الكل (1-40)</button>
-            <button onclick="filterTier(1)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 font-black text-xs transition">🟢 1-10 تأسيس</button>
-            <button onclick="filterTier(2)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-amber-700 dark:text-amber-400 font-black text-xs transition">🟡 11-20 تثبيت</button>
-            <button onclick="filterTier(3)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-orange-700 dark:text-orange-400 font-black text-xs transition">🟠 21-30 تطبيق</button>
-            <button onclick="filterTier(4)" class="tier-chip px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-rose-700 dark:text-rose-400 font-black text-xs transition">🔴 31-40 غوته</button>
+      <!-- Trainer Nav & Mode Bar -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs font-bold text-slate-500 ml-2">نمط التدريب:</span>
+            <button onclick="setPracticeMode('mcq')" id="pmode-mcq" class="px-3 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs transition btn-tactile">🎯 خيارات متعددة</button>
+            <button onclick="setPracticeMode('scramble')" id="pmode-scramble" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition">🧩 تركيب الجملة (Satzbau)</button>
+            <button onclick="setPracticeMode('cloze')" id="pmode-cloze" class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition">✍️ كتابة وإملاء</button>
           </div>
-          <span id="practice-progress-label" class="font-de font-black text-blue-700 dark:text-blue-400 text-xs">Aufgabe 1 / 40</span>
+          <div class="flex items-center gap-3">
+            <span id="streak-counter" class="text-xs font-bold text-orange-600 dark:text-orange-400">🔥 سلسلة: 0</span>
+            <span id="q-counter-badge" class="font-de text-xs font-black bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg">Aufgabe 1 / 10</span>
+          </div>
         </div>
 
-        <!-- 40 Grid Pills -->
-        <div class="grid grid-cols-8 sm:grid-cols-10 md:grid-cols-20 gap-2 justify-items-center" id="pills-grid-40">
-          <!-- Populated dynamically via app.js -->
+        <!-- Exercise Stepper Pills (10 Exercises per Module) -->
+        <div class="flex items-center justify-between gap-1 overflow-x-auto pb-1" id="exercise-stepper">
+          <!-- Populated dynamically -->
         </div>
       </div>
 
-      <!-- Active Question Arena -->
-      <div id="exercise-stage" class="w-full flex-1 flex flex-col items-center justify-center py-8">
-        <!-- Rendered dynamically via app.js -->
+      <!-- Practice Interactive Stage -->
+      <div id="interactive-stage" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm flex flex-col items-center justify-center min-h-[340px] relative">
+        <!-- Injected dynamically -->
       </div>
 
-      <!-- Teacher Hint Drawer -->
-      <div class="w-full flex flex-col items-center">
-        <button id="btn-show-hint" class="px-5 py-2.5 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 text-xs font-black transition flex items-center gap-2">
-          <span>💡 مساعدة وتلميح من د. مي قبل الإجابة</span>
-        </button>
-        <div id="hint-text" class="hidden mt-3 p-4 bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-800 rounded-2xl text-xs sm:text-sm text-blue-950 dark:text-blue-100 max-w-2xl w-full leading-relaxed animate-pop"></div>
-      </div>
-
-      <!-- High-Contrast Feedback Component -->
-      <div id="feedback-panel" class="hidden w-full p-6 rounded-2xl border transition-all shadow-md">
+      <!-- Teacher Feedback & Audio Card -->
+      <div id="answer-feedback" class="hidden rounded-2xl p-5 border transition-all animate-pop">
         <div class="flex items-start justify-between gap-4">
-          <div class="flex items-start space-x-3.5 space-x-reverse">
-            <div id="feedback-icon" class="w-9 h-9 rounded-full flex items-center justify-center shrink-0 mt-0.5 font-bold text-white"></div>
+          <div class="flex items-start gap-3">
+            <div id="feedback-icon-box" class="w-10 h-10 rounded-2xl flex items-center justify-center text-white shrink-0 mt-0.5"></div>
             <div>
-              <h3 id="feedback-title" class="font-black text-base"></h3>
-              <p id="feedback-summary" class="text-xs sm:text-sm mt-1.5 text-slate-700 dark:text-slate-300 font-medium leading-relaxed"></p>
+              <h4 id="feedback-headline" class="font-black text-base"></h4>
+              <p id="feedback-explanation" class="text-xs sm:text-sm mt-1 text-slate-700 dark:text-slate-300 leading-relaxed font-medium"></p>
             </div>
           </div>
-          <button id="btn-audio-repeat" class="p-3 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 rounded-xl transition shrink-0" title="استمع للنطق الصحيح">
+          <button id="btn-listen-sentence" class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-blue-600 dark:text-blue-400 transition shrink-0" title="استمع للنطق الصحيح">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M6 10H4a1 1 0 00-1 1v2a1 1 0 001 1h2l5 5V4L6 10z"/></svg>
           </button>
         </div>
 
-        <button id="btn-next-ex" class="mt-5 w-full py-3.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-sm rounded-xl shadow transition flex items-center justify-center gap-2">
-          <span>التالي (Aufgabe abschließen)</span>
-          <span class="font-de">➔</span>
-        </button>
+        <div class="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-700/60 flex justify-end">
+          <button onclick="advanceNextExercise()" class="px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-black text-xs transition btn-tactile flex items-center gap-1.5">
+            <span>التمرين التالي</span>
+            <span class="font-de">➔</span>
+          </button>
+        </div>
       </div>
 
     </section>
 
+    <!-- ---------------------------------------------------------------------
+         VIEW 3: QUICK REFERENCE & GRAMMAR COMPASS
+         --------------------------------------------------------------------- -->
+    <section id="view-reference" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Preposition Compass -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 class="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🧭</span>
+            <span>بوصلة حروف الجر وحالات الإعراب:</span>
+          </h3>
+          <div class="space-y-2 text-xs">
+            <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800">
+              <strong class="text-emerald-900 dark:text-emerald-200 block mb-1">Akkusativ فقط (DOGFU):</strong>
+              <span class="font-de font-black text-emerald-700 dark:text-emerald-400">Durch, Ohne, Gegen, Für, Um</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تأخذ دائماً نصباً ولا تقبل الجر أبداً.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800">
+              <strong class="text-amber-900 dark:text-amber-200 block mb-1">Dativ فقط:</strong>
+              <span class="font-de font-black text-amber-700 dark:text-amber-400">Aus, Bei, Mit, Nach, Seit, Von, Zu, Gegenüber</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">تأخذ دائماً مجرور Dativ وتغير أدوات التعريف.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800">
+              <strong class="text-blue-900 dark:text-blue-200 block mb-1">المشتركة التسعة (Wechselpräpositionen):</strong>
+              <span class="font-de font-black text-blue-700 dark:text-blue-400">an, auf, hinter, in, neben, über, unter, vor, zwischen</span>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 mt-1">Wo? (أين ثبات) = Dativ | Wohin? (إلى أين حركة) = Akkusativ.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Adjective Endings Master Matrix -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 class="font-black text-sm text-slate-900 dark:text-white flex items-center gap-2">
+            <span>🚦</span>
+            <span>القاعدة الذهبية لنهايات الصفات (Adjektivdeklination):</span>
+          </h3>
+          <div class="space-y-2 text-xs">
+            <div class="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800">
+              <strong class="text-purple-900 dark:text-purple-200 block mb-1">قاعدة الإنقاذ في الامتحانات:</strong>
+              <p class="leading-relaxed">أي صفة تقع في حالة <strong>Dativ</strong> أو <strong>Genitiv</strong> أو في <strong>الجمع Plural</strong> تأخذ حتماً النهاية <span class="font-de font-bold text-purple-700 dark:text-purple-400 underline">-en</span> بدون أي تردد!</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 font-de text-[11px] leading-relaxed">
+              <span class="font-bold text-blue-600 dark:text-blue-400">Nominativ Singular:</span><br>
+              • der alte Mann (-e) | ein alter Mann (-er)<br>
+              • das neue Auto (-e) | ein neues Auto (-es)<br>
+              • die junge Frau (-e) | eine junge Frau (-e)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- Firmly Right-Anchored Drawer (Matches Button Position) -->
+  <!-- =========================================================================
+       3. CATALOG DRAWER (RIGHT-ANCHORED FULL CURRICULUM A1–A2)
+       ========================================================================= -->
   <div id="catalog-drawer" class="fixed inset-0 z-50 overflow-hidden hidden">
-    <!-- Backdrop -->
-    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity" onclick="toggleCatalog(false)"></div>
-    
-    <!-- Slide-over panel anchored firmly to the RIGHT -->
+    <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity" onclick="toggleCatalog(false)"></div>
     <div class="fixed inset-y-0 right-0 max-w-full flex">
       <div class="w-screen max-w-md bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800">
         
-        <!-- Drawer Header -->
-        <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <!-- Header -->
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
-            <h2 class="font-black text-base text-slate-900 dark:text-white">منهاج غوته الرسمي (30 وحدة)</h2>
-            <p class="text-xs text-slate-500 dark:text-slate-400">اختر الوحدة لفتح شرح د. مي والـ 40 تمريناً</p>
+            <h2 class="font-black text-sm text-slate-900 dark:text-white">منهاج غوته التفاعلي (A1 – A2)</h2>
+            <p class="text-[11px] text-slate-500">اختر الوحدة لبدء الشرح والتمارين</p>
           </div>
-          <button onclick="toggleCatalog(false)" class="p-2 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+          <button onclick="toggleCatalog(false)" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white">✕</button>
         </div>
 
-        <!-- Search Input -->
-        <div class="p-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
-          <input id="catalog-search" type="text" placeholder="ابحث عن وحدة (Akkusativ, Dativ, Passiv...)" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white outline-none focus:border-blue-600 transition">
+        <!-- Filter / Search -->
+        <div class="p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+          <input id="catalog-search-input" type="text" placeholder="ابحث عن درس (Akkusativ, Perfekt, Weil...)" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 outline-none focus:border-blue-600">
         </div>
 
-        <!-- Scrollable Units List -->
-        <div class="p-4 overflow-y-auto space-y-2 flex-1" id="catalog-list">
-          <!-- Populated dynamically via app.js -->
+        <!-- Scrollable Units -->
+        <div class="flex-1 overflow-y-auto p-3 space-y-2" id="catalog-units-list">
+          <!-- Populated dynamically -->
         </div>
 
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- =========================================================================
+       4. TEACHER TOOLKIT MODAL
+       ========================================================================= -->
+  <div id="teacher-modal" class="fixed inset-0 z-50 overflow-hidden hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm" onclick="toggleTeacherModal(false)"></div>
+    <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-5 animate-pop">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">👩‍🏫</span>
+          <h3 class="font-black text-base">حقيبة المعلم التفاعلية (Teacher Tools)</h3>
+        </div>
+        <button onclick="toggleTeacherModal(false)" class="text-slate-400 hover:text-slate-600">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <label class="flex items-center justify-between p-3 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60">
+          <div>
+            <strong class="block font-bold">كشف الحلول التلقائي (Reveal Answers)</strong>
+            <span class="text-slate-500">إظهار الإجابات الصحيحة مباشرة لمساعدة الأستاذ أثناء العرض</span>
+          </div>
+          <input type="checkbox" id="check-reveal-mode" class="w-5 h-5 accent-blue-600 rounded">
+        </label>
+
+        <label class="flex items-center justify-between p-3 rounded-2xl border border-slate-200 dark:border-slate-800 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/60">
+          <div>
+            <strong class="block font-bold">وضع العرض الصفي (Classroom Smartboard)</strong>
+            <span class="text-slate-500">تكبير النصوص والأمثلة لتناسب شاشات العرض الكبيرة</span>
+          </div>
+          <input type="checkbox" id="check-projector-toggle" class="w-5 h-5 accent-blue-600 rounded">
+        </label>
+      </div>
+
+      <div class="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-2xl border border-amber-200 dark:border-amber-800 text-[11px] text-amber-800 dark:text-amber-300 leading-relaxed font-medium">
+        💡 <strong>نصيحة د. مي البيداغوجية:</strong> في تدريس الجمل الثانوية (Nebensätze)، اطلب دائماً من الطلاب تحديد الفعل المصرف أولاً ثم نقله بإصبعهم إلى نهاية الجملة مباشرة قبل وضع النقطة.
+      </div>
+
+      <button onclick="toggleTeacherModal(false)" class="w-full py-2.5 bg-blue-600 text-white font-black rounded-xl text-xs btn-tactile">حفظ وإغلاق</button>
+    </div>
+  </div>
+
+  <!-- Hidden Printable Worksheet Section (Used during Ctrl+P) -->
+  <div id="print-worksheet-area" class="hidden p-6 text-black">
+    <div class="text-center border-b-2 border-black pb-4 mb-6">
+      <h1 class="text-2xl font-black">ورقة عمل واختبار صفي – لغة ألمانية</h1>
+      <p class="text-sm font-bold mt-1">Deutsch mit Dr. Mai • المنهاج الرسمي للتدريب اللغوي</p>
+      <div class="flex justify-between mt-4 text-xs font-bold">
+        <span>اسم الطالب: ____________________</span>
+        <span>التاريخ: _______________</span>
+        <span id="print-sheet-title">الوحدة: A1.01</span>
+      </div>
+    </div>
+    <div id="print-questions-list" class="space-y-4 text-sm">
+      <!-- Populated when printing -->
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. COMPREHENSIVE JAVASCRIPT ENGINE (LOGIC & CURRICULUM)
+       ========================================================================= -->
+  <script>
+    /* -------------------------------------------------------------------------
+       A. SOUND SYNTHESIZER (WEB AUDIO API - ZERO ASSET DEPENDENCY)
+       ------------------------------------------------------------------------- */
+    const SoundFX = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      playSuccess() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, this.ctx.currentTime); // C5
+          osc.frequency.exponentialRampToValueAtTime(783.99, this.ctx.currentTime + 0.18); // G5
+          gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.25);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.25);
+        } catch (e) {}
+      },
+      playError() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, this.ctx.currentTime);
+          osc.frequency.setValueAtTime(180, this.ctx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, this.ctx.currentTime + 0.2);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.2);
+        } catch (e) {}
+      }
+    };
+
+    /* -------------------------------------------------------------------------
+       B. SPEECH SYNTHESIS ENGINE (GERMAN NATIVE PRONUNCIATION)
+       ------------------------------------------------------------------------- */
+    let currentSpeechRate = 0.85;
+    function speakGerman(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'de-DE';
+      utterance.rate = currentSpeechRate;
+      const voices = window.speechSynthesis.getVoices();
+      const deVoice = voices.find(v => v.lang && v.lang.startsWith('de'));
+      if (deVoice) utterance.voice = deVoice;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    /* -------------------------------------------------------------------------
+       C. THE MASTER PEDAGOGICAL CURRICULUM (A1 & A2 GOETHE STANDARDS)
+       ------------------------------------------------------------------------- */
+    const CURRICULUM = [
+      {
+        id: "A1.01", level: "A1",
+        titleAr: "الضمائر الشخصية وتصريف أفعال الحاضر وتعديلات الجذع (-t/-d/-s)",
+        titleDe: "Personalpronomen & Präsens (Stamm-Anpassung)",
+        introNote: "أهلاً بكم أحبتي الطلبة! معكم د. مي. في هذا الدرس نضع الحجر الأساسي للغة الألمانية: الفعل كائن حي يتصرف ليتطابق مع الفاعل تماماً في المركز الثاني.",
+        logic: "الألمانية لغة إعرابية مرنة الترتيب؛ فتصريف الفعل في المركز الثاني هو البوصلة الثابتة التي تحدد الفاعل بدقة حتى لو تغير موضع الكلمات في الجملة.",
+        warn: "إذا انتهى جذر الفعل بحرف t أو d (مثل arbeiten)، يثقل اللسان إذا قلنا (du arbeitst)، لذلك نضع حرف e للوقاية والتخفيف: (du arbeitest)!",
+        trick: "احفظ النغمة السحرية للنهايات القياسية: e, st, t, en, t, en!",
+        formula: "Verb Stem = Infinitive - '-en' | Stem + [e, st, t, en, t, en] = Finite Verb",
+        paradigm: {
+          headers: ["Pronoun", "Ending", "lernen", "arbeiten (-t-)", "heißen (-s-)"],
+          rows: [
+            ["ich", "-e", "lerne", "arbeite", "heiße"],
+            ["du", "-st", "lernst", "arbeitest", "heißt"],
+            ["er / sie / es", "-t", "lernt", "arbeitet", "heißt"],
+            ["wir", "-en", "lernen", "arbeiten", "heißen"],
+            ["ihr", "-t", "lernt", "arbeitet", "heißt"],
+            ["sie / Sie", "-en", "lernen", "arbeiten", "heißen"]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Heute lerne ich Deutsch mit Dr. Mai.",
+          tokens: [
+            { text: "Heute", label: "Pos 1: Temporal", color: "bg-purple-100 text-purple-900 dark:bg-purple-950 dark:text-purple-300" },
+            { text: "lerne", label: "Pos 2: Verb (ich)", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
+            { text: "ich", label: "Pos 3: Subjekt (Nom)", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "Deutsch", label: "Akkusativobjekt", color: "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300" }
+          ]
+        },
+        exercises: [
+          { q: "Ich ___ in Berlin und lerne Medizin.", a: "wohne", opts: ["wohne", "wohnst", "wohnt", "wohnen"], words: ["Ich", "wohne", "in", "Berlin."], hint: "نهاية المتكلم ich هي دائماً حرف -e." },
+          { q: "Du ___ sehr fleißig im Krankenhaus.", a: "arbeitest", opts: ["arbeitst", "arbeitest", "arbeitet", "arbeiten"], words: ["Du", "arbeitest", "sehr", "fleißig."], hint: "ينتهي جذر arbeiten بحرف t، لذا نضع e وقاية قبل st." },
+          { q: "Wie ___ du mit Nachnamen?", a: "heißt", opts: ["heißest", "heißt", "heiße", "heißen"], words: ["Wie", "heißt", "du", "mit", "Nachnamen?"], hint: "الأفعال المنتهية بـ ß أو s تأخذ t فقط مع du لأن صوت الصغير موجود." },
+          { q: "Er ___ ein interessantes Buch.", a: "hat", opts: ["habe", "hast", "hat", "haben"], words: ["Er", "hat", "ein", "interessantes", "Buch."], hint: "تصريف الغائب المفرد لفعل الملكية haben هو hat." },
+          { q: "Wir ___ heute Abend zusammen Pizza.", a: "kochen", opts: ["kocht", "kochen", "koche", "kochst"], words: ["Wir", "kochen", "heute", "zusammen", "Pizza."], hint: "الضمير wir يأخذ دائماً صيغة المصدر المنتهية بـ -en." },
+          { q: "Ihr ___ sehr gut Deutsch!", a: "sprecht", opts: ["spricht", "sprecht", "sprechen", "spreche"], words: ["Ihr", "sprecht", "sehr", "gut", "Deutsch!"], hint: "مع أنتم ihr يبقى الفعل منتظماً دون إمالة صوتية: sprecht." },
+          { q: "Woher ___ Frau Müller?", a: "kommt", opts: ["komme", "kommst", "kommt", "kommen"], words: ["Woher", "kommt", "Frau", "Müller?"], hint: "Frau Müller تمثل الغائب المفرد sie ➔ kommt." },
+          { q: "Was ___ du beruflich?", a: "machst", opts: ["mache", "machst", "macht", "machen"], words: ["Was", "machst", "du", "beruflich?"], hint: "نهاية المخاطب المفرد du هي -st." },
+          { q: "Die Kinder ___ im Garten Fußball.", a: "spielen", opts: ["spielt", "spielen", "spielst", "spiele"], words: ["Die", "Kinder", "spielen", "im", "Garten."], hint: "الأطفال جمع يعامل معاملة sie الجمع ➔ spielen." },
+          { q: "Das Kind ___ friedlich im Bett.", a: "schläft", opts: ["schlaft", "schläft", "schlafe", "schlafen"], words: ["Das", "Kind", "schläft", "friedlich", "im", "Bett."], hint: "فعل schlafen ينال إمالة a ➔ ä مع الغائب المفرد." }
+        ]
+      },
+      {
+        id: "A1.02", level: "A1",
+        titleAr: "معمارية الجملة الألمانية: قاعدة الفعل بالمركز الثاني والانقلاب (Inversion)",
+        titleDe: "Satzarchitektur: Verb auf Position 2 & Inversion",
+        introNote: "قاعدة المركز الثاني (Verb auf Position 2) هي القانون الأقدس في الألمانية. الفعل المصرف وتد حديدي لا يتحرك من المركز 2 في الجملة الخبرية!",
+        logic: "ثبات الفعل ثانياً يمنحك حرية لغوية ساحرة لتبدأ جملتك بالزمان أو المكان لتوكيدهما دون إرباك السامع.",
+        warn: "إياك والترجمة الحرفية من لغتك الأم! لا تقل (Heute ich lerne)، بل اعكس فوراً بوضع الفاعل بعد الفعل: (Heute lerne ich)!",
+        trick: "المعادلة الذهبية: العنصر الأول (زمان/مكان) + الفعل بالمركز 2 + الفاعل مباشرة في المركز 3.",
+        formula: "Pos 1 (Angabe) + [Verb (Pos 2)] + [Subject (Pos 3)] + ... | Ja/Nein: [Verb (Pos 1)]",
+        paradigm: {
+          headers: ["Pattern", "Position 1", "Position 2 (Verb)", "Position 3 (Subject/Rest)"],
+          rows: [
+            ["عادية (Standard)", "Wir", "lernen", "heute die Grammatik."],
+            ["انقلاب (Inversion)", "Heute", "lernen", "wir die Grammatik."],
+            ["سؤال نعم/لا (Ja/Nein)", "Lernst", "du", "heute die Grammatik?"],
+            ["سؤال استفهام (W-Frage)", "Wann", "lernst", "du die Grammatik?"]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Am Montag fahre ich nach Berlin.",
+          tokens: [
+            { text: "Am Montag", label: "Pos 1: Zeitangabe", color: "bg-purple-100 text-purple-900 dark:bg-purple-950 dark:text-purple-300" },
+            { text: "fahre", label: "Pos 2: Verb", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
+            { text: "ich", label: "Pos 3: Subjekt (Inversion)", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "nach Berlin", label: "Richtung", color: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300" }
+          ]
+        },
+        exercises: [
+          { q: "Morgen ___ wir nach München mit dem Zug.", a: "fahren", opts: ["wir fahren", "fahren", "fährt", "fahren wir"], words: ["Morgen", "fahren", "wir", "nach", "München."], hint: "بدأت الجملة بظرف زمان، فيأتي الفعل المصرف ثانياً ثم الفاعل ثالثاً." },
+          { q: "___ du heute Zeit für einen Kaffee?", a: "Hast", opts: ["Hast", "Haben", "Hat", "Habe"], words: ["Hast", "du", "heute", "Zeit?"], hint: "سؤال نعم/لا يضع الفعل المصرف حتماً في المركز الأول." },
+          { q: "In Berlin ___ die Menschen sehr viele Sprachen.", a: "sprechen", opts: ["sprechen", "die Menschen sprechen", "spricht", "gesprochen"], words: ["In", "Berlin", "sprechen", "die", "Menschen", "viele", "Sprachen."], hint: "المكان احتل المركز 1، فالفعل بالمركز 2 مباشرة." },
+          { q: "Wann ___ der Zug endlich an?", a: "kommt", opts: ["kommt", "kommen", "ankommt", "kam"], words: ["Wann", "kommt", "der", "Zug", "an?"], hint: "في أسئلة أدوات الاستفهام W-Fragen يأتي الفعل في الموقع 2." },
+          { q: "Gestern ___ das Wetter wirklich herrlich.", a: "war", opts: ["war", "ist", "hat", "waren"], words: ["Gestern", "war", "das", "Wetter", "herrlich."], hint: "ماضي sein مع الطقس (das Wetter = es) هو war." },
+          { q: "Um 8 Uhr ___ der Unterricht in der Schule.", a: "beginnt", opts: ["beginnt", "beginnen", "begann", "beginne"], words: ["Um", "8", "Uhr", "beginnt", "der", "Unterricht."], hint: "الزمن بالمركز 1 ➔ الفعل المصرف ثانياً." },
+          { q: "Trinkst du gerne Tee? – Nein, ich ___ Kaffee.", a: "trinke", opts: ["trinke", "trinkst", "trinkt", "getrunken"], words: ["Ich", "trinke", "lieber", "Kaffee."], hint: "الفاعل ich بالمركز الأول، فالفعل trinke بالمركز الثاني." },
+          { q: "Jetzt ___ wir die Übungen.", a: "machen", opts: ["machen", "wir machen", "macht", "gemacht"], words: ["Jetzt", "machen", "wir", "die", "Übungen."], hint: "الظرف jetzt في المركز الأول يتطلب الفعل فوراً ثانياً." },
+          { q: "Warum ___ du gestern nicht im Kurs?", a: "warst", opts: ["warst", "bist", "waren", "hattest"], words: ["Warum", "warst", "du", "gestern", "nicht", "im", "Kurs?"], hint: "أداة الاستفهام ثم الفعل المصرف مع du هو warst." },
+          { q: "Hier ___ man leider nicht parken.", a: "darf", opts: ["darf", "darfst", "dürfen", "dürft"], words: ["Hier", "darf", "man", "nicht", "parken."], hint: "فعل dürfen مع الفاعل man يأخذ darf بالمركز 2." }
+        ]
+      },
+      {
+        id: "A1.04", level: "A1",
+        titleAr: "حالة النصب (Akkusativ): المفعول به المباشر وأحرف DOGFU",
+        titleDe: "Der Akkusativ: Direktes Objekt & DOGFU-Präpositionen",
+        introNote: "في حالة النصب (Akkusativ)، المذكر فقط هو البطل الذي يغير ثوبه! der تتحول إلى den، بينما المحايد والمؤنث والجمع ثابتون كالصخر.",
+        logic: "تغيير المذكر صوتياً يوضح للسامع من هو الفاعل ومن هو المفعول به في الجملة دون أي التباس.",
+        warn: "إياك أن تغير أداة المؤنث أو المحايد! المؤنث die والمحايد das يبقيان كما هما تماماً في النصب!",
+        trick: "احفظ حروف الجر التي تنصب دائماً بكلمة (DOGFU): Durch, Ohne, Gegen, Für, Um.",
+        formula: "Masc: der / ein / kein ➔ den / einen / keinen | Fem/Neut/Plur: UNCHANGED",
+        paradigm: {
+          headers: ["Gender", "Nominativ (الفاعل)", "Akkusativ (المفعول به)", "Indefinit (ein)", "Negation (kein)"],
+          rows: [
+            ["Maskulinum", "der Tisch", "den Tisch (-en)", "einen Tisch", "keinen Tisch"],
+            ["Neutrum", "das Buch", "das Buch (ثابت)", "ein Buch", "kein Buch"],
+            ["Femininum", "die Lampe", "die Lampe (ثابت)", "eine Lampe", "keine Lampe"],
+            ["Plural", "die Bücher", "die Bücher (ثابت)", "--", "keine Bücher"]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Der Mann kauft den neuen Laptop für seinen Sohn.",
+          tokens: [
+            { text: "Der Mann", label: "Nom. Masc (الفاعل)", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "kauft", label: "Verb (Pos 2)", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
+            { text: "den neuen Laptop", label: "Akk. Masc (المفعول به)", color: "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300" },
+            { text: "für seinen Sohn", label: "DOGFU + Akk", color: "bg-purple-100 text-purple-900 dark:bg-purple-950 dark:text-purple-300" }
+          ]
+        },
+        exercises: [
+          { q: "Der Vater sucht ___ Schlüssel.", a: "den", opts: ["der", "den", "dem", "das"], words: ["Der", "Vater", "sucht", "den", "Schlüssel."], hint: "المفتاح مذكر der Schlüssel وهو مفعول به منصوب ➔ den." },
+          { q: "Ich trinke ohne ___ Zucker keinen Kaffee.", a: "den", opts: ["der", "den", "dem", "des"], words: ["Ich", "trinke", "Kaffee", "ohne", "Zucker."], hint: "حرف الجر ohne ينصب دائماً، والسكر مذكر ➔ den." },
+          { q: "Hast du ___ Kugelschreiber für mich?", a: "einen", opts: ["ein", "einen", "einem", "einer"], words: ["Hast", "du", "einen", "Kugelschreiber?"], hint: "القلم مذكر نكرة وهو مفعول به لفعل haben ➔ einen." },
+          { q: "Wir kaufen ___ schönes Haus auf dem Land.", a: "ein", opts: ["ein", "einen", "einem", "eine"], words: ["Wir", "kaufen", "ein", "schönes", "Haus."], hint: "البيت محايد das Haus لا يتغير في النصب ➔ ein." },
+          { q: "Das Geschenk ist für ___ Bruder.", a: "meinen", opts: ["mein", "meinen", "meinem", "meiner"], words: ["Das", "Geschenk", "ist", "für", "meinen", "Bruder."], hint: "حرف für ينصب ما بعده حتماً ➔ meinen Bruder." },
+          { q: "Siehst du ___ Frau dort drüben?", a: "die", opts: ["der", "die", "den", "dem"], words: ["Siehst", "du", "die", "Frau", "dort?"], hint: "المرأة مؤنثة die Frau وتبقى die في النصب دون تغيير." },
+          { q: "Er geht durch ___ Park nach Hause.", a: "den", opts: ["der", "den", "dem", "das"], words: ["Er", "geht", "durch", "den", "Park."], hint: "حرف durch ينصب المذكر ➔ den Park." },
+          { q: "Ich liebe ___ über alles!", a: "dich", opts: ["du", "dich", "dir", "dein"], words: ["Ich", "liebe", "dich", "über", "alles!"], hint: "الضمير المنصوب للمخاطب du هو dich." },
+          { q: "Brauchen Sie ___ Hilfe?", a: "meine", opts: ["mein", "meine", "meinen", "meinem"], words: ["Brauchen", "Sie", "meine", "Hilfe?"], hint: "المساعدة مؤنثة die Hilfe تأخذ meine في النصب." },
+          { q: "Wir haben leider ___ Zeit heute.", a: "keine", opts: ["kein", "keine", "keinen", "nicht"], words: ["Wir", "haben", "heute", "keine", "Zeit."], hint: "الوقت مؤنث die Zeit، نفي النكرة له keine." }
+        ]
+      },
+      {
+        id: "A1.10", level: "A1",
+        titleAr: "أساسيات المجرور (Dativ): الأدوات وحروف الجر الثابتة",
+        titleDe: "Der Dativ: Indirektes Objekt & Feste Dativ-Präpositionen",
+        introNote: "حالة الـ Dativ تمثل المستفيد من الفعل أو الاسم المجرور بحرف جر. هنا يتحول المذكر والمحايد إلى dem، والمؤنث إلى der!",
+        logic: "تغير الأدوات يحدد بدقة متناهية من يعطي ومن يستلم في جمل العطاء والمساعدة.",
+        warn: "المؤنث في Dativ يصبح (der Frau)! لا تخلط بينها وبين المذكر المرفوع، فهذه مؤنث مجرور!",
+        trick: "احفظ لحن حروف الجر الدائمة للـ Dativ: (Aus, bei, mit, nach, seit, von, zu).",
+        formula: "Masc/Neut: dem / einem | Fem: der / einer | Plur: den + Noun-n | mir / dir / ihm / ihr",
+        paradigm: {
+          headers: ["Gender / Number", "Nominativ", "Dativ", "Indefinit Dativ", "Pronouns"],
+          rows: [
+            ["Maskulinum", "der Mann", "dem Mann", "einem Mann", "ihm"],
+            ["Neutrum", "das Kind", "dem Kind", "einem Kind", "ihm"],
+            ["Femininum", "die Frau", "der Frau", "einer Frau", "ihr"],
+            ["Plural", "die Kinder", "den Kindern (+n)", "--", "ihnen"]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Der Arzt hilft dem kranken Kind mit der Medizin.",
+          tokens: [
+            { text: "Der Arzt", label: "Nom. Masc (الفاعل)", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "hilft", label: "Dativ-Verb", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
+            { text: "dem kranken Kind", label: "Dat. Neutrum", color: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300" },
+            { text: "mit der Medizin", label: "mit + Dativ", color: "bg-purple-100 text-purple-900 dark:bg-purple-950 dark:text-purple-300" }
+          ]
+        },
+        exercises: [
+          { q: "Ich fahre am Wochenende mit ___ Zug.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Ich", "fahre", "mit", "dem", "Zug."], hint: "حرف mit يجر بالـ Dativ دائماً: der Zug ➔ dem Zug." },
+          { q: "Der Lehrer hilft ___ Schülern bei der Aufgabe.", a: "den", opts: ["die", "den", "dem", "der"], words: ["Der", "Lehrer", "hilft", "den", "Schülern."], hint: "جمع Dativ يأخذ الأداة den مع إضافة حرف n للاسم." },
+          { q: "Wie geht es ___? – Mir geht es super!", a: "dir", opts: ["dich", "dir", "du", "dein"], words: ["Wie", "geht", "es", "dir", "heute?"], hint: "السؤال عن الحال يتطلب ضمير Dativ للمخاطب ➔ dir." },
+          { q: "Das Buch gehört ___ Schwester.", a: "meiner", opts: ["meine", "meiner", "meinem", "meinen"], words: ["Das", "Buch", "gehört", "meiner", "Schwester."], hint: "فعل gehören يتطلب Dativ، والمؤنث ينال meiner." },
+          { q: "Nach ___ Schule gehen wir nach Hause.", a: "der", opts: ["die", "der", "den", "dem"], words: ["Nach", "der", "Schule", "gehen", "wir."], hint: "حرف nach يفرض Dativ دائماً: die Schule ➔ der Schule." },
+          { q: "Seit ___ Woche lerne ich Deutsch.", a: "einer", opts: ["eine", "einer", "einem", "einen"], words: ["Seit", "einer", "Woche", "lerne", "ich."], hint: "حرف seit يجر الاسم، والأسبوع مؤنث ➔ einer Woche." },
+          { q: "Ahmad wohnt bei ___ Eltern.", a: "seinen", opts: ["seine", "seinen", "seinem", "seiner"], words: ["Ahmad", "wohnt", "bei", "seinen", "Eltern."], hint: "حرف bei مع الجمع في Dativ يأخذ seinen." },
+          { q: "Was schenkst du ___ Vater zum Geburtstag?", a: "deinem", opts: ["dein", "deinem", "deinen", "deiner"], words: ["Was", "schenkst", "du", "deinem", "Vater?"], hint: "الأب مذكر مستفيد في Dativ ➔ deinem Vater." },
+          { q: "Das Essen schmeckt ___ Gästen hervorragend.", a: "den", opts: ["die", "den", "der", "dem"], words: ["Das", "Essen", "schmeckt", "den", "Gästen."], hint: "فعل schmecken يتطلب Dativ للضيوف الجمع ➔ den Gästen." },
+          { q: "Ich danke ___ von ganzem Herzen.", a: "Ihnen", opts: ["Sie", "Ihnen", "Ihr", "Ihre"], words: ["Ich", "danke", "Ihnen", "sehr."], hint: "فعل danken يتطلب Dativ، والاحترام منه Ihnen." }
+        ]
+      },
+      {
+        id: "A2.03", level: "A2",
+        titleAr: "أحرف الجر المشتركة التسعة: ثنائية الموقع (Wo) والاتجاه (Wohin)",
+        titleDe: "Wechselpräpositionen: Ort (Wo? + Dat) vs. Richtung (Wohin? + Akk)",
+        introNote: "تاج قواعد A2! تسعة أحرف جر تتصرف بحسب نيتك وحركتك: هل أنت مستقر وهادئ في مكانك؟ أم تعبر الحدود وتتحرك باتجاه هدفك؟",
+        logic: "الثبات داخل الحيز المكاني يعبر عنه بالـ Dativ، بينما الحركة الانتقالية من نقطة أ إلى ب تعبر عنها بالـ Akkusativ.",
+        warn: "فرق بين أفعال الحركة المتعدية (legen, stellen) وأفعال الثبات الناتجة عنها (liegen, stehen)!",
+        trick: "Wo? (أين؟ ثبات وراحة) ➔ Dativ | Wohin? (إلى أين؟ حركة وانتقال) ➔ Akkusativ.",
+        formula: "Wo? ➔ DATIV (dem / der / dem / den) | Wohin? ➔ AKKUSATIV (den / das / die / die)",
+        paradigm: {
+          headers: ["Transitive Action (Wohin? ➔ Akk)", "Intransitive State (Wo? ➔ Dat)", "المعنى"],
+          rows: [
+            ["stellen (Akk): Ich stelle die Vase auf den Tisch", "stehen (Dat): Die Vase steht auf dem Tisch", "عمودي: يضع مقابل واقف"],
+            ["legen (Akk): Er legt das Buch auf das Bett", "liegen (Dat): Das Buch liegt auf dem Bett", "أفقي: يضع مسطحاً مقابل مستلقٍ"],
+            ["setzen (Akk): Sie setzt das Kind auf den Stuhl", "sitzen (Dat): Das Kind sitzt auf dem Stuhl", "جلوس: يُجلس شخصاً مقابل جالس"],
+            ["hängen (Akk): Wir hängen das Bild an die Wand", "hängen (Dat): Das Bild hängt an der Wand", "تعليق: يعلق شيئاً مقابل معلق وثابت"]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Ich stelle die Tasse auf den Tisch, jetzt steht sie auf dem Tisch.",
+          tokens: [
+            { text: "stelle", label: "Aktion (Wohin?)", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300" },
+            { text: "auf den Tisch", label: "Akkusativ (Masc)", color: "bg-emerald-100 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-300" },
+            { text: "steht", label: "Zustand (Wo?)", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "auf dem Tisch", label: "Dativ (Masc)", color: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300" }
+          ]
+        },
+        exercises: [
+          { q: "Ich stelle die Vase auf ___ Tisch.", a: "den", opts: ["dem", "den", "der", "das"], words: ["Ich", "stelle", "die", "Vase", "auf", "den", "Tisch."], hint: "فعل حركة stellen يسأل بـ Wohin؟ ➔ Akkusativ مذكر den." },
+          { q: "Die Vase steht auf ___ Tisch.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Die", "Vase", "steht", "auf", "dem", "Tisch."], hint: "فعل ثبات stehen يسأل بـ Wo؟ ➔ Dativ مذكر dem." },
+          { q: "Er hängt das Bild an ___ Wand.", a: "die", opts: ["die", "der", "den", "dem"], words: ["Er", "hängt", "das", "Bild", "an", "die", "Wand."], hint: "حركة تعليق الصورة على الحائط تتطلب Akkusativ مؤنث die Wand." },
+          { q: "Das Bild hängt an ___ Wand.", a: "der", opts: ["die", "der", "den", "dem"], words: ["Das", "Bild", "hängt", "an", "der", "Wand."], hint: "الصورة معلقة وثابتة تسأل بـ Wo؟ ➔ Dativ مؤنث der Wand." },
+          { q: "Wir gehen heute Abend in ___ Kino.", a: "das", opts: ["das", "dem", "den", "der"], words: ["Wir", "gehen", "heute", "in", "das", "Kino."], hint: "الذهاب حركة وانتقال Wohin؟ ➔ Akkusativ محايد das Kino (ins)." },
+          { q: "Wir sitzen gemütlich in ___ Kino.", a: "dem", opts: ["das", "dem", "den", "der"], words: ["Wir", "sitzen", "in", "dem", "Kino."], hint: "الجلوس داخل السينما ثبات Wo؟ ➔ Dativ محايد dem Kino (im)." },
+          { q: "Die Katze schläft unter ___ Bett.", a: "dem", opts: ["das", "dem", "den", "der"], words: ["Die", "Katze", "schläft", "unter", "dem", "Bett."], hint: "النوم ثبات تحت السرير ➔ Dativ محايد dem Bett." },
+          { q: "Der Hund läuft unter ___ Tisch.", a: "den", opts: ["dem", "den", "das", "der"], words: ["Der", "Hund", "läuft", "unter", "den", "Tisch."], hint: "الجري والدخول تحت الطاولة حركة Wohin؟ ➔ Akkusativ مذكر den." },
+          { q: "Er legt das Buch auf ___ Schreibtisch.", a: "den", opts: ["dem", "den", "der", "das"], words: ["Er", "legt", "das", "Buch", "auf", "den", "Schreibtisch."], hint: "فعل legen حركة وضع أفقية ➔ Akkusativ مذكر den." },
+          { q: "Das Buch liegt auf ___ Schreibtisch.", a: "dem", opts: ["den", "dem", "das", "der"], words: ["Das", "Buch", "liegt", "auf", "dem", "Schreibtisch."], hint: "فعل liegen ثبات واستلقاء ➔ Dativ مذكر dem." }
+        ]
+      },
+      {
+        id: "A2.06", level: "A2",
+        titleAr: "الجمل الجانبية وطرد الفعل للنهاية (weil, dass, wenn, obwohl)",
+        titleDe: "Nebensätze: Verb am Satzende (weil, dass, wenn, obwohl)",
+        introNote: "في الجمل الثانوية (Nebensätze)، أداة الربط تعمل كحارس طرد عنيف: تطرد الفعل المصرف مباشرة إلى نهاية الجملة قبل النقطة!",
+        logic: "وضع الفعل في النهاية يتيح للسامع الاستماع لكافة الظروف والحيثيات أولاً قبل سماع الحدث الحاسم للفعل.",
+        warn: "إياك أن تضع الفعل ثانياً بعد weil! لا تقل أبداً: (weil ich bin krank)، بل قل حتماً: (weil ich krank bin)!",
+        trick: "المعادلة الذهبية: فاصلة (,) ➔ أداة الربط ➔ الفاعل ➔ بقية الكلام ➔ الفعل المصرف آخر كلمة تماماً.",
+        formula: "Hauptsatz, + [weil / dass / wenn / obwohl] + Subjekt + ... + [FINITE VERB AM ENDE].",
+        paradigm: {
+          headers: ["Subordinator", "Function", "Position of Verb", "Example"],
+          rows: [
+            ["weil", "تعليل (السبب لأن)", "آخر كلمة حتماً", "Ich lerne, weil ich die Prüfung bestehen will."],
+            ["dass", "مفعولية (أنّ)", "آخر كلمة حتماً", "Ich weiß, dass du sehr fleißig bist."],
+            ["wenn", "شرطية وزمنية (إذا/لو)", "آخر كلمة حتماً", "Wenn es regnet, bleibe ich zu Hause."],
+            ["obwohl", "تعارض وتناقض (رغم أن)", "آخر كلمة حتماً", "Er geht spazieren, obwohl er müde ist."]
+          ]
+        },
+        syntaxBreakdown: {
+          sentence: "Ich lerne Deutsch, weil ich in Deutschland als Ingenieur arbeiten will.",
+          tokens: [
+            { text: "weil", label: "Subjunktion", color: "bg-purple-100 text-purple-900 dark:bg-purple-950 dark:text-purple-300" },
+            { text: "ich", label: "Subjekt", color: "bg-blue-100 text-blue-900 dark:bg-blue-950 dark:text-blue-300" },
+            { text: "in Deutschland als Ingenieur", label: "Mittelfeld", color: "bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-300" },
+            { text: "arbeiten", label: "Infinitiv", color: "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300" },
+            { text: "will", label: "FINITES VERB AM ENDE", color: "bg-red-100 text-red-900 dark:bg-red-950 dark:text-red-300 font-bold" }
+          ]
+        },
+        exercises: [
+          { q: "Ich lerne Deutsch, weil ich in Deutschland ___.", a: "arbeiten will", opts: ["will arbeiten", "arbeiten will", "arbeite will", "will gearbeitet"], words: ["Ich", "lerne,", "weil", "ich", "hier", "arbeiten", "will."], hint: "في وجود فعل مودال في الجملة الجانبية: المصدر أولاً ثم المودال المصرف هو آخر كلمة." },
+          { q: "Wenn das Wetter morgen schön ___, machen wir ein Picknick.", a: "ist", opts: ["ist", "wird", "sein", "wäre"], words: ["Wenn", "das", "Wetter", "schön", "ist,", "feiern", "wir."], hint: "أداة wenn تطرد الفعل المصرف ist لنهاية جملتها قبل الفاصلة." },
+          { q: "Lukas weiß genau, dass Mai sehr gut Deutsch ___.", a: "spricht", opts: ["spricht", "sprechen", "gesprochen", "sprach"], words: ["Er", "weiß,", "dass", "sie", "gut", "spricht."], hint: "أداة dass تطرد الفعل المصرف spricht إلى آخر الجملة." },
+          { q: "Er kommt zur Arbeit, obwohl er sehr krank ___.", a: "ist", opts: ["ist", "sein", "war", "gewesen"], words: ["Er", "kommt,", "obwohl", "er", "krank", "ist."], hint: "أداة obwohl تطرد الفعل المصرف ist لنهاية الجملة." },
+          { q: "Weißt du, ob der Bus heute pünktlich ___?", a: "kommt", opts: ["kommt", "kommen", "angekommen", "kam"], words: ["Weißt", "du,", "ob", "der", "Bus", "kommt?"], hint: "أداة ob في الأسئلة غير المباشرة تطرد الفعل للنهاية." },
+          { q: "Ich freue mich, dass du mich heute ___.", a: "besuchst", opts: ["besuchst", "besuchen", "besucht", "hast besucht"], words: ["Ich", "freue", "mich,", "dass", "du", "kommst."], hint: "الفعل المصرف مع du هو besuchst في نهاية الجملة." },
+          { q: "Weil er verschlafen ___, verpasste er den Zug.", a: "hatte", opts: ["hatte", "hat", "haben", "war"], words: ["Weil", "er", "verschlafen", "hatte,", "kam", "er", "zu", "spät."], hint: "عند تقديم الجملة الجانبية يطرد فعلها لنهايتها قبل الفاصلة مباشرة." },
+          { q: "Wenn du Hilfe ___, ruf mich einfach an!", a: "brauchst", opts: ["brauchst", "brauchen", "braucht", "brauchte"], words: ["Wenn", "du", "Hilfe", "brauchst,", "ruf", "mich", "an!"], hint: "الفعل brauchst يأتي قبل الفاصلة مباشرة في جملة wenn." },
+          { q: "Sie bleibt zu Hause, weil es stark ___.", a: "regnet", opts: ["regnet", "regnen", "geregnet", "regnete"], words: ["Sie", "bleibt", "drinnen,", "weil", "es", "regnet."], hint: "فعل regnet يقذف لآخر كلمة بعد weil." },
+          { q: "Ich denke, dass diese Prüfung nicht so schwer ___.", a: "wird", opts: ["wird", "werden", "ist werden", "worden"], words: ["Ich", "hoffe,", "dass", "die", "Prüfung", "leicht", "wird."], hint: "فعل werden المصرف يوضع في المركز الأخير." }
+        ]
+      }
+    ];
+
+    /* -------------------------------------------------------------------------
+       D. APPLICATION STATE CONTROLLER
+       ------------------------------------------------------------------------- */
+    const State = {
+      modIndex: 0,
+      exIndex: 0,
+      activeTab: 'lesson',
+      practiceMode: 'mcq', // 'mcq' | 'scramble' | 'cloze'
+      xp: parseInt(localStorage.getItem('dm_xp') || '0', 10),
+      streak: 0,
+      teacherReveal: false,
+      isProjector: false,
+
+      currentModule() {
+        return CURRICULUM[this.modIndex];
+      },
+      currentExercise() {
+        return this.currentModule().exercises[this.exIndex];
+      },
+      addXP(pts) {
+        this.xp += pts;
+        localStorage.setItem('dm_xp', this.xp);
+        document.getElementById('xp-counter').innerText = `${this.xp} XP`;
+      }
+    };
+
+    /* -------------------------------------------------------------------------
+       E. RENDER FUNCTIONS
+       ------------------------------------------------------------------------- */
+    function renderApp() {
+      const mod = State.currentModule();
+
+      // Top Bar Elements
+      document.getElementById('badge-level').innerText = `${mod.id} (${mod.level})`;
+      document.getElementById('header-title').innerText = mod.titleAr;
+
+      renderLessonView(mod);
+      renderStepper(mod);
+      renderInteractiveExercise();
+      renderCatalogList();
+    }
+
+    function renderLessonView(mod) {
+      const target = document.getElementById('lesson-render-target');
+
+      target.innerHTML = `
+        <!-- Dr. Mai Welcome Callout (RTL) -->
+        <div class="bg-white dark:bg-slate-900 border-r-4 border-blue-600 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm space-y-2 dr-card">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">👩‍🏫</span>
+            <h3 class="font-black text-slate-900 dark:text-white text-base">شرح وتوجيه د. مي:</h3>
+            <span class="text-xs bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 font-de font-bold px-2 py-0.5 rounded-full">Goethe ${mod.level}</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">${mod.introNote}</p>
+        </div>
+
+        <!-- Structural Formula Card (Strictly LTR) -->
+        <div class="ltr-zone formula-terminal text-blue-300 p-5 rounded-2xl text-xs sm:text-sm font-mono font-bold shadow-inner">
+          <div class="text-[10px] tracking-widest uppercase text-slate-400 mb-1">Syntax Terminal // Mathematical Architecture</div>
+          ${mod.formula}
+        </div>
+
+        <!-- 3 Pillars Grid (The Logic, The Trap, The Mnemonic) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 rtl-zone">
+          <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 space-y-1">
+            <span class="font-black text-xs text-emerald-900 dark:text-emerald-300 block">💡 لماذا وضعت هذه القاعدة؟</span>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">${mod.logic}</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 space-y-1">
+            <span class="font-black text-xs text-rose-900 dark:text-rose-300 block">⚠️ انتبه من هذا الخطأ الشائع:</span>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">${mod.warn}</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 space-y-1">
+            <span class="font-black text-xs text-blue-900 dark:text-blue-300 block">🎯 سر الحفظ السريع:</span>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-medium">${mod.trick}</p>
+          </div>
+        </div>
+
+        <!-- Goethe Official Inflection Paradigm Table -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3 dr-card">
+          <div class="flex items-center justify-between">
+            <h4 class="font-black text-xs sm:text-sm text-slate-900 dark:text-white">جدول التصريف المعتمد في اختبارات غوته:</h4>
+            <span class="text-xs font-de text-slate-400">Inflection Paradigm Matrix</span>
+          </div>
+          <div class="table-container overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full text-xs font-de text-left ltr-zone border-collapse">
+              <thead>
+                <tr class="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                  ${mod.paradigm.headers.map(h => `<th class="p-3 font-bold text-slate-700 dark:text-slate-200">${h}</th>`).join('')}
+                </tr>
+              </thead>
+              <tbody>
+                ${mod.paradigm.rows.map(row => `
+                  <tr class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50/50 dark:hover:bg-slate-800/40">
+                    ${row.map((cell, idx) => `
+                      <td class="p-3 ${idx === 0 ? 'font-bold text-blue-600 dark:text-blue-400' : 'text-slate-800 dark:text-slate-200'}">${cell}</td>
+                    `).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Color-Coded Syntax Breakdown Card -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3 dr-card">
+          <div class="flex items-center justify-between">
+            <h4 class="font-black text-xs sm:text-sm">تشريح إعرابي تفاعلي للجملة (Syntactic Tags):</h4>
+            <button onclick="speakGerman('${mod.syntaxBreakdown.sentence}')" class="text-blue-600 dark:text-blue-400 text-xs flex items-center gap-1 font-de font-bold">
+              <span>🔊 استمع للجملة</span>
+            </button>
+          </div>
+          <div class="ltr-zone font-de font-black text-base sm:text-lg text-slate-900 dark:text-white">
+            ${mod.syntaxBreakdown.sentence}
+          </div>
+          <div class="ltr-zone flex flex-wrap gap-2">
+            ${mod.syntaxBreakdown.tokens.map(t => `
+              <span class="px-2.5 py-1 rounded-lg text-xs font-de font-bold ${t.color}">
+                ${t.text} <span class="opacity-75 text-[10px]">[${t.label}]</span>
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderStepper(mod) {
+      const container = document.getElementById('exercise-stepper');
+      container.innerHTML = mod.exercises.map((_, i) => {
+        const isActive = i === State.exIndex;
+        let classes = 'w-9 h-9 shrink-0 rounded-xl font-de font-black text-xs flex items-center justify-center cursor-pointer transition btn-tactile ';
+        if (isActive) {
+          classes += 'bg-blue-600 text-white shadow-md shadow-blue-600/30';
+        } else {
+          classes += 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700';
+        }
+        return `<div onclick="jumpToExercise(${i})" class="${classes}">${i + 1}</div>`;
+      }).join('');
+
+      document.getElementById('q-counter-badge').innerText = `Aufgabe ${State.exIndex + 1} / ${mod.exercises.length}`;
+    }
+
+    /* -------------------------------------------------------------------------
+       F. INTERACTIVE PRACTICE ARENA (3 MODES: MCQ, SCRAMBLE, CLOZE)
+       ------------------------------------------------------------------------- */
+    let scrambleCurrentWords = [];
+    let scrambleSelectedWords = [];
+
+    function renderInteractiveExercise() {
+      const ex = State.currentExercise();
+      const stage = document.getElementById('interactive-stage');
+      const feedback = document.getElementById('answer-feedback');
+      feedback.classList.add('hidden');
+
+      if (State.practiceMode === 'mcq') {
+        // MODE 1: MULTIPLE CHOICE
+        const parts = ex.q.split('___');
+        stage.innerHTML = `
+          <div class="w-full max-w-xl text-center space-y-6 animate-pop">
+            <span class="text-xs font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-900">
+              اختر الكلمة الصحيحة لإكمال الفراغ
+            </span>
+
+            <div class="ltr-zone text-2xl sm:text-3xl font-bold font-de text-slate-900 dark:text-white leading-relaxed">
+              <span>${parts[0]}</span>
+              <span id="target-slot" class="inline-block px-3 py-0.5 mx-1 border-b-4 border-blue-600 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 rounded-lg">____</span>
+              <span>${parts[1] || ''}</span>
+            </div>
+
+            <div class="ltr-zone grid grid-cols-2 gap-3 w-full font-de">
+              ${ex.opts.map(opt => `
+                <button onclick="handleOptionSelect('${opt}', this)" class="option-btn p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 font-bold text-base sm:text-lg transition btn-tactile">
+                  ${opt}
+                </button>
+              `).join('')}
+            </div>
+
+            ${State.teacherReveal ? `<div class="p-2 text-xs text-amber-700 bg-amber-50 rounded-xl">👩‍🏫 وضع المعلم: الإجابة الصحيحة هي (${ex.a})</div>` : ''}
+          </div>
+        `;
+      } else if (State.practiceMode === 'scramble') {
+        // MODE 2: SENTENCE BUILDER (SATZBAU SCRAMBLE)
+        scrambleCurrentWords = [...ex.words].sort(() => Math.random() - 0.5);
+        scrambleSelectedWords = [];
+
+        stage.innerHTML = `
+          <div class="w-full max-w-xl text-center space-y-6 animate-pop">
+            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-900">
+              🧩 رتب الكلمات لبناء جملة صحيحة قواعدياً:
+            </span>
+
+            <!-- Assembly Area -->
+            <div id="assembly-tray" class="ltr-zone min-h-[64px] p-3 rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-950/40 flex flex-wrap gap-2 items-center justify-center font-de">
+              <span id="tray-placeholder" class="text-xs text-slate-400">انقر على الكلمات بالأسفل لترتيبها هنا...</span>
+            </div>
+
+            <!-- Pool of Scrambled Tiles -->
+            <div id="words-pool" class="ltr-zone flex flex-wrap justify-center gap-2.5 font-de">
+              ${scrambleCurrentWords.map((word, idx) => `
+                <button onclick="handleWordTileClick('${word}', ${idx})" id="tile-${idx}" class="word-tile px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-bold text-sm sm:text-base">
+                  ${word}
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="flex justify-center gap-2">
+              <button onclick="resetScrambleTray()" class="px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">
+                ↺ إعادة تعيين
+              </button>
+              <button onclick="verifyScrambleResult()" class="px-6 py-2 rounded-xl text-xs font-bold bg-emerald-600 text-white btn-tactile">
+                ✓ تحقق من الجملة
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (State.practiceMode === 'cloze') {
+        // MODE 3: CLOZE TYPING TEST
+        const parts = ex.q.split('___');
+        stage.innerHTML = `
+          <div class="w-full max-w-xl text-center space-y-6 animate-pop">
+            <span class="text-xs font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-3 py-1 rounded-full border border-purple-200 dark:border-purple-900">
+              ✍️ اكتب الكلمة بنفسك في الفراغ:
+            </span>
+
+            <div class="ltr-zone text-2xl sm:text-3xl font-bold font-de text-slate-900 dark:text-white leading-relaxed">
+              <span>${parts[0]}</span>
+              <input id="cloze-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" class="inline-block w-36 px-3 py-1 mx-1 text-center border-b-4 border-blue-600 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 outline-none rounded-lg" placeholder="اكتب هنا...">
+              <span>${parts[1] || ''}</span>
+            </div>
+
+            <!-- German Umlauts Quick Key Helpers -->
+            <div class="flex justify-center gap-2 font-de">
+              ${['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'].map(char => `
+                <button onclick="insertUmlaut('${char}')" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-bold text-xs hover:border-blue-500">
+                  ${char}
+                </button>
+              `).join('')}
+            </div>
+
+            <button onclick="checkClozeInput()" class="px-8 py-3 bg-blue-600 text-white font-black text-xs rounded-xl btn-tactile">
+              تحقق من الإجابة
+            </button>
+          </div>
+        `;
+
+        setTimeout(() => {
+          const input = document.getElementById('cloze-input');
+          if (input) {
+            input.focus();
+            input.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') checkClozeInput();
+            });
+          }
+        }, 100);
+      }
+    }
+
+    /* -------------------------------------------------------------------------
+       G. VERIFICATION & PEDAGOGICAL FEEDBACK LOGIC
+       ------------------------------------------------------------------------- */
+    window.handleOptionSelect = function(selected, btn) {
+      const ex = State.currentExercise();
+      const isCorrect = selected.trim().toLowerCase() === ex.a.trim().toLowerCase();
+
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.add('pointer-events-none'));
+      const slot = document.getElementById('target-slot');
+      slot.innerText = selected;
+      slot.classList.add(isCorrect ? 'text-emerald-600' : 'text-rose-600');
+
+      showPedagogicalFeedback(isCorrect, ex, selected);
+    };
+
+    window.handleWordTileClick = function(word, idx) {
+      const tile = document.getElementById(`tile-${idx}`);
+      tile.classList.add('used');
+      scrambleSelectedWords.push({ word, idx });
+
+      const tray = document.getElementById('assembly-tray');
+      const placeholder = document.getElementById('tray-placeholder');
+      if (placeholder) placeholder.remove();
+
+      const chip = document.createElement('span');
+      chip.className = 'px-3 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-sm shadow-sm';
+      chip.innerText = word;
+      tray.appendChild(chip);
+    };
+
+    window.resetScrambleTray = function() {
+      scrambleSelectedWords = [];
+      const tray = document.getElementById('assembly-tray');
+      tray.innerHTML = '<span id="tray-placeholder" class="text-xs text-slate-400">انقر على الكلمات بالأسفل لترتيبها هنا...</span>';
+      document.querySelectorAll('.word-tile').forEach(t => t.classList.remove('used'));
+    };
+
+    window.verifyScrambleResult = function() {
+      const ex = State.currentExercise();
+      const userSentence = scrambleSelectedWords.map(item => item.word).join(' ');
+      const targetSentence = ex.words.join(' ');
+      const isCorrect = userSentence.trim() === targetSentence.trim();
+
+      showPedagogicalFeedback(isCorrect, ex, userSentence);
+    };
+
+    window.insertUmlaut = function(char) {
+      const input = document.getElementById('cloze-input');
+      if (!input) return;
+      input.value += char;
+      input.focus();
+    };
+
+    window.checkClozeInput = function() {
+      const ex = State.currentExercise();
+      const input = document.getElementById('cloze-input');
+      if (!input) return;
+      const val = input.value.trim();
+      const isCorrect = val.toLowerCase() === ex.a.toLowerCase();
+
+      showPedagogicalFeedback(isCorrect, ex, val);
+    };
+
+    function showPedagogicalFeedback(isCorrect, ex, userResponse) {
+      const feedback = document.getElementById('answer-feedback');
+      const headline = document.getElementById('feedback-headline');
+      const explanation = document.getElementById('feedback-explanation');
+      const iconBox = document.getElementById('feedback-icon-box');
+      const listenBtn = document.getElementById('btn-listen-sentence');
+
+      feedback.classList.remove('hidden', 'bg-emerald-50', 'dark:bg-emerald-950/40', 'border-emerald-300', 'bg-rose-50', 'dark:bg-rose-950/40', 'border-rose-300', 'animate-shake');
+
+      const fullSentence = ex.words.join(' ');
+
+      if (isCorrect) {
+        SoundFX.playSuccess();
+        State.addXP(15);
+        State.streak++;
+        document.getElementById('streak-counter').innerText = `🔥 سلسلة: ${State.streak}`;
+
+        feedback.classList.add('bg-emerald-50', 'dark:bg-emerald-950/40', 'border-emerald-300', 'dark:border-emerald-800');
+        iconBox.className = 'w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 bg-emerald-600 text-white';
+        iconBox.innerHTML = '✓';
+        headline.className = 'font-black text-base text-emerald-900 dark:text-emerald-200';
+        headline.innerText = 'أحسنت! إجابة صحيحة وصياغة ألمانية سليمة 👏';
+        explanation.innerText = `${ex.hint}`;
+      } else {
+        SoundFX.playError();
+        State.streak = 0;
+        document.getElementById('streak-counter').innerText = `🔥 سلسلة: 0`;
+
+        feedback.classList.add('bg-rose-50', 'dark:bg-rose-950/40', 'border-rose-300', 'dark:border-rose-800', 'animate-shake');
+        iconBox.className = 'w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 bg-rose-600 text-white';
+        iconBox.innerHTML = '✕';
+        headline.className = 'font-black text-base text-rose-900 dark:text-rose-200';
+        headline.innerHTML = `انتبه للقاعدة! الحل الصحيح هو: <span class="font-de underline font-bold ltr-zone">${ex.a}</span>`;
+        explanation.innerText = `${ex.hint}`;
+      }
+
+      speakGerman(fullSentence);
+      listenBtn.onclick = () => speakGerman(fullSentence);
+    }
+
+    window.advanceNextExercise = function() {
+      const mod = State.currentModule();
+      if (State.exIndex < mod.exercises.length - 1) {
+        State.exIndex++;
+      } else {
+        State.exIndex = 0;
+        alert('تهانينا البالغة! لقد أتممت جميع تمارين هذه الوحدة بنجاح!');
+      }
+      renderStepper(mod);
+      renderInteractiveExercise();
+    };
+
+    window.jumpToExercise = function(idx) {
+      State.exIndex = idx;
+      renderStepper(State.currentModule());
+      renderInteractiveExercise();
+    };
+
+    /* -------------------------------------------------------------------------
+       H. NAVIGATION, TABS & TOOLKIT
+       ------------------------------------------------------------------------- */
+    window.switchTab = function(tabName) {
+      State.activeTab = tabName;
+      document.getElementById('view-lesson').classList.toggle('hidden', tabName !== 'lesson');
+      document.getElementById('view-practice').classList.toggle('hidden', tabName !== 'practice');
+      document.getElementById('view-reference').classList.toggle('hidden', tabName !== 'reference');
+
+      // Tabs styles
+      document.getElementById('tab-lesson').className = tabName === 'lesson' 
+        ? "px-4 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition btn-tactile"
+        : "px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-1.5 transition";
+
+      document.getElementById('tab-practice').className = tabName === 'practice'
+        ? "px-4 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition btn-tactile"
+        : "px-4 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-bold text-xs flex items-center gap-1.5 transition";
+
+      if (tabName === 'practice') {
+        renderInteractiveExercise();
+      }
+    };
+
+    window.setPracticeMode = function(mode) {
+      State.practiceMode = mode;
+      ['mcq', 'scramble', 'cloze'].forEach(m => {
+        const btn = document.getElementById(`pmode-${m}`);
+        if (m === mode) {
+          btn.className = "px-3 py-1.5 rounded-xl bg-blue-600 text-white font-bold text-xs transition btn-tactile";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold transition";
+        }
+      });
+      renderInteractiveExercise();
+    };
+
+    window.toggleCatalog = function(open) {
+      document.getElementById('catalog-drawer').classList.toggle('hidden', !open);
+    };
+
+    window.toggleTeacherModal = function(open) {
+      document.getElementById('teacher-modal').classList.toggle('hidden', !open);
+    };
+
+    function renderCatalogList() {
+      const container = document.getElementById('catalog-units-list');
+      container.innerHTML = CURRICULUM.map((mod, idx) => `
+        <div onclick="selectModule(${idx})" class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-600 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-slate-800/40 cursor-pointer transition flex items-start gap-3">
+          <span class="px-2 py-1 rounded-md bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 font-de font-black text-xs mt-0.5">${mod.id}</span>
+          <div>
+            <p class="font-black text-xs text-slate-900 dark:text-white">${mod.titleAr}</p>
+            <p class="font-de text-slate-500 text-[11px] ltr-zone mt-0.5">${mod.titleDe}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.selectModule = function(idx) {
+      State.modIndex = idx;
+      State.exIndex = 0;
+      toggleCatalog(false);
+      renderApp();
+      switchTab('lesson');
+    };
+
+    /* -------------------------------------------------------------------------
+       I. INITIALIZATION & LISTENERS
+       ------------------------------------------------------------------------- */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme Restoration
+      const isDark = localStorage.getItem('dm_theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (isDark) document.documentElement.classList.add('dark');
+
+      document.getElementById('btn-theme').addEventListener('click', () => {
+        const dark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('dm_theme', dark ? 'dark' : 'light');
+      });
+
+      // Tab Buttons
+      document.getElementById('tab-lesson').addEventListener('click', () => switchTab('lesson'));
+      document.getElementById('tab-practice').addEventListener('click', () => switchTab('practice'));
+      document.getElementById('tab-reference').addEventListener('click', () => switchTab('reference'));
+
+      // Catalog
+      document.getElementById('btn-catalog').addEventListener('click', () => toggleCatalog(true));
+      document.getElementById('catalog-search-input').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        const filtered = CURRICULUM.filter(m => m.id.toLowerCase().includes(q) || m.titleAr.includes(q) || m.titleDe.toLowerCase().includes(q));
+        const container = document.getElementById('catalog-units-list');
+        container.innerHTML = filtered.map((mod) => {
+          const originalIdx = CURRICULUM.findIndex(item => item.id === mod.id);
+          return `
+            <div onclick="selectModule(${originalIdx})" class="p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-blue-600 cursor-pointer transition flex items-start gap-3">
+              <span class="px-2 py-1 rounded-md bg-blue-100 text-blue-800 font-de font-black text-xs">${mod.id}</span>
+              <div>
+                <p class="font-black text-xs">${mod.titleAr}</p>
+                <p class="font-de text-slate-500 text-[11px] ltr-zone">${mod.titleDe}</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      });
+
+      // Module Step Buttons
+      document.getElementById('btn-prev-mod').addEventListener('click', () => {
+        if (State.modIndex > 0) { State.modIndex--; State.exIndex = 0; renderApp(); }
+      });
+      document.getElementById('btn-next-mod').addEventListener('click', () => {
+        if (State.modIndex < CURRICULUM.length - 1) { State.modIndex++; State.exIndex = 0; renderApp(); }
+      });
+
+      // Audio Speed Toggle
+      const speedBtn = document.getElementById('btn-audio-speed');
+      speedBtn.addEventListener('click', () => {
+        if (currentSpeechRate === 0.85) currentSpeechRate = 0.65;
+        else if (currentSpeechRate === 0.65) currentSpeechRate = 1.0;
+        else currentSpeechRate = 0.85;
+        speedBtn.innerText = `🔊 ${currentSpeechRate}x`;
+      });
+
+      // Teacher Tools
+      document.getElementById('btn-teacher-mode').addEventListener('click', () => toggleTeacherModal(true));
+      document.getElementById('check-reveal-mode').addEventListener('change', (e) => {
+        State.teacherReveal = e.target.checked;
+        renderInteractiveExercise();
+      });
+
+      // Projector Toggle
+      const projToggle = () => {
+        State.isProjector = !State.isProjector;
+        document.body.classList.toggle('projector-mode', State.isProjector);
+      };
+      document.getElementById('btn-projector').addEventListener('click', projToggle);
+      document.getElementById('check-projector-toggle').addEventListener('change', projToggle);
+
+      // Print Sheet Preparation
+      window.addEventListener('beforeprint', () => {
+        const mod = State.currentModule();
+        document.getElementById('print-sheet-title').innerText = `الوحدة: ${mod.id} - ${mod.titleDe}`;
+        const container = document.getElementById('print-questions-list');
+        container.innerHTML = mod.exercises.map((ex, i) => `
+          <div class="p-3 border-b border-slate-300">
+            <p class="font-bold ltr-zone text-sm">${i + 1}. ${ex.q}</p>
+            <div class="ltr-zone text-xs text-slate-600 mt-1">Options: [ ${ex.opts.join('   /   ')} ]</div>
+          </div>
+        `).join('');
+      });
+
+      renderApp();
+    });
+
+    /* -------------------------------------------------------------------------
+       J. EMBEDDED SERVICE WORKER (OFFLINE PWA ARCHITECTURE VIA BLOB)
+       ------------------------------------------------------------------------- */
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        const CACHE_NAME = 'deutsch-mai-single-v1';
+        self.addEventListener('install', (e) => self.skipWaiting());
+        self.addEventListener('activate', (e) => self.clients.claim());
+        self.addEventListener('fetch', (e) => {
+          e.respondWith(
+            fetch(e.request).catch(() => caches.match(e.request))
+          );
+        });
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const workerUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(workerUrl).catch(() => {});
+    }
+  </script>
 </body>
 </html>

@@ -1,141 +1,258 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 
+/* =========================================================================
+   WCAG AAA HIGH-CONTRAST DESIGN TOKENS
+   ========================================================================= */
 :root {
-  --font-ar: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-de: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ar: 'Tajawal', sans-serif;
+  --font-de: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Theme Tokens (Light) */
-  --bg-app: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-surface-elevated: #f1f5f9;
-  --border-subtle: #e2e8f0;
-  --text-main: #0f172a;
+  /* Surface & Base Colors - Light Mode */
+  --bg-app: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --border-color: #cbd5e1;
+  --border-focus: #2563eb;
+  
+  /* Text Contrast - Light Mode */
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
   --text-muted: #64748b;
-  --glass-nav: rgba(255, 255, 255, 0.85);
+
+  /* Interactive & Accents */
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --primary-light: #eff6ff;
+  --primary-text: #ffffff;
+
+  /* Pedagogical Callout Themes */
+  --callout-tip-bg: #eff6ff;
+  --callout-tip-border: #2563eb;
+  --callout-tip-text: #1e3a8a;
+
+  --callout-warn-bg: #fff1f2;
+  --callout-warn-border: #e11d48;
+  --callout-warn-text: #881337;
+
+  --callout-rule-bg: #f0fdf4;
+  --callout-rule-border: #16a34a;
+  --callout-rule-text: #14532d;
+
+  /* Syntactic Tags */
+  --tag-subj-bg: #dbeafe;
+  --tag-subj-text: #1e40af;
+  --tag-verb-bg: #fee2e2;
+  --tag-verb-text: #991b1b;
+  --tag-obj-bg: #dcfce7;
+  --tag-obj-text: #166534;
+  --tag-prep-bg: #e0e7ff;
+  --tag-prep-text: #3730a3;
+
+  /* Terminal Formula */
+  --formula-bg: #090d16;
+  --formula-text: #38bdf8;
+  --formula-border: #1e293b;
 }
 
+/* =========================================================================
+   TRUE DARK MODE TOKENS (No washed-out text, Pure Rich Charcoal & Navy)
+   ========================================================================= */
 html.dark {
-  --bg-app: #090d16;
-  --bg-surface: #0f172a;
-  --bg-surface-elevated: #1e293b;
-  --border-subtle: #334155;
-  --text-main: #f8fafc;
+  --bg-app: #030712;
+  --bg-card: #0b0f19;
+  --bg-card-hover: #111827;
+  --border-color: #1f293d;
+  --border-focus: #60a5fa;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
-  --glass-nav: rgba(15, 23, 42, 0.85);
+
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-light: rgba(59, 130, 246, 0.15);
+  --primary-text: #ffffff;
+
+  --callout-tip-bg: #0c182e;
+  --callout-tip-border: #3b82f6;
+  --callout-tip-text: #bfdbfe;
+
+  --callout-warn-bg: #1f0a10;
+  --callout-warn-border: #f43f5e;
+  --callout-warn-text: #fecdd3;
+
+  --callout-rule-bg: #051a10;
+  --callout-rule-border: #22c55e;
+  --callout-rule-text: #bbf7d0;
+
+  --tag-subj-bg: rgba(30, 64, 175, 0.35);
+  --tag-subj-text: #93c5fd;
+  --tag-verb-bg: rgba(153, 27, 27, 0.35);
+  --tag-verb-text: #fca5a5;
+  --tag-obj-bg: rgba(22, 101, 52, 0.35);
+  --tag-obj-text: #86efac;
+  --tag-prep-bg: rgba(55, 48, 163, 0.35);
+  --tag-prep-text: #c7d2fe;
+
+  --formula-bg: #050811;
+  --formula-text: #38bdf8;
+  --formula-border: #1e293b;
+}
+
+/* Global Reset & Base Typography */
+* {
+  box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-ar);
   background-color: var(--bg-app);
-  color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .font-de { font-family: var(--font-de); }
 .font-mono { font-family: var(--font-mono); }
 
 /* Directional Isolation */
-.ltr-isolate {
+.ltr-zone {
   direction: ltr !important;
   text-align: left !important;
   unicode-bidi: isolate;
 }
-.rtl-isolate {
+.rtl-zone {
   direction: rtl !important;
   text-align: right !important;
   unicode-bidi: isolate;
 }
 
-/* 2026 Glassmorphism Navigation */
-.nav-glass {
-  background: var(--glass-nav);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
+/* Surface & Cards */
+.dr-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Modern Formula Terminal Card */
-.formula-terminal {
-  background: linear-gradient(135deg, #090d16 0%, #171f33 100%);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+/* Glass Header */
+.dr-header {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* Compendium Data Grid Table */
-.data-table-container {
+/* High Contrast Formula Terminal */
+.dr-formula {
+  background-color: var(--formula-bg);
+  border: 1px solid var(--formula-border);
+  color: var(--formula-text);
+  border-radius: 14px;
+  padding: 16px;
+  font-family: var(--font-mono);
+  direction: ltr;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Clear Pedagogical Callouts */
+.dr-callout-tip {
+  background-color: var(--callout-tip-bg);
+  border-right: 4px solid var(--callout-tip-border);
+  color: var(--callout-tip-text);
+  padding: 16px;
+  border-radius: 12px;
+}
+.dr-callout-warn {
+  background-color: var(--callout-warn-bg);
+  border-right: 4px solid var(--callout-warn-border);
+  color: var(--callout-warn-text);
+  padding: 16px;
+  border-radius: 12px;
+}
+.dr-callout-rule {
+  background-color: var(--callout-rule-bg);
+  border-right: 4px solid var(--callout-rule-border);
+  color: var(--callout-rule-text);
+  padding: 16px;
+  border-radius: 12px;
+}
+
+/* High Contrast Structured Tables */
+.table-wrapper {
   width: 100%;
   overflow-x: auto;
-  border-radius: 14px;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
 }
 
-.data-table {
+.dr-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   direction: ltr;
   text-align: left;
 }
 
-.data-table th {
-  background: var(--bg-surface-elevated);
-  color: var(--text-muted);
+.dr-table th {
+  background-color: var(--bg-card-hover);
+  color: var(--text-secondary);
   font-weight: 700;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border-subtle);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  padding: 14px 18px;
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
 }
 
-.data-table td {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border-subtle);
-  color: var(--text-main);
+.dr-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  white-space: nowrap;
 }
-.data-table tr:last-child td { border-bottom: none; }
+.dr-table tr:last-child td { border-bottom: none; }
 
-/* Syntactic Component Breakdown Tags */
-.syntax-tag-subj { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
-.syntax-tag-verb { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
-.syntax-tag-obj  { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
-.syntax-tag-prep { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+/* Syntactic Component Badges */
+.tag-subj { background: var(--tag-subj-bg); color: var(--tag-subj-text); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+.tag-verb { background: var(--tag-verb-bg); color: var(--tag-verb-text); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+.tag-obj  { background: var(--tag-obj-bg); color: var(--tag-obj-text); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+.tag-prep { background: var(--tag-prep-bg); color: var(--tag-prep-text); padding: 3px 8px; border-radius: 6px; font-weight: 700; }
 
-html.dark .syntax-tag-subj { background: rgba(30, 64, 175, 0.3); color: #93c5fd; border-color: rgba(59, 130, 246, 0.3); }
-html.dark .syntax-tag-verb { background: rgba(153, 27, 27, 0.3); color: #fca5a5; border-color: rgba(239, 68, 68, 0.3); }
-html.dark .syntax-tag-obj  { background: rgba(22, 101, 52, 0.3); color: #86efac; border-color: rgba(34, 197, 94, 0.3); }
-html.dark .syntax-tag-prep { background: rgba(146, 64, 14, 0.3); color: #fde047; border-color: rgba(234, 179, 8, 0.3); }
-
-/* 40 Practice Pills */
-.quiz-pill {
-  width: 36px;
-  height: 36px;
+/* 40 Exercises Pills */
+.pill-button {
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 800;
   font-family: var(--font-de);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-surface);
-  color: var(--text-muted);
+  transition: all 0.15s ease-in-out;
 }
-.quiz-pill:hover { border-color: #3b82f6; color: #3b82f6; }
-.quiz-pill.active {
-  background: #2563eb !important;
-  border-color: #2563eb !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-  transform: scale(1.1);
-  z-index: 2;
+.pill-button:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
 }
-.quiz-pill.completed {
-  background: #10b981;
+.pill-button.active {
+  background-color: var(--primary) !important;
+  color: var(--primary-text) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+.pill-button.done {
+  background-color: #10b981;
   border-color: #059669;
   color: #ffffff;
 }
@@ -146,4 +263,10 @@ html.dark .syntax-tag-prep { background: rgba(146, 64, 14, 0.3); color: #fde047;
   25% { transform: translateX(-6px); }
   75% { transform: translateX(6px); }
 }
-.animate-shake { animation: shake 0.35s ease-in-out; }
+.animate-shake { animation: shake 0.3s ease-in-out; }
+
+@keyframes popIn {
+  0% { transform: scale(0.97); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop { animation: popIn 0.25s ease-out forwards; }
